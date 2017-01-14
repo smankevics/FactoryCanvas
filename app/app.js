@@ -1,3 +1,5 @@
+'use strict';
+
 var Core = require('./core');
 
-Core.test();
+var app = new Core.Application(0, 0, 600, 400);
