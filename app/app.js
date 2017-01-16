@@ -1,30 +1,29 @@
 'use strict';
 
+const WIDTH = 800;
+const HEIGHT = 600;
+
 var PIXI = require('pixi.js');
 
-var defines = require('./Defines');
+var MainStage = require('./stages').MainStage;
+var StageManager = require('./managers').StageManager;
 
-var resourceItem = require('./components/resourceItem');
-var Store = require('./Store');
-
-var renderer = new PIXI.autoDetectRenderer(800, 600, {backgroundColor: 0xffffff, antialias: true });
+var renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT, {backgroundColor: 0xffffff, antialias: true });
 document.body.appendChild(renderer.view);
-var stage = new PIXI.Container();
-stage.interactive = true;
 
-var resources = defines.resources();
+var appcication = new PIXI.Container();
+appcication.interactive = true;
 
-var i = 0;
+var stageManager = new StageManager(appcication);
 
-for(i; i < 4; i++) {
-    var res = new resourceItem(resources[i], 20, 20 + 40*i);
-    stage.addChild(res.container);
-}
+//create stages
+stageManager.addStage(new MainStage('mainStage', WIDTH, HEIGHT));
+stageManager.setStage('mainStage');
 
-animate();
+mainProcess();
 
-function animate() {
-    requestAnimationFrame(animate);
+function mainProcess() {
+    requestAnimationFrame(mainProcess);
 
-    renderer.render(stage);
+    renderer.render(appcication);
 }
