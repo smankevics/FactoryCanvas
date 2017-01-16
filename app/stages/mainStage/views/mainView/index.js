@@ -15,7 +15,7 @@ module.exports = function(_x, _y, _width, _height) {
   container.height = height;
 
   var body = new PIXI.Graphics();
-  body.beginFill(0xBCDBCC);
+  body.beginFill(0xD7D7D8);
   body.drawRect(0, 0, width, height);
   container.addChild(body);
 

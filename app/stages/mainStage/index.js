@@ -6,8 +6,8 @@ var HeadView = require('./views/headView');
 var NavView = require('./views/navView');
 var MainView = require('./views/mainView');
 
-const HEAD_HEIGHT = 30;
-const NAV_HEIGHT = 50;
+const HEAD_HEIGHT = 40;
+const NAV_HEIGHT = 30;
 
 module.exports = function(_name, _width, _height) {
   var name = _name;

@@ -15,7 +15,7 @@ module.exports = function(_x, _y, _width, _height) {
   container.height = height;
 
   var nav = new PIXI.Graphics();
-  nav.beginFill(0x609191);
+  nav.beginFill(0x6C6D70);
   nav.drawRect(0, 0, width, height);
   container.addChild(nav);
 
