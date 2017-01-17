@@ -2,9 +2,9 @@
 
 var PIXI = require('pixi.js');
 
-var HeadView = require('./views/headView');
-var NavView = require('./views/navView');
-var MainView = require('./views/mainView');
+var Header = require('./sections/header');
+var Navigation = require('./sections/navigation');
+var Main = require('./sections/main');
 
 const HEAD_HEIGHT = 40;
 const NAV_HEIGHT = 30;
@@ -18,13 +18,13 @@ module.exports = function(_name, _width, _height) {
   //initially invisible 
   container.visible = false;
 
-  var headView = new HeadView(0, 0, width, HEAD_HEIGHT);
-  var navView = new NavView(0, HEAD_HEIGHT, width, NAV_HEIGHT);
-  var mainView = new MainView(0, navView.y + navView.height, width, height - (navView.y + navView.height));
+  var header = new Header(0, 0, width, HEAD_HEIGHT);
+  var navigation = new Navigation(0, HEAD_HEIGHT, width, NAV_HEIGHT);
+  var main = new Main(0, navigation.y + navigation.height, width, height - (navigation.y + navigation.height));
 
-  container.addChild(headView);
-  container.addChild(navView);
-  container.addChild(mainView);
+  container.addChild(header);
+  container.addChild(navigation);
+  container.addChild(main);
 
   return {
     name: name,

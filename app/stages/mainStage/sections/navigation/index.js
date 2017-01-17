@@ -4,13 +4,16 @@ var PIXI = require('pixi.js');
 
 var Button = require('../../../../components').Button;
 
+var viewManager = require('../../managers/ViewManager');
+
 module.exports = function(_x, _y, _width, _height) {
   var x = _x;
   var y = _y;
   var width = _width;
   var height = _height;
-  var container = new PIXI.Container();
+  var active = null;
 
+  var container = new PIXI.Container();
   container.x = x;
   container.y = y;
   container.width = width;
@@ -24,39 +27,28 @@ module.exports = function(_x, _y, _width, _height) {
   var group = new PIXI.Container();
 
   var shop = new Button('Shop', 0, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('shop');
   });
+  active = shop;
 
   var inventory = new Button('Inventory', shop.x + shop.width + 10, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('inventory');
   });
 
   var workbench = new Button('Workbench', inventory.x + inventory.width + 10, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('workbench');
   });
 
   var factory = new Button('Factory', workbench.x + workbench.width + 10, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('factory');
   });
 
   var auction = new Button('Auction', factory.x + factory.width + 10, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('auction');
   });
 
   var stats = new Button('Stats', auction.x + auction.width + 10, 0, null, function() {
-    
-  }, function() {
-    
+    viewManager.setView('stats');
   });
 
   group.addChild(shop);
