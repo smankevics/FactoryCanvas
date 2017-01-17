@@ -12,6 +12,8 @@ module.exports = function(_info, _x, _y, _count) {
   container.y = _y;
 
   var buyCount = 0;
+  var pressTimeout;
+  var pressCycle = 1;
 
   function setBuyValue(inc) {
     if(!inc && buyCount == 0)
@@ -25,9 +27,16 @@ module.exports = function(_info, _x, _y, _count) {
     if(buyCount > 0) {
       toBuy.text = '+' + buyCount;
       toBuy.x = (WIDTH - toBuy.width) / 2;
+      pressTimeout = setTimeout(function(){setBuyValue(inc)}, 200 / pressCycle);
+      pressCycle++;
     } else {
       toBuy.text = '';
     }
+  }
+
+  function release() {
+    clearTimeout(pressTimeout);
+    pressCycle = 1;
   }
 
   var border = new PIXI.Graphics();
@@ -63,6 +72,7 @@ module.exports = function(_info, _x, _y, _count) {
   btGr1.on('mousedown', function() {
     setBuyValue(false);
   });
+  btGr1.on('mouseup', release);
   var btGr1bg = new PIXI.Graphics();
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
@@ -89,6 +99,7 @@ module.exports = function(_info, _x, _y, _count) {
   btGr2.on('mousedown', function() {
     setBuyValue(true);
   });
+  btGr2.on('mouseup', release);
   var btGr2bg = new PIXI.Graphics();
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
