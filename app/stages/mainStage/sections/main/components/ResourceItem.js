@@ -1,16 +1,8 @@
 'use strict';
 var PIXI = require('pixi.js');
 
-function button(text, x, y, color, mouseDownCb, mouseUpCb) {
-  var bt = new PIXI.Text(text, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : color});
-  bt.buttonMode = true;
-  bt.interactive = true;
-  bt.x = x;
-  bt.y = y;
-  bt.on('mousedown', mouseDownCb);
-  bt.on('mouseup', mouseUpCb);
-  return bt;
-}
+const WIDTH = 80;
+const HEIGHT = 100;
 
 module.exports = function(_info, _x, _y, _count) {
   var info = _info;
@@ -19,43 +11,93 @@ module.exports = function(_info, _x, _y, _count) {
   container.x = _x;
   container.y = _y;
 
-  var buy = 0;
+  var buyCount = 0;
 
-  function setBuyValue(_val) {
-    buy = _val;
-    if(buy > 0)
-      toBuy.text = '+' + buy;
+  function setBuyValue(inc) {
+    if(!inc && buyCount == 0)
+      return;
+
+    if(inc) 
+      buyCount++;
     else
+      buyCount--;
+      
+    if(buyCount > 0) {
+      toBuy.text = '+' + buyCount;
+      toBuy.x = (WIDTH - toBuy.width) / 2;
+    } else {
       toBuy.text = '';
+    }
   }
 
-  var name = new PIXI.Text(info.name + ': ' + count, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x000000});
+  var border = new PIXI.Graphics();
+  border.beginFill(0xcccccc);
+  border.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
+  container.addChild(border);
+
+  var icon = new PIXI.Graphics();
+  icon.beginFill(0xeeeeee);
+  icon.drawRect(0, 0, 40, 40);
+  icon.x = (WIDTH - icon.width) / 2;
+  icon.y = 5;
+  container.addChild(icon);
+
+  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  name.x = (WIDTH - name.width) / 2;
+  name.y = icon.y + icon.height + 2;
   container.addChild(name);
 
+  var quantity = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  quantity.x = (WIDTH - quantity.width) / 2;
+  quantity.y = name.y + name.height;
+  container.addChild(quantity);
+
+  //decrease button
+  var btGr1 = new PIXI.Container();
+  btGr1.x = 5;
+  btGr1.y = HEIGHT - 21;
+  btGr1.height = 16;
+  btGr1.width = 16;
+  btGr1.buttonMode = true;
+  btGr1.interactive = true;
+  btGr1.on('mousedown', function() {
+    setBuyValue(false);
+  });
+  var btGr1bg = new PIXI.Graphics();
+  btGr1bg.beginFill(0xdedede);
+  btGr1bg.drawRect(0, 0, 16, 16);
+  btGr1.addChild(btGr1bg);
+  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  dec.x = (btGr1.width - dec.width) / 2;
+  dec.y = (btGr1.height - dec.height) / 2 - 1;
+  btGr1.addChild(dec);
+  container.addChild(btGr1);
+
   var toBuy = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
-  toBuy.x = name.width;
+  toBuy.x = (WIDTH - toBuy.width) / 2;
+  toBuy.y = HEIGHT - 21;
   container.addChild(toBuy);
 
-  var clear = button('X', 0, 16, 0xff0000, function(e) {
-    setBuyValue(0);
+  //increase button
+  var btGr2 = new PIXI.Container();
+  btGr2.x = WIDTH - 21;
+  btGr2.y = HEIGHT - 21;
+  btGr2.height = 16;
+  btGr2.width = 16;
+  btGr2.buttonMode = true;
+  btGr2.interactive = true;
+  btGr2.on('mousedown', function() {
+    setBuyValue(true);
   });
-  container.addChild(clear);
-  var dec10 = button('-10', 12, 16, 0xff0000, function(e) {
-    setBuyValue(buy > 10 ? buy - 10 : 0);
-  });
-  container.addChild(dec10);
-  var dec1 = button('-1', 36, 16, 0xff0000, function(e) {
-    setBuyValue(buy > 1 ? buy - 1 : 0);
-  });
-  container.addChild(dec1);
-  var inc1 = button('+1', 52, 16, 0x00bb00, function(e) {
-    setBuyValue(buy + 1);
-  });
-  container.addChild(inc1);
-  var inc10 = button('+10', 72, 16, 0x00bb00, function(e) {
-    setBuyValue(buy + 10);
-  });
-  container.addChild(inc10);
+  var btGr2bg = new PIXI.Graphics();
+  btGr2bg.beginFill(0xdedede);
+  btGr2bg.drawRect(0, 0, 16, 16);
+  btGr2.addChild(btGr2bg);
+  var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  dec.x = (btGr2.width - dec.width) / 2;
+  dec.y = (btGr2.height - dec.height) / 2 - 1;
+  btGr2.addChild(dec);
+  container.addChild(btGr2);
 
   return {
     container: container,
