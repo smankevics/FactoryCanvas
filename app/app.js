@@ -5,7 +5,7 @@ const HEIGHT = 600;
 
 var PIXI = require('pixi.js');
 
-var FPSMeter = require('./components/FPSMeter');
+var FpsMeter = require('./components/view/FpsMeter');
 var MainStage = require('./stages').MainStage;
 var StageManager = require('./managers').StageManager;
 
@@ -16,7 +16,7 @@ var application = new PIXI.Container();
 application.interactive = true;
 
 var stageManager = new StageManager(application);
-var fpsMeter = new FPSMeter(WIDTH - 20, HEIGHT - 20);
+var fpsMeter = new FpsMeter(WIDTH - 20, HEIGHT - 20);
 
 //create stages
 stageManager.addStage(new MainStage('mainStage', WIDTH, HEIGHT));

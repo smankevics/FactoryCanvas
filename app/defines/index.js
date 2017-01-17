@@ -1,9 +1,13 @@
 'use strict';
 
+var _ = require('lodash');
 var resources = require('./resources');
 
 module.exports = {
-  resources: function() {
+  commonResources: function() {
+    return _.filter(resources, {level: 1});
+  },
+  allItems: function() {
     resources.forEach(function(r) {
       if(!r.price) {
         r.price = 0;

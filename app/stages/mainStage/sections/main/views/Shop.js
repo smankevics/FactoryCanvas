@@ -2,6 +2,11 @@
 
 var PIXI = require('pixi.js');
 
+var storeManager = require('../../../../../managers/StoreManager');
+var commonResources = storeManager.get('commonResources');
+
+var ResourceItem = require('../components/ResourceItem');
+
 module.exports = function(_width, _height) {
   var width = _width;
   var height = _height;
@@ -20,6 +25,16 @@ module.exports = function(_width, _height) {
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
+
+  var list = [];
+  var i = 0, rw = 10, rh = 40;
+  commonResources.forEach(function(r) {
+    var res = new ResourceItem(r, rw, rh, 0);
+    rw += res.container.width + 10;
+    //rh += res.container.height;
+    container.addChild(res.container);
+    i++;
+  });
 
   return container;
 }
