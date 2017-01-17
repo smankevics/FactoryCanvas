@@ -42,33 +42,38 @@ module.exports = function(_info, _x, _y, _count) {
     pressCycle = 1;
   }
 
-  var border = new PIXI.Graphics();
-  border.beginFill(0xbababa);
-  border.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
-  container.addChild(border);
+  var bg = new PIXI.Graphics();
+  bg.beginFill(0xbababa);
+  bg.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
+  container.addChild(bg);
+
+  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  name.x = (WIDTH - name.width) / 2;
+  name.y = 2;
+  container.addChild(name);
 
   var iconBg = new PIXI.Graphics();
   iconBg.beginFill(0x444444);
   iconBg.drawRect(0, 0, 40, 40);
   iconBg.x = (WIDTH - 40) / 2;
-  iconBg.y = 5;
+  iconBg.y = name.y + name.height + 2;
   container.addChild(iconBg);
 
   var icon = new PIXI.Sprite(PIXI.loader.resources[info.name].texture);
-  icon.width = 30;
-  icon.height = 30;
+  icon.width = 34;
+  icon.height = 34;
   icon.x = (WIDTH - icon.width) / 2;
-  icon.y = 10;
+  icon.y = iconBg.y + 3;
   container.addChild(icon);
 
-  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
-  name.x = (WIDTH - name.width) / 2;
-  name.y = icon.y + icon.height + 5;
-  container.addChild(name);
+  var price = new PIXI.Text(info.price + '€', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  price.x = 5;
+  price.y = iconBg.y + iconBg.height + 2;
+  container.addChild(price);
 
-  var quantity = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
-  quantity.x = (WIDTH - quantity.width) / 2;
-  quantity.y = name.y + name.height;
+  var quantity = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  quantity.x = WIDTH - quantity.width - 5;
+  quantity.y = iconBg.y + iconBg.height + 2;
   container.addChild(quantity);
 
   //decrease button
@@ -87,13 +92,13 @@ module.exports = function(_info, _x, _y, _count) {
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
-  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr1.width - dec.width) / 2;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var toBuy = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
+  var toBuy = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 12, fill : 0x000000});
   toBuy.x = (WIDTH - toBuy.width) / 2;
   toBuy.y = HEIGHT - 21;
   container.addChild(toBuy);
