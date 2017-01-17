@@ -16,7 +16,6 @@ module.exports = {
     });
     promise
       .once('complete', function(loader, resources) {
-        console.log(arguments);
         //loading screen should be displayed at least 500ms 
         var finished = new Date;
         var dif = finished - started;

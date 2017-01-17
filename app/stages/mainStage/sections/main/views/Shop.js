@@ -31,7 +31,6 @@ module.exports = function(_width, _height) {
   commonResources.forEach(function(r) {
     var res = new ResourceItem(r, rw, rh, 0);
     rw += res.container.width + 10;
-    //rh += res.container.height;
     container.addChild(res.container);
     i++;
   });

@@ -28,7 +28,10 @@ module.exports = function(_info, _x, _y, _count) {
       toBuy.text = '+' + buyCount;
       toBuy.x = (WIDTH - toBuy.width) / 2;
       pressTimeout = setTimeout(function(){setBuyValue(inc)}, 200 / pressCycle);
-      pressCycle++;
+
+      if(pressCycle < 10)
+        pressCycle++;
+        
     } else {
       toBuy.text = '';
     }
@@ -40,7 +43,7 @@ module.exports = function(_info, _x, _y, _count) {
   }
 
   var border = new PIXI.Graphics();
-  border.beginFill(0xcccccc);
+  border.beginFill(0xbababa);
   border.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
   container.addChild(border);
 
@@ -52,7 +55,6 @@ module.exports = function(_info, _x, _y, _count) {
   container.addChild(iconBg);
 
   var icon = new PIXI.Sprite(PIXI.loader.resources[info.name].texture);
-  console.log(icon);
   icon.width = 30;
   icon.height = 30;
   icon.x = (WIDTH - icon.width) / 2;
