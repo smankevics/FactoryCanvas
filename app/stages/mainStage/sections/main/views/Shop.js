@@ -4,6 +4,8 @@ var PIXI = require('pixi.js');
 
 var commonResources = require('../../../../../defines').commonResources();
 
+var AcceptButton = require('../components/AcceptButton');
+var DeclineButton = require('../components/DeclineButton');
 var ResourceItem = require('../components/ResourceItem');
 
 module.exports = function(_width, _height) {
@@ -24,6 +26,20 @@ module.exports = function(_width, _height) {
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
+
+  var declineButton = new DeclineButton('Decline', function() {
+
+  });
+  declineButton.x = width - declineButton.width - 5;
+  declineButton.y = 5;
+  container.addChild(declineButton);
+
+  var acceptButton = new AcceptButton('Buy', function() {
+
+  });
+  acceptButton.x = declineButton.x - acceptButton.width - 10;
+  acceptButton.y = 5;
+  container.addChild(acceptButton);
 
   var list = [];
   var i = 0, rw = 10, rh = 40;
