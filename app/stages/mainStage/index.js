@@ -18,9 +18,13 @@ module.exports = function(_name, _width, _height) {
   //initially invisible 
   container.visible = false;
 
-  container.addChild(new HeadView(0, 0, width, HEAD_HEIGHT));
-  container.addChild(new NavView(0, HEAD_HEIGHT, width, NAV_HEIGHT));
-  container.addChild(new MainView(0, HEAD_HEIGHT + NAV_HEIGHT, width, height - HEAD_HEIGHT - NAV_HEIGHT));
+  var headView = new HeadView(0, 0, width, HEAD_HEIGHT);
+  var navView = new NavView(0, HEAD_HEIGHT, width, NAV_HEIGHT);
+  var mainView = new MainView(0, navView.y + navView.height, width, height - (navView.y + navView.height));
+
+  container.addChild(headView);
+  container.addChild(navView);
+  container.addChild(mainView);
 
   return {
     name: name,
