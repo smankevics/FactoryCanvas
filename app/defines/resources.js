@@ -5,25 +5,29 @@ module.exports = [
       id: 0,
       name: 'Iron',
       price: 3.02,
-      level: 1
+      level: 1,
+      icon: '/images/materials/iron.png'
     },
     {
       id: 1,
       name: 'Wood',
       price: 0.67,
-      level: 1
+      level: 1,
+      icon: '/images/materials/wood.png'
     },
     {
       id: 2,
       name: 'Plastic',
       price: 1.52,
-      level: 1
+      level: 1,
+      icon: '/images/materials/plastic.png'
     },
     {
       id: 3,
       name: 'Glass',
       price: 2.38,
-      level: 1
+      level: 1,
+      icon: '/images/materials/glass.png'
     },
     {
       id: 4,

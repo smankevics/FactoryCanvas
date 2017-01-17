@@ -44,16 +44,24 @@ module.exports = function(_info, _x, _y, _count) {
   border.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
   container.addChild(border);
 
-  var icon = new PIXI.Graphics();
-  icon.beginFill(0xeeeeee);
-  icon.drawRect(0, 0, 40, 40);
+  var iconBg = new PIXI.Graphics();
+  iconBg.beginFill(0x444444);
+  iconBg.drawRect(0, 0, 40, 40);
+  iconBg.x = (WIDTH - 40) / 2;
+  iconBg.y = 5;
+  container.addChild(iconBg);
+
+  var icon = new PIXI.Sprite(PIXI.loader.resources[info.name].texture);
+  console.log(icon);
+  icon.width = 30;
+  icon.height = 30;
   icon.x = (WIDTH - icon.width) / 2;
-  icon.y = 5;
+  icon.y = 10;
   container.addChild(icon);
 
   var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   name.x = (WIDTH - name.width) / 2;
-  name.y = icon.y + icon.height + 2;
+  name.y = icon.y + icon.height + 5;
   container.addChild(name);
 
   var quantity = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
