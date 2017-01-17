@@ -6,6 +6,9 @@ var Button = require('../../../../components').Button;
 
 var viewManager = require('../../managers/ViewManager');
 
+const COLOR = 0x000000;
+const SELECTED_COLOR = 0xdedede;
+
 module.exports = function(_x, _y, _width, _height) {
   var x = _x;
   var y = _y;
@@ -26,29 +29,41 @@ module.exports = function(_x, _y, _width, _height) {
 
   var group = new PIXI.Container();
 
-  var shop = new Button('Shop', 0, 0, null, function() {
-    viewManager.setView('shop');
+  function select(name, bt) {
+    if(active) {
+      active.style.fill = COLOR;
+      active.dirty = true;
+    }
+
+    viewManager.setView(name);
+    active = bt;
+    active.style.fill = SELECTED_COLOR;
+    active.dirty = true;
+  }
+
+  var shop = new Button('Shop', 0, 0, SELECTED_COLOR, function() {
+    select('shop', shop);
   });
   active = shop;
 
-  var inventory = new Button('Inventory', shop.x + shop.width + 10, 0, null, function() {
-    viewManager.setView('inventory');
+  var inventory = new Button('Inventory', shop.x + shop.width + 10, 0, COLOR, function() {
+    select('inventory', inventory);
   });
 
-  var workbench = new Button('Workbench', inventory.x + inventory.width + 10, 0, null, function() {
-    viewManager.setView('workbench');
+  var workbench = new Button('Workbench', inventory.x + inventory.width + 10, 0, COLOR, function() {
+    select('workbench', workbench);
   });
 
-  var factory = new Button('Factory', workbench.x + workbench.width + 10, 0, null, function() {
-    viewManager.setView('factory');
+  var factory = new Button('Factory', workbench.x + workbench.width + 10, 0, COLOR, function() {
+    select('factory', factory);
   });
 
-  var auction = new Button('Auction', factory.x + factory.width + 10, 0, null, function() {
-    viewManager.setView('auction');
+  var auction = new Button('Auction', factory.x + factory.width + 10, 0, COLOR, function() {
+    select('auction', auction);
   });
 
-  var stats = new Button('Stats', auction.x + auction.width + 10, 0, null, function() {
-    viewManager.setView('stats');
+  var stats = new Button('Stats', auction.x + auction.width + 10, 0, COLOR, function() {
+    select('stats', stats);
   });
 
   group.addChild(shop);
