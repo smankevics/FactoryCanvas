@@ -2,6 +2,12 @@
 
 var PIXI = require('pixi.js');
 
+var storeManager = require('../../../../managers/StoreManager');
+
+function toCurrency(number) {
+  return number.toFixed(2) + '€';
+}
+
 module.exports = function(_x, _y, _width, _height) {
   var x = _x;
   var y = _y;
@@ -18,6 +24,20 @@ module.exports = function(_x, _y, _width, _height) {
   head.beginFill(0x25262B);
   head.drawRect(0, 0, width, height);
   container.addChild(head);
+
+  var player = new PIXI.Text(storeManager.get('player'), {fontFamily : 'Calibri', fontSize: 18, fontWeight: 'bold', fill : 0xdedede});
+  player.x = 10;
+  player.y = (height - player.height) / 2;
+  container.addChild(player);
+
+  var money = new PIXI.Text(toCurrency(storeManager.get('money')), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
+  money.x = width - money.width - 10;
+  money.y = (height - money.height) / 2;
+  container.addChild(money);
+
+  storeManager.listen('money', function(value) {
+    money.text = toCurrency(value);
+  });
 
   return container;
 }

@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "event-emitter": "^0.3.4",
+    "lodash": "^4.17.4",
     "pixi.js": "^4.3.2"
   },
   "devDependencies": {
