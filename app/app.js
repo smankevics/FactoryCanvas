@@ -20,9 +20,6 @@ application.interactive = true;
 var stageManager = new StageManager(application);
 var fpsMeter = new FpsMeter(WIDTH - 20, HEIGHT - 20);
 
-//add components to application
-application.addChild(fpsMeter.container);
-
 //create loading stage
 stageManager.addStage(new LoadingStage('loadingStage', WIDTH, HEIGHT));
 stageManager.setStage('loadingStage');
@@ -32,6 +29,9 @@ defines.loadResources(function() {
     //load other stages
     stageManager.addStage(new MainStage('mainStage', WIDTH, HEIGHT));
     stageManager.setStage('mainStage');
+
+    //add components to application
+    application.addChild(fpsMeter.container);
 });
 
 mainProcess();

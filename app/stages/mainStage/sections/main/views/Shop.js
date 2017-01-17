@@ -2,8 +2,7 @@
 
 var PIXI = require('pixi.js');
 
-var storeManager = require('../../../../../managers/StoreManager');
-var commonResources = storeManager.get('commonResources');
+var commonResources = require('../../../../../defines').commonResources();
 
 var ResourceItem = require('../components/ResourceItem');
 

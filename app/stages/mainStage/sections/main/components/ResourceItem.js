@@ -1,6 +1,8 @@
 'use strict';
 var PIXI = require('pixi.js');
 
+var storeManager = require('../../../../../managers/StoreManager');
+
 const WIDTH = 80;
 const HEIGHT = 100;
 
@@ -71,10 +73,16 @@ module.exports = function(_info, _x, _y, _count) {
   price.y = iconBg.y + iconBg.height + 2;
   container.addChild(price);
 
-  var quantity = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var q = storeManager.get('inventory[' + info.id + ']');
+  var quantity = new PIXI.Text(q + '', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   quantity.x = WIDTH - quantity.width - 5;
   quantity.y = iconBg.y + iconBg.height + 2;
   container.addChild(quantity);
+
+  storeManager.listen('inventory[' + info.id + ']', function(value) {
+    quantity.text = value + '';
+    quantity.x = WIDTH - quantity.width - 5;
+  });
 
   //decrease button
   var btGr1 = new PIXI.Container();

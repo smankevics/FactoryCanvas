@@ -7,7 +7,7 @@ var emitter = require('event-emitter')();
 
 module.exports = {
   set: function(key, value) {
-    store[key] = value;
+    _.set(store, key, newValue);
     emitter.emit(key, value);
   },
   add: function(key, value) {
@@ -34,6 +34,6 @@ module.exports = {
     emitter.on(key, cb);
   },
   get: function(key) {
-    return store[key];
+    return _.get(store, key);
   }
 }
