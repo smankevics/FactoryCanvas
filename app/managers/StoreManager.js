@@ -13,8 +13,9 @@ module.exports = {
   add: function(key, value) {
     var old = this.get(key);
     if(typeof value === 'number' && typeof old === 'number') {
-      store[key] = old + value;
-      emitter.emit(key, store[key]);
+      var newValue = old + value;
+      _.set(store, key, newValue);
+      emitter.emit(key, newValue);
     } else {
       throw 'Error: can sum only numbers!';
     }
@@ -22,7 +23,8 @@ module.exports = {
   substract: function(key, value) {
     var old = this.get(key);
     if(typeof value === 'number' && typeof old === 'number') {
-      store[key] = old - value;
+      var newValue = old - value;
+      _.set(store, key, newValue);
       emitter.emit(key, store[key]);
     } else {
       throw 'Error: can substract only numbers!';
