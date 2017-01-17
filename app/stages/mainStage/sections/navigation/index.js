@@ -2,7 +2,7 @@
 
 var PIXI = require('pixi.js');
 
-var Button = require('../../../../components').Button;
+var Button = require('../../../../components/Button');
 
 var viewManager = require('../../managers/ViewManager');
 
