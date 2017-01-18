@@ -6,6 +6,7 @@ var commonResources = require('../../../../../defines').commonResources();
 
 var BuyDecline = require('../components/BuyDecline');
 var ResourceItem = require('../components/ResourceItem');
+var ScrollableGroup = require('../components/ScrollableGroup');
 
 module.exports = function(_width, _height) {
   var width = _width;
@@ -32,16 +33,23 @@ module.exports = function(_width, _height) {
   buyDecline.y = 5;
   container.addChild(buyDecline);
 
-  var list = [];
-  var i = 0, rw = 10, rh = 40;
+  var group = new ScrollableGroup(container, width, height);
+
+  var i = 0, rw = 0, rh = 40;
   commonResources.forEach(function(resource) {
     var res = new ResourceItem(resource);
     res.container.x = rw;
     res.container.y = rh;
-    rw += res.container.width + 10;
-    container.addChild(res.container);
+    rw += res.container.width + 8;
+    if(rw + res.container.width > width) {
+      rw = 0;
+      rh += res.container.height + 8;
+    }
+    group.addChild(res.container);
     i++;
   });
+
+  container.addChild(group.container);
 
   return container;
 }
