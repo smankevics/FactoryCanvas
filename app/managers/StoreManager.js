@@ -15,6 +15,7 @@ function get(key) {
 }
 
 function emit(key, value) {
+  console.log('emit', key, value);
   //emit item change
   emitter.emit(key, value);
   //emit object change
@@ -29,7 +30,11 @@ module.exports = {
   get: get,
   add: function(key, value) {
     var old = this.get(key);
-    if(typeof value === 'number' && typeof old === 'number') {
+    if(_.isEmpty(old))
+      old = 0;
+    if(typeof old === 'string')
+      old = Number(old);
+    if(typeof value === 'number') {
       var newValue = old + value;
       _.set(store, key, newValue);
       emit(key, newValue);
@@ -50,8 +55,11 @@ module.exports = {
   updateFrom: function(key, value) {
     if(value instanceof Array) {
       var initial = get(key);
+      var ii, vv;
       for(var i = 0; i < value.length; i++) {
-        initial[i] += value[i];
+        ii = initial[i] ? initial[i] : 0;
+        vv = value[i] ? value[i] : 0;
+        initial[i] = ii + vv;
       }
       set(key, initial);
     } else {

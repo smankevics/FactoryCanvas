@@ -28,7 +28,7 @@ module.exports = function() {
     update();
   });
 
-  storeManager.listen('toBuy', function (shopList) {
+  storeManager.listen('shop', function (shopList) {
     var value = 0;
     shopList.forEach(function(n, i) {
       value += resources[i].price * n;
@@ -48,8 +48,8 @@ module.exports = function() {
     }
   }
 
-  function buy() {
-    if(!enoughMoneyToBuy || toPayValue == 0)
+  function sell() {
+    /*if(!enoughMoneyToBuy || toPayValue == 0)
       return;
 
     //decrease money
@@ -59,15 +59,18 @@ module.exports = function() {
     update();
 
     //update inventory
-    var shop = storeManager.get('toBuy');
+    var shop = storeManager.get('shop');
     storeManager.updateFrom('inventory', shop);
     
     //clear shop
-    storeManager.set('toBuy', []);
+    shop = _.fill(Array(shop.length), 0);
+    storeManager.set('shop', shop);*/
   }
 
   function decline() {
-    storeManager.set('toBuy', []);
+    var shop = storeManager.get('shop');
+    shop = _.fill(Array(shop.length), 0);
+    storeManager.set('shop', shop);
   }
 
   //components
@@ -81,7 +84,7 @@ module.exports = function() {
   declineButton.y = (HEIGHT - declineButton.height) / 2;
   container.addChild(declineButton);
 
-  var acceptButton = new AcceptButton('Buy', buy);
+  var acceptButton = new AcceptButton('Sell', sell);
   acceptButton.x = declineButton.x - acceptButton.width - 10;
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);

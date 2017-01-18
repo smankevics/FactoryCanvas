@@ -46,15 +46,15 @@ module.exports = function(_x, _y, _width, _height) {
   });
   active = shop;
 
-  var inventory = new Button('Inventory', shop.x + shop.width + 10, 0, COLOR, function() {
-    select('inventory', inventory);
-  });
-
-  var workbench = new Button('Workbench', inventory.x + inventory.width + 10, 0, COLOR, function() {
+  var workbench = new Button('Workbench', shop.x + shop.width + 10, 0, COLOR, function() {
     select('workbench', workbench);
   });
 
-  var factory = new Button('Factory', workbench.x + workbench.width + 10, 0, COLOR, function() {
+  var inventory = new Button('Inventory', workbench.x + workbench.width + 10, 0, COLOR, function() {
+    select('inventory', inventory);
+  });
+
+  var factory = new Button('Factory', inventory.x + inventory.width + 10, 0, COLOR, function() {
     select('factory', factory);
   });
 
@@ -67,8 +67,8 @@ module.exports = function(_x, _y, _width, _height) {
   });
 
   group.addChild(shop);
-  group.addChild(inventory);
   group.addChild(workbench);
+  group.addChild(inventory);
   group.addChild(factory);
   group.addChild(auction);
   group.addChild(stats);

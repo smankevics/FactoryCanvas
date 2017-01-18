@@ -29,7 +29,7 @@ module.exports = function(_info) {
     else
       buyCount--;
 
-    storeManager.set('shop[' + info.id + ']', buyCount);
+    storeManager.add('toBuy[' + info.id + ']', buyCount);
       
     if(buyCount > 0) {
       if(pressTimeout)
@@ -48,8 +48,8 @@ module.exports = function(_info) {
   }
 
   //listen on shopping list clearance
-  storeManager.listen('shop', function(shopList) {
-    buyCount = shopList[info.id];
+  storeManager.listen('toBuy', function(shopList) {
+    buyCount = shopList[info.id] ? shopList[info.id] : 0;
     updateToBuyText();
   });
 

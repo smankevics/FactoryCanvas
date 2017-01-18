@@ -11,5 +11,7 @@ module.exports = {
   player: 'Player',
   money: 100,
   inventory: inventory,
-  shop: shop
+  shop: shop,
+  toBuy: [],
+  toSell: []
 };

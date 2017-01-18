@@ -33,24 +33,28 @@ module.exports = [
       id: 4,
       name: 'Hammer',
       level: 2,
-      recipe: [[0, 1], [1, 1]]
+      recipe: [[0, 1], [1, 1]],
+      icon: '/images/materials/hammer.png'
     },
     {
       id: 5,
-      name: 'Axe',
+      name: 'Hatchet',
       level: 2,
-      recipe: [[0, 2], [1, 2]]
+      recipe: [[0, 2], [1, 2]],
+      icon: '/images/materials/hatchet.png'
     },
     {
       id: 6,
       name: 'Magnifier',
       level: 2,
-      recipe: [[3, 2], [2, 1]]
+      recipe: [[3, 2], [2, 1]],
+      icon: '/images/materials/magnifier.png'
     },
     {
       id: 7,
       name: 'Door',
       level: 2,
-      recipe: [[1, 5]]
+      recipe: [[1, 5]],
+      icon: '/images/materials/door.png'
     }
   ];
