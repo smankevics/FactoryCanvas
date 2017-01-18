@@ -1,15 +1,15 @@
 'use strict';
 
+var _ = require('lodash');
 var defines = require('../defines');
 
-var inventory = [];
-var items = defines.allItems();
-for(var i = 0; i < items.length; i++) {
-  inventory[i] = 0;
-}
+var inventory = _.fill(Array(defines.allItems().length), 0);
+
+var shop = _.fill(Array(defines.commonResources().length), 0);
 
 module.exports = {
   player: 'Player',
   money: 100,
-  inventory: inventory
+  inventory: inventory,
+  shop: shop
 };

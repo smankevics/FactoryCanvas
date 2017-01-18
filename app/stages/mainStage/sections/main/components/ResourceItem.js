@@ -2,22 +2,25 @@
 var PIXI = require('pixi.js');
 
 var storeManager = require('../../../../../managers/StoreManager');
+var Utils = require('../../../../../utils');
 
 const WIDTH = 80;
 const HEIGHT = 100;
 
-module.exports = function(_info, _x, _y, _count) {
+module.exports = function(_info) {
   var info = _info;
-  var count = _count || 0;
   var container = new PIXI.Container();
-  container.x = _x;
-  container.y = _y;
 
   var buyCount = 0;
   var pressTimeout;
   var pressCycle = 1;
 
-  function setBuyValue(inc) {
+  function updateToBuyText() {
+    toBuy.text = buyCount > 0 ? ('+' + buyCount) : '';
+    toBuy.x = (WIDTH - toBuy.width) / 2;
+  }
+
+  function updateBuyValue(inc) {
     if(!inc && buyCount == 0)
       return;
 
@@ -25,24 +28,30 @@ module.exports = function(_info, _x, _y, _count) {
       buyCount++;
     else
       buyCount--;
+
+    storeManager.set('shop[' + info.id + ']', buyCount);
       
     if(buyCount > 0) {
-      toBuy.text = '+' + buyCount;
-      toBuy.x = (WIDTH - toBuy.width) / 2;
-      pressTimeout = setTimeout(function(){setBuyValue(inc)}, 200 / pressCycle);
+      if(pressTimeout)
+        clearTimeout(pressTimeout);
+      pressTimeout = setTimeout(function(){updateBuyValue(inc)}, 200 / pressCycle);
 
       if(pressCycle < 10)
         pressCycle++;
-        
-    } else {
-      toBuy.text = '';
     }
+    updateToBuyText();
   }
 
   function release() {
     clearTimeout(pressTimeout);
     pressCycle = 1;
   }
+
+  //listen on shopping list clearance
+  storeManager.listen('shop', function(shopList) {
+    buyCount = shopList[info.id];
+    updateToBuyText();
+  });
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0xbababa);
@@ -68,7 +77,7 @@ module.exports = function(_info, _x, _y, _count) {
   icon.y = iconBg.y + 3;
   container.addChild(icon);
 
-  var price = new PIXI.Text(info.price + '€', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var price = new PIXI.Text(Utils.toCurrency(info.price), {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   price.x = 5;
   price.y = iconBg.y + iconBg.height + 2;
   container.addChild(price);
@@ -83,6 +92,10 @@ module.exports = function(_info, _x, _y, _count) {
     quantity.text = value + '';
     quantity.x = WIDTH - quantity.width - 5;
   });
+  storeManager.listen('inventory', function(list) {
+    quantity.text = list[info.id] + '';
+    quantity.x = WIDTH - quantity.width - 5;
+  });
 
   //decrease button
   var btGr1 = new PIXI.Container();
@@ -93,9 +106,10 @@ module.exports = function(_info, _x, _y, _count) {
   btGr1.buttonMode = true;
   btGr1.interactive = true;
   btGr1.on('mousedown', function() {
-    setBuyValue(false);
+    updateBuyValue(false);
   });
   btGr1.on('mouseup', release);
+  btGr1.on('mouseout', release);
   var btGr1bg = new PIXI.Graphics();
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
@@ -120,9 +134,10 @@ module.exports = function(_info, _x, _y, _count) {
   btGr2.buttonMode = true;
   btGr2.interactive = true;
   btGr2.on('mousedown', function() {
-    setBuyValue(true);
+    updateBuyValue(true);
   });
   btGr2.on('mouseup', release);
+  btGr2.on('mouseout', release);
   var btGr2bg = new PIXI.Graphics();
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
