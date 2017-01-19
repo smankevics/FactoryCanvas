@@ -5,7 +5,7 @@ var PIXI = require('pixi.js');
 var viewManager = require('../../managers/ViewManager');
 
 var Shop = require('./views/Shop');
-var Workbench = require('./views/Workbench');
+var Workbench = require('./views/workbench');
 var Inventory = require('./views/Inventory');
 var Factory = require('./views/Factory');
 var Auction = require('./views/Auction');

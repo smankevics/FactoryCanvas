@@ -1,8 +1,9 @@
 'use strict';
 
 var PIXI = require('pixi.js');
-
 var _ = require('lodash');
+
+var groups = require('./groups');
 var resources = require('./resources');
 
 module.exports = {
@@ -40,5 +41,13 @@ module.exports = {
       }
     });
     return resources;
+  },
+  groupedItems: function() {
+    groups.forEach(function(group) {
+      group.items.forEach(function(n, i) {
+        group.items[i] = resources[n];
+      });
+    });
+    return groups;
   }
 }

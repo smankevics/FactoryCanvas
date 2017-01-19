@@ -17,7 +17,7 @@ module.exports = function(_width, _height) {
   container.addChild(bg);
 
   var title = new PIXI.Text('Factory', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
-  title.x = (width - title.width) / 2;
+  title.x = 10;
   title.y = 5;
   container.addChild(title);
 
