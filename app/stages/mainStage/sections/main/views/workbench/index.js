@@ -25,13 +25,20 @@ module.exports = function(_width, _height) {
   title.y = 5;
   container.addChild(title);
 
-  var groups = new Groups(5, 40, 140, height - 45);
+  var groups = new Groups(5, 40, 120, height - 45, onGroupChange);
   var craft = new Craft(width - 205, 40, 200, height - 45);
-  var materials = new Materials(150, 40, width - groups.width - craft.width - 20, height - 45);
+  var materials = new Materials(groups.width + 10, 40, width - groups.width - craft.width - 20, height - 45, onMaterialSelect);
 
-  container.addChild(groups);
-  container.addChild(materials);
-  container.addChild(craft);
+  function onGroupChange(group) {
+    materials.setGroup(group);
+  }
+  function onMaterialSelect(material) {
+    craft.setMaterial(material);
+  }
+
+  container.addChild(groups.container);
+  container.addChild(materials.container);
+  container.addChild(craft.container);
 
   return container;
 }

@@ -41,7 +41,12 @@ module.exports = function(view, _width, _height) {
 
   function addChild(child) {
     scrollable.addChild(child);
-    scrollable.x = (width - scrollable.width) / 2;
+
+    //align center if multiple lines
+    if(scrollable.width + child.width > container.width)
+      scrollable.x = (width - scrollable.width) / 2;
+    else
+      scrollable.x = 5;
   }
 
   container.addChild(scrollable);

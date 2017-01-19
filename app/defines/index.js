@@ -6,6 +6,8 @@ var _ = require('lodash');
 var groups = require('./groups');
 var resources = require('./resources');
 
+var craftableItems = _.filter(resources, function(o) { return o.level > 1 });
+
 module.exports = {
   loadResources: function(cb) {
     var started = new Date;
@@ -42,12 +44,21 @@ module.exports = {
     });
     return resources;
   },
-  groupedItems: function() {
-    groups.forEach(function(group) {
-      group.items.forEach(function(n, i) {
-        group.items[i] = resources[n];
+  craftableItems: craftableItems,
+  groupItems: function(group) {
+    var ids = (_.isNumber(group) && group >= 0) ? groups[group].items : null;
+    
+    if(ids) {
+      var result = [];
+      ids.forEach(function(n) {
+        result.push(resources[n]);
       });
-    });
-    return groups;
+      return result;
+    } else {
+      return craftableItems;
+    }
+  },
+  getItemById: function(id) {
+    return _.find(resources, {id: id});
   }
 }
