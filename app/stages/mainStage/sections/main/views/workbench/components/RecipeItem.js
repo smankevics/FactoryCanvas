@@ -39,14 +39,20 @@ module.exports = function(_y, _width, _id, _neededForCraft) {
 
   function updateAvailableItems(_number) {
     availableItems = _number;
-    available.text = availableItems + '';
-    available.x = width - 60;
+    //TODO: Dirty fix
+    if(available.transform) {
+      available.text = availableItems + '';
+      available.x = width - 60;
+    }
   }
 
   function updateIemsToCraft(_number) {
     itemsToCraft = utils.numberCurrency(_number * neededForCraft);
-    needed.text = itemsToCraft + '';
-    needed.x = available.x - needed.width;
+    //TODO: Dirty fix
+    if(needed.transform) {
+      needed.text = itemsToCraft + '';
+      needed.x = available.x - needed.width;
+    }
   }
 
   return {
