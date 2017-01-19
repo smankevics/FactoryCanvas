@@ -3,9 +3,9 @@
 var _ = require('lodash');
 var defines = require('../defines');
 
-var inventory = _.fill(Array(defines.allItems().length), 0);
-
-var shop = _.fill(Array(defines.commonResources().length), 0);
+var inventory = _.fill(Array(defines.allItems.length), 0);
+inventory[0] = 10;
+var shop = _.fill(Array(defines.commonResources.length), 0);
 
 module.exports = {
   player: 'Player',

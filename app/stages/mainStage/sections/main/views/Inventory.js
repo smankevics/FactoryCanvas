@@ -2,7 +2,7 @@
 
 var PIXI = require('pixi.js');
 
-var resources = require('../../../../../defines').allItems();
+var resources = require('../../../../../defines').allItems;
 
 var SellDecline = require('../components/SellDecline');
 var ResourceItem = require('../components/resourceItem');

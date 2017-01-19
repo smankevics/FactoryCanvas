@@ -24,11 +24,6 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Materials', { fontFamily: 'Calibri', fontSize: 16, fontWeight: 'bold', fill: 0x222222 });
-  title.x = (width - title.width) / 2;
-  title.y = 5;
-  container.addChild(title);
-
   var list, items = [];
 
   function updateSelection(selectedId) {
@@ -55,8 +50,8 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
     list = new PIXI.Container();
     list.x = 5;
     list.width = width - 10;
-    list.y = 20;
-    list.height = height - 20;
+    list.y = 0;
+    list.height = height;
 
     var i = 0, rw = 0, rh = 10;
     resources.forEach(function (resource) {

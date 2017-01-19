@@ -4,10 +4,10 @@ var _ = require('lodash');
 
 var AcceptButton = require('./AcceptButton');
 var DeclineButton = require('./DeclineButton');
-var storeManager = require('../../../../../managers/StoreManager');
+var storeManager = require('managers/StoreManager');
 var Utils = require('../../../../../utils');
 
-var resources = require('../../../../../defines').allItems();
+var resources = require('../../../../../defines').allItems;
 
 const WIDTH = 240;
 const HEIGHT = 30;

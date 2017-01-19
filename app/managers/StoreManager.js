@@ -28,12 +28,12 @@ function get(key) {
   return value;
 }
 
-function emit(key, value) {
+function emit(key, value, preventGlobal) {
   log('emit', key, value);
   //emit item change
   emitter.emit(key, value);
   //emit object change
-  if(key.indexOf('[') > -1) {
+  if(key.indexOf('[') > -1 && !preventGlobal) {
     var oKey = key.split('[')[0];
     var val2 = get(oKey); 
     log('emit', oKey, val2);
@@ -93,6 +93,7 @@ module.exports = {
     updateFrom(key, value);
   },
   listen: function(key, cb) {
+    log('listen', key);
     emitter.on(key, cb);
   }
 }

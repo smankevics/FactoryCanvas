@@ -1,7 +1,7 @@
 'use strict';
 var PIXI = require('pixi.js');
 
-var storeManager = require('../../../../../../managers/StoreManager');
+var storeManager = require('managers/StoreManager');
 var Utils = require('../../../../../../utils');
 
 var BuyBehavior = require('./BuyBehavior');
