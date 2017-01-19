@@ -5,7 +5,7 @@ var PIXI = require('pixi.js');
 var commonResources = require('../../../../../defines').commonResources();
 
 var BuyDecline = require('../components/BuyDecline');
-var ResourceItem = require('../components/ResourceItem');
+var ResourceItem = require('../components/resourceItem');
 var ScrollableGroup = require('../components/ScrollableGroup');
 
 module.exports = function(_width, _height) {
@@ -37,7 +37,7 @@ module.exports = function(_width, _height) {
 
   var i = 0, rw = 0, rh = 40;
   commonResources.forEach(function(resource) {
-    var res = new ResourceItem(resource);
+    var res = new ResourceItem(resource, 'buy');
     res.container.x = rw;
     res.container.y = rh;
     rw += res.container.width + 8;

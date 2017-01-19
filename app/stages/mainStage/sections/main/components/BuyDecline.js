@@ -34,15 +34,15 @@ module.exports = function() {
       value += resources[i].price * n;
     }); 
 
-    toPayValue = value;
+    toPayValue = Utils.numberCurrency(value);
     update();
   });
 
   function update() {
     if(toPay) {
-      toPay.text = Utils.toCurrency(toPayValue);
+      toPay.text = Utils.stringCurrency(toPayValue);
       toPay.x = acceptButton.x - toPay.width - 10;
-      enoughMoneyToBuy = toPayValue <= storeMoney
+      enoughMoneyToBuy = toPayValue <= storeMoney;
       toPay.style.fill = enoughMoneyToBuy ? GREEN : RED;
       toPay.dirty = true;
     }
@@ -59,10 +59,10 @@ module.exports = function() {
     update();
 
     //update inventory
-    var shop = storeManager.get('toBuy');
-    storeManager.updateFrom('inventory', shop);
+    var list = storeManager.get('toBuy');
+    storeManager.addFrom('inventory', list);
     
-    //clear shop
+    //clear toBuy
     storeManager.set('toBuy', []);
   }
 
@@ -88,7 +88,7 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toPay = new PIXI.Text(Utils.toCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  var toPay = new PIXI.Text(Utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
   toPay.x = acceptButton.x - toPay.width - 10;
   toPay.y = (HEIGHT - toPay.height) / 2;
   container.addChild(toPay);

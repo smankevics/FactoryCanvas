@@ -5,7 +5,7 @@ var PIXI = require('pixi.js');
 var resources = require('../../../../../defines').allItems();
 
 var SellDecline = require('../components/SellDecline');
-var ResourceItem = require('../components/ResourceItem');
+var ResourceItem = require('../components/resourceItem');
 var ScrollableGroup = require('../components/ScrollableGroup');
 
 module.exports = function(_width, _height) {
@@ -27,7 +27,7 @@ module.exports = function(_width, _height) {
   title.y = 5;
   container.addChild(title);
 
-  // buy/decline section
+  // sell/decline section
   var sellDecline = new SellDecline();
   sellDecline.x = width - sellDecline.width;
   sellDecline.y = 5;
@@ -37,7 +37,7 @@ module.exports = function(_width, _height) {
 
   var i = 0, rw = 0, rh = 40;
   resources.forEach(function(resource) {
-    var res = new ResourceItem(resource);
+    var res = new ResourceItem(resource, 'sell');
     res.container.x = rw;
     res.container.y = rh;
     rw += res.container.width + 8;

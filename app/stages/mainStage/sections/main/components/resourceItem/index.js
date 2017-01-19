@@ -1,57 +1,34 @@
 'use strict';
 var PIXI = require('pixi.js');
 
-var storeManager = require('../../../../../managers/StoreManager');
-var Utils = require('../../../../../utils');
+var storeManager = require('../../../../../../managers/StoreManager');
+var Utils = require('../../../../../../utils');
+
+var BuyBehavior = require('./BuyBehavior');
+var SellBehavior = require('./SellBehavior');
 
 const WIDTH = 80;
 const HEIGHT = 100;
 
-module.exports = function(_info) {
+module.exports = function(_info, _behavior) {
   var info = _info;
   var container = new PIXI.Container();
+  var behavior;
+  
+  if(_behavior == 'buy')
+    behavior = new BuyBehavior(info, updateQuantityText, updateTickerText);
+  else
+    behavior = new SellBehavior(info, updateQuantityText, updateTickerText);
 
-  var buyCount = 0;
-  var pressTimeout;
-  var pressCycle = 1;
-
-  function updateToBuyText() {
-    toBuy.text = buyCount > 0 ? ('+' + buyCount) : '';
+  function updateTickerText(value) {
+    toBuy.text = value;
     toBuy.x = (WIDTH - toBuy.width) / 2;
   }
 
-  function updateBuyValue(inc) {
-    if(!inc && buyCount == 0)
-      return;
-
-    if(inc) 
-      buyCount++;
-    else
-      buyCount--;
-
-    storeManager.add('toBuy[' + info.id + ']', buyCount);
-      
-    if(buyCount > 0) {
-      if(pressTimeout)
-        clearTimeout(pressTimeout);
-      pressTimeout = setTimeout(function(){updateBuyValue(inc)}, 200 / pressCycle);
-
-      if(pressCycle < 10)
-        pressCycle++;
-    }
-    updateToBuyText();
+  function updateQuantityText(value) {
+    quantity.text = value;
+    quantity.x = WIDTH - quantity.width - 5;
   }
-
-  function release() {
-    clearTimeout(pressTimeout);
-    pressCycle = 1;
-  }
-
-  //listen on shopping list clearance
-  storeManager.listen('toBuy', function(shopList) {
-    buyCount = shopList[info.id] ? shopList[info.id] : 0;
-    updateToBuyText();
-  });
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0xbababa);
@@ -80,25 +57,15 @@ module.exports = function(_info) {
   icon.y = iconBg.y + 3;
   container.addChild(icon);
 
-  var price = new PIXI.Text(Utils.toCurrency(info.price), {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var price = new PIXI.Text(Utils.stringCurrency(info.price), {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   price.x = 5;
   price.y = iconBg.y + iconBg.height + 2;
   container.addChild(price);
 
-  var q = storeManager.get('inventory[' + info.id + ']');
-  var quantity = new PIXI.Text(q + '', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var quantity = new PIXI.Text(behavior.getQuantity() + '', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   quantity.x = WIDTH - quantity.width - 5;
   quantity.y = iconBg.y + iconBg.height + 2;
   container.addChild(quantity);
-
-  storeManager.listen('inventory[' + info.id + ']', function(value) {
-    quantity.text = value + '';
-    quantity.x = WIDTH - quantity.width - 5;
-  });
-  storeManager.listen('inventory', function(list) {
-    quantity.text = list[info.id] + '';
-    quantity.x = WIDTH - quantity.width - 5;
-  });
 
   //decrease button
   var btGr1 = new PIXI.Container();
@@ -109,10 +76,10 @@ module.exports = function(_info) {
   btGr1.buttonMode = true;
   btGr1.interactive = true;
   btGr1.on('mousedown', function() {
-    updateBuyValue(false);
+    behavior.updateTicker(false);
   });
-  btGr1.on('mouseup', release);
-  btGr1.on('mouseout', release);
+  btGr1.on('mouseup', behavior.releaseTicker);
+  btGr1.on('mouseout', behavior.releaseTicker);
   var btGr1bg = new PIXI.Graphics();
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
@@ -137,10 +104,10 @@ module.exports = function(_info) {
   btGr2.buttonMode = true;
   btGr2.interactive = true;
   btGr2.on('mousedown', function() {
-    updateBuyValue(true);
+    behavior.updateTicker(true);
   });
-  btGr2.on('mouseup', release);
-  btGr2.on('mouseout', release);
+  btGr2.on('mouseup', behavior.releaseTicker);
+  btGr2.on('mouseout', behavior.releaseTicker);
   var btGr2bg = new PIXI.Graphics();
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);

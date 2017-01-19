@@ -27,13 +27,13 @@ module.exports = function(_x, _y, _width, _height) {
   player.y = (height - player.height) / 2;
   container.addChild(player);
 
-  var money = new PIXI.Text(Utils.toCurrency(storeManager.get('money')), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
+  var money = new PIXI.Text(Utils.stringCurrency(storeManager.get('money')), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
   money.x = width - money.width - 10;
   money.y = (height - money.height) / 2;
   container.addChild(money);
 
   storeManager.listen('money', function(value) {
-    money.text = Utils.toCurrency(value);
+    money.text = Utils.stringCurrency(value);
   });
 
   return container;

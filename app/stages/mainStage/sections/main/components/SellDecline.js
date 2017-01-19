@@ -19,58 +19,48 @@ module.exports = function() {
   container.width = WIDTH;
   container.height = HEIGHT;
   
-  var storeMoney = storeManager.get('money');
-  var toPayValue = 0;
-  var enoughMoneyToBuy = true;
+  var earnValue = 0;
 
-  storeManager.listen('money', function(value) {
-    storeMoney = value;
-    update();
-  });
-
-  storeManager.listen('shop', function (shopList) {
+  storeManager.listen('toSell', function (shopList) {
     var value = 0;
     shopList.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
-    toPayValue = value;
+    earnValue = Utils.numberCurrency(value);
     update();
   });
 
   function update() {
-    if(toPay) {
-      toPay.text = Utils.toCurrency(toPayValue);
-      toPay.x = acceptButton.x - toPay.width - 10;
-      enoughMoneyToBuy = toPayValue <= storeMoney
-      toPay.style.fill = enoughMoneyToBuy ? GREEN : RED;
-      toPay.dirty = true;
+    if(toEarn) {
+      toEarn.text = Utils.stringCurrency(earnValue);
+      toEarn.x = acceptButton.x - toEarn.width - 10;
     }
   }
 
   function sell() {
-    /*if(!enoughMoneyToBuy || toPayValue == 0)
+    if(earnValue <= 0)
       return;
 
-    //decrease money
-    storeManager.substract('money', toPayValue);
-    storeMoney = storeManager.get('money');
-    toPayValue = 0;
+    var storeMoney = storeManager.get('money');
+
+    //increase money
+    storeManager.add('money', earnValue);
+    earnValue = 0;
     update();
 
     //update inventory
-    var shop = storeManager.get('shop');
-    storeManager.updateFrom('inventory', shop);
+    var list = storeManager.get('toSell');
+    storeManager.substractFrom('inventory', list);
     
-    //clear shop
-    shop = _.fill(Array(shop.length), 0);
-    storeManager.set('shop', shop);*/
+    //clear toSell
+    storeManager.set('toSell', []);
   }
 
   function decline() {
-    var shop = storeManager.get('shop');
-    shop = _.fill(Array(shop.length), 0);
-    storeManager.set('shop', shop);
+    if(earnValue > 0) {
+      storeManager.set('toSell', []);
+    }
   }
 
   //components
@@ -89,10 +79,10 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toPay = new PIXI.Text(Utils.toCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
-  toPay.x = acceptButton.x - toPay.width - 10;
-  toPay.y = (HEIGHT - toPay.height) / 2;
-  container.addChild(toPay);
+  var toEarn = new PIXI.Text(Utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  toEarn.x = acceptButton.x - toEarn.width - 10;
+  toEarn.y = (HEIGHT - toEarn.height) / 2;
+  container.addChild(toEarn);
 
   return container;
 };
