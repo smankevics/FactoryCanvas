@@ -49,7 +49,7 @@ module.exports = function() {
   }
 
   function buy() {
-    if(!enoughMoneyToBuy || toPayValue == 0)
+    if(!enoughMoneyToBuy || toPayValue <= 0)
       return;
 
     //decrease money
@@ -67,7 +67,9 @@ module.exports = function() {
   }
 
   function decline() {
-    storeManager.set('toBuy', []);
+    if(toPayValue > 0) {
+      storeManager.set('toBuy', []);
+    }
   }
 
   //components

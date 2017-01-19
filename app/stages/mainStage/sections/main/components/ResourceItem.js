@@ -70,6 +70,9 @@ module.exports = function(_info) {
   iconBg.y = name.y + name.height + 2;
   container.addChild(iconBg);
 
+  if(!PIXI.loader.resources[info.name])
+    throw new Error('Unable to find ' + info.name + ' texture');
+
   var icon = new PIXI.Sprite(PIXI.loader.resources[info.name].texture);
   icon.width = 34;
   icon.height = 34;

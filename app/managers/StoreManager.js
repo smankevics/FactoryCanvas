@@ -5,23 +5,37 @@ var _ = require('lodash');
 var store = require('../components/Store');
 var emitter = require('event-emitter')();
 
+const DEBUG = false;
+
+function log(action, val1, val2) {
+  if(DEBUG) {
+    val1 = val1 ? val1 : '';
+    val2 = val2 ? val2 : '';
+    console.log(action, val1, val2);
+  }
+}
+
 function set(key, value) {
     _.set(store, key, value);
     emit(key, value);
   }
 
 function get(key) {
-  return _.get(store, key);
+  var value = _.get(store, key);
+  log('get', key, value);
+  return value;
 }
 
 function emit(key, value) {
-  console.log('emit', key, value);
+  log('emit', key, value);
   //emit item change
   emitter.emit(key, value);
   //emit object change
   if(key.indexOf('[') > -1) {
     var oKey = key.split('[')[0];
-    emitter.emit(oKey, get(oKey));
+    var val2 = get(oKey); 
+    log('emit', oKey, val2);
+    emitter.emit(oKey, val2);
   }
 }
 
