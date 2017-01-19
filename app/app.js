@@ -11,7 +11,7 @@ var LoadingStage = require('./stages').LoadingStage;
 var MainStage = require('./stages').MainStage;
 var StageManager = require('./managers').StageManager;
 
-var renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT, {backgroundColor: 0xffffff, antialias: true });
+var renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT, {backgroundColor: 0xffffff, antialias: true });
 document.body.appendChild(renderer.view);
 
 var application = new PIXI.Container();

@@ -23,11 +23,6 @@ module.exports = function(_x, _y, _width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-/*  var title = new PIXI.Text('Craft', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
-  title.x = (width - title.width) / 2;
-  title.y = 5;
-  container.addChild(title);*/
-
   var name = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   name.x = (width - name.width) / 2;
   name.y = 140;

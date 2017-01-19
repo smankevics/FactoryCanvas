@@ -5,7 +5,7 @@ var PIXI = require('pixi.js');
 var groupItems = require('../../../../../../../defines').groupItems;
 var ResourceItem = require('../components/WbResourceItem');
 
-module.exports = function(_x, _y, _width, _height, onMaterialSelectCb) {
+module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   var x = _x;
   var y = _y;
   var width = _width;
@@ -24,7 +24,7 @@ module.exports = function(_x, _y, _width, _height, onMaterialSelectCb) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Materials', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var title = new PIXI.Text('Materials', { fontFamily: 'Calibri', fontSize: 16, fontWeight: 'bold', fill: 0x222222 });
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
@@ -32,11 +32,11 @@ module.exports = function(_x, _y, _width, _height, onMaterialSelectCb) {
   var list, items = [];
 
   function updateSelection(selectedId) {
-    if(!items)
+    if (!items)
       return;
 
-    items.forEach(function(item) {
-      if(item.info && item.info.id == selectedId) {
+    items.forEach(function (item) {
+      if (item.info && item.info.id == selectedId) {
         item.select();
       } else {
         item.deselect();
@@ -46,10 +46,10 @@ module.exports = function(_x, _y, _width, _height, onMaterialSelectCb) {
   }
 
   function populateList() {
-    if(list)
-      list.destroy({children: true});
+    if (list)
+      list.destroy({ children: true });
     items = [];
-    
+
     var resources = groupItems(group);
 
     list = new PIXI.Container();
@@ -59,21 +59,23 @@ module.exports = function(_x, _y, _width, _height, onMaterialSelectCb) {
     list.height = height - 20;
 
     var i = 0, rw = 0, rh = 10;
-    resources.forEach(function(resource) {
+    resources.forEach(function (resource) {
       var res = new ResourceItem(resource, updateSelection);
       res.container.x = rw;
       res.container.y = rh;
       rw += res.container.width + 8;
-      if(rw + res.container.width > width) {
+      if (rw + res.container.width > width) {
         rw = 0;
         rh += res.container.height + 8;
       }
-      
+
       list.addChild(res.container);
       items.push(res);
       i++;
     });
 
+    //select first item
+    updateSelection(resources[0].id);
     container.addChild(list);
   }
 
