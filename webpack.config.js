@@ -12,14 +12,14 @@ module.exports = {
 		filename: 'app.bundle.js'
 	},
 	resolve: {
-    root: path.resolve('./app'),
-    extensions: ['', '.js']
-  },
+		root: path.resolve('./app'),
+		extensions: ['', '.js']
+	},
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[file].map',
 			exclude: [
-					'vendor.bundle.js'
+				'vendor.bundle.js'
 			]
 		}),
 		new webpack.OldWatchingPlugin(),
