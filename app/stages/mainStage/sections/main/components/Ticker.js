@@ -96,18 +96,25 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2.addChild(dec);
   container.addChild(btGr2);
 
-  function setValue(_value) {
+  function setValue(_value, triggerUpdate) {
     tickerValue = _value;
     updateTickerValue();
+    if(triggerUpdate)
+      onChange(tickerValue);
   }
 
   function setMin(_value) {
     minValue = _value;
   }
 
+  function value() {
+    return tickerValue;
+  }
+
   return {
     container: container,
     setValue: setValue,
+    value: value,
     setMin: setMin
   };
 };

@@ -43,10 +43,10 @@ module.exports = function(_y, _width, _id, _neededForCraft, initialItemsToCraft)
   container.addChild(needed);
 
   function updateIemsToCraftColor() {
-    if(itemsToCraft > availableItems) {
-      needed.style.fill = 0x993232;
-    } else {
+    if(enoughToCraft()) {
       needed.style.fill = 0x232323;
+    } else {
+      needed.style.fill = 0x993232;
     }
     needed.dirty = true;
   }
@@ -69,9 +69,19 @@ module.exports = function(_y, _width, _id, _neededForCraft, initialItemsToCraft)
     }
   }
 
+  function enoughToCraft() {
+    return itemsToCraft <= availableItems;
+  }
+
+  function getValue() {
+    return itemsToCraft;
+  }
+
   return {
     container: container,
+    info: info,
     updateIemsToCraft: updateIemsToCraft,
-    itemsToCraft: itemsToCraft
+    getValue: getValue,
+    enoughToCraft: enoughToCraft
   }
 };

@@ -6,6 +6,7 @@ var defines = require('defines');
 var RecipeItem = require('../components/RecipeItem');
 var storeManager = require('managers/StoreManager');
 var Ticker = require('../../../components/Ticker');
+var AcceptButton = require('../../../components/AcceptButton');
 
 const INITIAL_ITEMS_TO_CRAFT = 1;
 
@@ -20,6 +21,8 @@ module.exports = function(_x, _y, _width, _height) {
   container.y = y;
   container.width = width;
   container.height = height;
+
+  var item;
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0xbababa);
@@ -55,7 +58,12 @@ module.exports = function(_x, _y, _width, _height) {
   //Recipe list
   var recipeList, recipeArray = [];
 
-  //Ticker
+  //Craft Items
+  var craftItemsText = new PIXI.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  craftItemsText.x = 0;
+  craftItemsText.y = 0;
+  container.addChild(craftItemsText);
+
   var ticker = new Ticker(0, 0, 70, function(n) {
     recipeArray.forEach(function(r) {
       r.updateIemsToCraft(n);
@@ -63,6 +71,28 @@ module.exports = function(_x, _y, _width, _height) {
   }, INITIAL_ITEMS_TO_CRAFT);
   ticker.setMin(1);
   container.addChild(ticker.container);
+
+  //Craft Button
+  var craftButton = new AcceptButton('Craft', function() {
+    var resForCraft = [];
+    var canCraft = true;
+    recipeArray.forEach(function(res) {
+      resForCraft[res.info.id] = res.getValue();
+      canCraft = canCraft && res.enoughToCraft();
+    });
+    if(canCraft) {
+      //decrease resources
+      storeManager.substractFrom('inventory', resForCraft);
+      
+      //add crafted items
+      storeManager.add('inventory[' + item.id + ']', ticker.value());
+
+      //reset ticker
+      ticker.setValue(INITIAL_ITEMS_TO_CRAFT, true);
+    }
+  });
+  updateCraftButtonPosition();
+  container.addChild(craftButton);
 
   //Functions
   function updateImage(name) {
@@ -114,18 +144,26 @@ module.exports = function(_x, _y, _width, _height) {
   }
 
   function updateTickerPosition() {
+    craftItemsText.x = 10;
+    craftItemsText.y = recipeList.y + recipeList.height + 20;
     ticker.container.x = width - ticker.container.width - 10;
     ticker.container.y = recipeList.y + recipeList.height + 20;
     ticker.setValue(INITIAL_ITEMS_TO_CRAFT);
   }
 
+  function updateCraftButtonPosition() {
+    craftButton.x = (width - craftButton.width) / 2;
+    craftButton.y = craftItemsText.y + craftItemsText.height + 20;
+  }
+
   function setMaterial(itemId) {
-    var item = defines.getItemById(itemId);
+    item = defines.getItemById(itemId);
 
     updateImage(item.name);
     updateCurrentItems(item.id);
     updateRecipe(item.recipe);
     updateTickerPosition();
+    updateCraftButtonPosition();
 
     //Item name
     name.text = item.name;

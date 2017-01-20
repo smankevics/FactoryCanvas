@@ -44,7 +44,7 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(auction);
   container.addChild(stats);
 
-  viewManager.setView('workbench');
+  viewManager.setView('shop');
 
   return container;
 }

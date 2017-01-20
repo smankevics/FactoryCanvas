@@ -5,6 +5,7 @@ var defines = require('../defines');
 
 var inventory = _.fill(Array(defines.allItems.length), 0);
 inventory[0] = 10;
+inventory[1] = 10;
 var shop = _.fill(Array(defines.commonResources.length), 0);
 
 module.exports = {
