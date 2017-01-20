@@ -1,5 +1,6 @@
 'use strict';
 var PIXI = require('pixi.js');
+var utils = require('utils');
 
 module.exports = function(_x, _y, _width, onChange, initialValue) {
   var width = _width;
@@ -63,13 +64,13 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
-  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
+  var dec = utils.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr1.width - dec.width) / 2;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var valueText = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
+  var valueText = utils.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
   updateTickerValue();
   container.addChild(valueText);
 
@@ -90,7 +91,7 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
   btGr2.addChild(btGr2bg);
-  var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  var dec = utils.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr2.width - dec.width) / 2;
   dec.y = (btGr2.height - dec.height) / 2 - 1;
   btGr2.addChild(dec);

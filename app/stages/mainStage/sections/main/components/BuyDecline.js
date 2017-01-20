@@ -5,7 +5,7 @@ var _ = require('lodash');
 var AcceptButton = require('./AcceptButton');
 var DeclineButton = require('./DeclineButton');
 var storeManager = require('managers/StoreManager');
-var Utils = require('../../../../../utils');
+var utils = require('../../../../../utils');
 
 var resources = require('../../../../../defines').allItems;
 
@@ -34,13 +34,13 @@ module.exports = function() {
       value += resources[i].price * n;
     }); 
 
-    toPayValue = Utils.numberCurrency(value);
+    toPayValue = utils.numberCurrency(value);
     update();
   }, container);
 
   function update() {
     if(toPay) {
-      toPay.text = Utils.stringCurrency(toPayValue);
+      toPay.text = utils.stringCurrency(toPayValue);
       toPay.x = acceptButton.x - toPay.width - 10;
       enoughMoneyToBuy = toPayValue <= storeMoney;
       toPay.style.fill = enoughMoneyToBuy ? GREEN : RED;
@@ -88,7 +88,7 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toPay = new PIXI.Text(Utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  var toPay = utils.Text(utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
   toPay.x = acceptButton.x - toPay.width - 10;
   toPay.y = (HEIGHT - toPay.height) / 2;
   container.addChild(toPay);

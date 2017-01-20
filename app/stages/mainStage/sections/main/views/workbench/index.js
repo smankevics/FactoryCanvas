@@ -1,6 +1,7 @@
 'use strict';
 
 var PIXI = require('pixi.js');
+var utils = require('utils');
 
 var Groups = require('./sections/Groups');
 var Materials = require('./sections/Materials');
@@ -20,7 +21,7 @@ module.exports = function(_width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Workbench', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
+  var title = utils.Text('Workbench', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
   title.x = 10;
   title.y = 5;
   container.addChild(title);

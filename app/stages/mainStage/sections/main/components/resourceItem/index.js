@@ -1,8 +1,8 @@
 'use strict';
 var PIXI = require('pixi.js');
+var utils = require('utils');
 
 var storeManager = require('managers/StoreManager');
-var Utils = require('../../../../../../utils');
 
 var BuyBehavior = require('./BuyBehavior');
 var SellBehavior = require('./SellBehavior');
@@ -35,7 +35,7 @@ module.exports = function(_info, _behavior) {
   bg.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
   container.addChild(bg);
 
-  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var name = utils.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   name.x = (WIDTH - name.width) / 2;
   name.y = 2;
   container.addChild(name);
@@ -57,12 +57,12 @@ module.exports = function(_info, _behavior) {
   icon.y = iconBg.y + 3;
   container.addChild(icon);
 
-  var price = new PIXI.Text(Utils.stringCurrency(info.price), {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var price = utils.Text(utils.stringCurrency(info.price), {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   price.x = 5;
   price.y = iconBg.y + iconBg.height + 2;
   container.addChild(price);
 
-  var quantity = new PIXI.Text(behavior.getQuantity() + '', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  var quantity = utils.Text(behavior.getQuantity() + '', {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   quantity.x = WIDTH - quantity.width - 5;
   quantity.y = iconBg.y + iconBg.height + 2;
   container.addChild(quantity);
@@ -84,13 +84,13 @@ module.exports = function(_info, _behavior) {
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
-  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
+  var dec = utils.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr1.width - dec.width) / 2;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var toBuy = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 12, fill : 0x000000});
+  var toBuy = utils.Text('', {fontFamily : 'Calibri', fontSize: 12, fill : 0x000000});
   toBuy.x = (WIDTH - toBuy.width) / 2;
   toBuy.y = HEIGHT - 21;
   container.addChild(toBuy);
@@ -112,7 +112,7 @@ module.exports = function(_info, _behavior) {
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
   btGr2.addChild(btGr2bg);
-  var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  var dec = utils.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr2.width - dec.width) / 2;
   dec.y = (btGr2.height - dec.height) / 2 - 1;
   btGr2.addChild(dec);

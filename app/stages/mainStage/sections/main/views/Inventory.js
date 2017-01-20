@@ -3,6 +3,7 @@
 var PIXI = require('pixi.js');
 
 var resources = require('../../../../../defines').allItems;
+var utils = require('utils');
 
 var SellDecline = require('../components/SellDecline');
 var ResourceItem = require('../components/resourceItem');
@@ -22,7 +23,7 @@ module.exports = function(_width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Inventory', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
+  var title = utils.Text('Inventory', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
   title.x = 10;
   title.y = 5;
   container.addChild(title);

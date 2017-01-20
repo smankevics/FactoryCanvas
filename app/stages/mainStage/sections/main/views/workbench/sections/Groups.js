@@ -1,8 +1,9 @@
 'use strict';
 
 var PIXI = require('pixi.js');
+var utils = require('utils');
 
-var groups = require('./../../../../../../../defines/groups');
+var groups = require('defines/groups');
 
 module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
   var x = _x;
@@ -23,7 +24,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Groups', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var title = utils.Text('Groups', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
@@ -55,7 +56,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
       onGroupChangeCb(selected ? selected.groupId : null);
     })
 
-    g = new PIXI.Text('• ' + group.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x222222});
+    g = utils.Text('• ' + group.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x222222});
     g.x = 8;
     g.y = gy + ((20 - g.height) / 2);
 

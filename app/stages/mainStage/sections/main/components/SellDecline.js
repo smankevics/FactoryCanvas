@@ -5,7 +5,7 @@ var _ = require('lodash');
 var AcceptButton = require('./AcceptButton');
 var DeclineButton = require('./DeclineButton');
 var storeManager = require('managers/StoreManager');
-var Utils = require('../../../../../utils');
+var utils = require('utils');
 
 var resources = require('../../../../../defines').allItems;
 
@@ -27,13 +27,13 @@ module.exports = function() {
       value += resources[i].price * n;
     }); 
 
-    earnValue = Utils.numberCurrency(value);
+    earnValue = utils.numberCurrency(value);
     update();
   }, container);
 
   function update() {
     if(toEarn) {
-      toEarn.text = Utils.stringCurrency(earnValue);
+      toEarn.text = utils.stringCurrency(earnValue);
       toEarn.x = acceptButton.x - toEarn.width - 10;
     }
   }
@@ -79,7 +79,7 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toEarn = new PIXI.Text(Utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  var toEarn = utils.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
   toEarn.x = acceptButton.x - toEarn.width - 10;
   toEarn.y = (HEIGHT - toEarn.height) / 2;
   container.addChild(toEarn);

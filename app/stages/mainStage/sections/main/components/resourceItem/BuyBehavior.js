@@ -2,7 +2,7 @@
 var PIXI = require('pixi.js');
 
 var storeManager = require('managers/StoreManager');
-var Utils = require('../../../../../../utils');
+var utils = require('utils');
 
 module.exports = function(_info, container, quantityChangedCb, tickerChangedCb) {
   var info = _info;
