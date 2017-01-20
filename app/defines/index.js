@@ -16,6 +16,8 @@ allItems.forEach(function (r) {
     r.recipe.forEach(function (o) {
       r.price += resources[o[0]].price * o[1];
     });
+    //add income for craft
+    r.price = r.price * 2;
     r.price = Math.round(r.price * 100) / 100;
   }
 });
