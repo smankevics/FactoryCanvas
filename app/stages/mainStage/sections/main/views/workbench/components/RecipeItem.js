@@ -10,17 +10,19 @@ module.exports = function(_y, _width, _id, _neededForCraft) {
   var width = _width;
   var info = defines.allItems[_id];
   var neededForCraft = _neededForCraft;
-
-  var availableItems = storeManager.get('inventory[' + info.id + ']');
-  storeManager.listen('inventory', function(list) {
-    updateAvailableItems(list[_id]);
-  });
-
   var itemsToCraft = 0;
+
   var container = new PIXI.Container();
   container.x = 0;
   container.y = _y;
   container.width = width;
+
+  var availableItems = storeManager.get('inventory[' + info.id + ']');
+  storeManager.listen('inventory', inventoryUpdateCb, container);
+
+  function inventoryUpdateCb(list) {
+    updateAvailableItems(list[_id]);
+  }
 
   var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   name.x = 15;
@@ -39,7 +41,6 @@ module.exports = function(_y, _width, _id, _neededForCraft) {
 
   function updateAvailableItems(_number) {
     availableItems = _number;
-    //TODO: Dirty fix
     if(available.transform) {
       available.text = availableItems + '';
       available.x = width - 60;
@@ -48,7 +49,6 @@ module.exports = function(_y, _width, _id, _neededForCraft) {
 
   function updateIemsToCraft(_number) {
     itemsToCraft = utils.numberCurrency(_number * neededForCraft);
-    //TODO: Dirty fix
     if(needed.transform) {
       needed.text = itemsToCraft + '';
       needed.x = available.x - needed.width;

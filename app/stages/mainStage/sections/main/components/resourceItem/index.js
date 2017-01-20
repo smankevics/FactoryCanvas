@@ -16,9 +16,9 @@ module.exports = function(_info, _behavior) {
   var behavior;
   
   if(_behavior == 'buy')
-    behavior = new BuyBehavior(info, updateQuantityText, updateTickerText);
+    behavior = new BuyBehavior(info, container, updateQuantityText, updateTickerText);
   else if(_behavior == 'sell')
-    behavior = new SellBehavior(info, updateQuantityText, updateTickerText);
+    behavior = new SellBehavior(info, container, updateQuantityText, updateTickerText);
 
   function updateTickerText(value) {
     toBuy.text = value;

@@ -26,7 +26,7 @@ module.exports = function() {
   storeManager.listen('money', function(value) {
     storeMoney = value;
     update();
-  });
+  }, container);
 
   storeManager.listen('toBuy', function (shopList) {
     var value = 0;
@@ -36,7 +36,7 @@ module.exports = function() {
 
     toPayValue = Utils.numberCurrency(value);
     update();
-  });
+  }, container);
 
   function update() {
     if(toPay) {

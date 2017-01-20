@@ -3,7 +3,10 @@
 var _ = require('lodash');
 
 var store = require('../components/Store');
-var emitter = require('event-emitter')();
+
+var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.setMaxListeners(0);
 
 var utils = require('../utils');
 
@@ -92,8 +95,23 @@ module.exports = {
   substractFrom: function(key, value) {
     updateFrom(key, value);
   },
-  listen: function(key, cb) {
+  listen: function(key, cb, container) {
+    var fn = cb;
+    cb = function(value) {
+      if(container && !container.transform) {
+        log('remove listener', key);
+        emitter.removeListener(key, cb);
+      } else {
+        fn.apply(this, arguments);
+      }
+    }
     log('listen', key);
     emitter.on(key, cb);
+    /*log('listen', key);
+    emitter.on(key, cb);*/
+  },
+  removeListener: function(key, cb) {
+    log('remove listener', key);
+    emitter.removeListener(key, cb);
   }
 }

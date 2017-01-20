@@ -5,7 +5,7 @@ module.exports = {
 	context: __dirname + '/app',
 	entry: {
 		app: './app.js',
-		vendor: ['pixi.js', 'lodash', 'event-emitter']
+		vendor: ['pixi.js', 'lodash']
 	},
 	output: {
 		path: __dirname + '/js',

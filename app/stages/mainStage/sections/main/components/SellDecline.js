@@ -29,7 +29,7 @@ module.exports = function() {
 
     earnValue = Utils.numberCurrency(value);
     update();
-  });
+  }, container);
 
   function update() {
     if(toEarn) {

@@ -4,7 +4,7 @@ var PIXI = require('pixi.js');
 var storeManager = require('managers/StoreManager');
 var Utils = require('../../../../../../utils');
 
-module.exports = function(_info, quantityChangedCb, tickerChangedCb) {
+module.exports = function(_info, container, quantityChangedCb, tickerChangedCb) {
   var info = _info;
 
   var sellCount = 0;
@@ -52,16 +52,16 @@ module.exports = function(_info, quantityChangedCb, tickerChangedCb) {
   storeManager.listen('toSell', function(shopList) {
     sellCount = shopList[info.id] ? shopList[info.id] : 0;
     updateTickerValue();
-  });
+  }, container);
 
   storeManager.listen('inventory[' + info.id + ']', function(value) {
     quantity = value;
     quantityChangedCb(value + '');
-  });
+  }, container);
   storeManager.listen('inventory', function(list) {
     quantity = list[info.id];
     quantityChangedCb(quantity + '');
-  });
+  }, container);
 
   return {
     updateTicker: updateTicker,
