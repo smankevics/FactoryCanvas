@@ -22,14 +22,20 @@ module.exports = function(view, _width, _height) {
   container.on('mouseover', function() {
     mouseOver = true;
   });
+  container.on('touchstart', function() {
+    mouseOver = true;
+  });
 
   container.on('mouseout', function() {
+    mouseOver = false;
+  });
+  container.on('touchend', function() {
     mouseOver = false;
   });
 
   var scrollable = new PIXI.Container();
 
-  document.addEventListener("mousewheel", function(e) {
+  function scroll(e) {
     if(view.visible && mouseOver) {
       if(e.deltaY < 0) {
         scrollable.y = scrollable.y - e.deltaY <= 0 ? scrollable.y - e.deltaY : 0;
@@ -37,7 +43,10 @@ module.exports = function(view, _width, _height) {
         scrollable.y = Math.abs(scrollable.y - height) <= scrollable.height ? scrollable.y - e.deltaY : scrollable.y;
       }
     }
-  }, false);
+  }
+
+  document.addEventListener("mousewheel", scroll, false);
+  document.addEventListener("touchmove", scroll, false);
 
   function addChild(child) {
     scrollable.addChild(child);
