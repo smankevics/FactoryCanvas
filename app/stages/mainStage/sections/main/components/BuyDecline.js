@@ -18,18 +18,39 @@ module.exports = function() {
   var container = new PIXI.Container();
   container.width = WIDTH;
   container.height = HEIGHT;
-  
-  var storeMoney = storeManager.get('money');
+
   var toPayValue = 0;
-  setPrice(storeManager.get('toBuy'));
   var enoughMoneyToBuy = true;
+  var storeMoney = storeManager.get('money');
+  
+  //components
+  var bg = new PIXI.Graphics();
+  bg.beginFill(0xbababa);
+  bg.drawRect(0, 0, WIDTH, HEIGHT);
+  container.addChild(bg);
+
+  var declineButton = new DeclineButton('Decline', decline);
+  declineButton.x = WIDTH - declineButton.width - 5;
+  declineButton.y = (HEIGHT - declineButton.height) / 2;
+  container.addChild(declineButton);
+
+  var acceptButton = new AcceptButton('Buy', buy);
+  acceptButton.x = declineButton.x - acceptButton.width - 10;
+  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
+  container.addChild(acceptButton);
+
+  var toPay = utils.Text(utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  toPay.x = acceptButton.x - toPay.width - 10;
+  toPay.y = (HEIGHT - toPay.height) / 2;
+  container.addChild(toPay);
 
   storeManager.listen('money', function(value) {
     storeMoney = value;
     update();
   }, container);
-
   storeManager.listen('toBuy', setPrice, container);
+  
+  setPrice(storeManager.get('toBuy'));
 
   function setPrice(list) {
     var value = 0;
@@ -74,27 +95,6 @@ module.exports = function() {
       storeManager.set('toBuy', []);
     }
   }
-
-  //components
-  var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
-  bg.drawRect(0, 0, WIDTH, HEIGHT);
-  container.addChild(bg);
-
-  var declineButton = new DeclineButton('Decline', decline);
-  declineButton.x = WIDTH - declineButton.width - 5;
-  declineButton.y = (HEIGHT - declineButton.height) / 2;
-  container.addChild(declineButton);
-
-  var acceptButton = new AcceptButton('Buy', buy);
-  acceptButton.x = declineButton.x - acceptButton.width - 10;
-  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
-  container.addChild(acceptButton);
-
-  var toPay = utils.Text(utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
-  toPay.x = acceptButton.x - toPay.width - 10;
-  toPay.y = (HEIGHT - toPay.height) / 2;
-  container.addChild(toPay);
 
   return container;
 };
