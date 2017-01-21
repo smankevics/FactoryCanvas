@@ -7,7 +7,7 @@ const HEIGHT = 70;
 const COLOR = 0xbababa;
 const SELECTED_COLOR = 0xcdcdcd;
 
-module.exports = function(_info, selectCb) {
+module.exports = function(_info, selectCb, initiallySelected) {
   var info = _info;
   var container = new PIXI.Container();
   container.buttonMode = true;
@@ -17,7 +17,7 @@ module.exports = function(_info, selectCb) {
   })
 
   var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
+  bg.beginFill(initiallySelected ? SELECTED_COLOR : COLOR);
   bg.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
   container.addChild(bg);
 

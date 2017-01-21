@@ -20,16 +20,19 @@ module.exports = function() {
   container.height = HEIGHT;
   
   var earnValue = 0;
+  setPrice(storeManager.get('toSell'));
 
-  storeManager.listen('toSell', function (shopList) {
+  storeManager.listen('toSell', setPrice, container);
+
+  function setPrice(list) {
     var value = 0;
-    shopList.forEach(function(n, i) {
+    list.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
     earnValue = utils.numberCurrency(value);
     update();
-  }, container);
+  }
 
   function update() {
     if(toEarn) {

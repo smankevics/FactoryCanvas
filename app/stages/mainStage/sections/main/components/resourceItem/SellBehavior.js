@@ -8,7 +8,7 @@ module.exports = function(_info, container, quantityChangedCb, tickerChangedCb) 
   var info = _info;
 
   var sellCount = 0;
-  var quantity = storeManager.get('inventory[' + info.id + ']');
+  var quantity = storeManager.get('inventory[' + info.id + ']') || 0;
   var pressTimeout;
   var pressCycle = 1;
 

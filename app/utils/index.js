@@ -24,9 +24,9 @@ module.exports = {
     },
     Text: function(text, styles, canvas) {
         var text = new PIXI.Text(text, styles, canvas);
-        text.style.fontSize = text.style.fontSize * PIXI.settings.RESOLUTION * 2;  
-        text.dirty = true;  
-        text.scale.set(0.5, 0.5);
+        //text.style.fontSize = text.style.fontSize * PIXI.settings.RESOLUTION * 2;  
+        //text.dirty = true;  
+        //text.scale.set(0.5, 0.5);
         return text;
     }
 }   

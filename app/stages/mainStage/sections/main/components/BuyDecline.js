@@ -5,9 +5,9 @@ var _ = require('lodash');
 var AcceptButton = require('./AcceptButton');
 var DeclineButton = require('./DeclineButton');
 var storeManager = require('managers/StoreManager');
-var utils = require('../../../../../utils');
+var utils = require('utils');
 
-var resources = require('../../../../../defines').allItems;
+var resources = require('defines').allItems;
 
 const WIDTH = 240;
 const HEIGHT = 30;
@@ -21,6 +21,7 @@ module.exports = function() {
   
   var storeMoney = storeManager.get('money');
   var toPayValue = 0;
+  setPrice(storeManager.get('toBuy'));
   var enoughMoneyToBuy = true;
 
   storeManager.listen('money', function(value) {
@@ -28,15 +29,17 @@ module.exports = function() {
     update();
   }, container);
 
-  storeManager.listen('toBuy', function (shopList) {
+  storeManager.listen('toBuy', setPrice, container);
+
+  function setPrice(list) {
     var value = 0;
-    shopList.forEach(function(n, i) {
+    list.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
     toPayValue = utils.numberCurrency(value);
     update();
-  }, container);
+  }
 
   function update() {
     if(toPay) {

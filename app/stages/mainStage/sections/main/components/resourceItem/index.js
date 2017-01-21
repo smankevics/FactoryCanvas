@@ -14,11 +14,16 @@ module.exports = function(_info, _behavior) {
   var info = _info;
   var container = new PIXI.Container();
   var behavior;
+  var initialToBuy;
   
-  if(_behavior == 'buy')
+  if(_behavior == 'buy') {
     behavior = new BuyBehavior(info, container, updateQuantityText, updateTickerText);
-  else if(_behavior == 'sell')
+    initialToBuy = storeManager.get('toBuy[' + info.id + ']');
+  } else if (_behavior == 'sell') {
     behavior = new SellBehavior(info, container, updateQuantityText, updateTickerText);
+    initialToBuy = storeManager.get('toSell[' + info.id + ']');
+  }
+  initialToBuy = initialToBuy && initialToBuy > 0 ? '+'+initialToBuy : '';
 
   function updateTickerText(value) {
     toBuy.text = value;
@@ -90,7 +95,7 @@ module.exports = function(_info, _behavior) {
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var toBuy = utils.Text('', {fontFamily : 'Calibri', fontSize: 12, fill : 0x000000});
+  var toBuy = utils.Text(initialToBuy, {fontFamily : 'Calibri', fontSize: 12, fill : 0x000000});
   toBuy.x = (WIDTH - toBuy.width) / 2;
   toBuy.y = HEIGHT - 21;
   container.addChild(toBuy);

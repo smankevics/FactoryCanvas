@@ -5,6 +5,7 @@ var PIXI = require('pixi.js');
 var Button = require('../../../../components/view/Button');
 
 var viewManager = require('../../managers/ViewManager');
+var state = require('managers/StateManager');
 
 const COLOR = 0x000000;
 const SELECTED_COLOR = 0xdedede;
@@ -15,6 +16,7 @@ module.exports = function(_x, _y, _width, _height) {
   var width = _width;
   var height = _height;
   var active = null;
+  var initialState = state.get('selectedView') || 'shop';
 
   var container = new PIXI.Container();
   container.x = x;
@@ -28,43 +30,56 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(bg);
 
   var group = new PIXI.Container();
+  var buttons = {};
 
-  function select(name, bt) {
+  function select(name, init) {
+    var bt = buttons[name];
     if(active) {
       active.style.fill = COLOR;
       active.dirty = true;
     }
 
-    viewManager.setView(name);
+    if(!init)
+      viewManager.setView(name);
+    
     active = bt;
     active.style.fill = SELECTED_COLOR;
     active.dirty = true;
+    state.set('selectedView', name);
   }
 
-  var shop = new Button('Shop', 0, 0, SELECTED_COLOR, function() {
-    select('shop', shop);
+  var shop = new Button('Shop', 0, 0, COLOR, function() {
+    select('shop');
   });
-  active = shop;
+  buttons['shop'] = shop;
 
   var workbench = new Button('Workbench', shop.x + shop.width + 10, 0, COLOR, function() {
-    select('workbench', workbench);
+    select('workbench');
   });
+  buttons['workbench'] = workbench;
 
   var inventory = new Button('Inventory', workbench.x + workbench.width + 10, 0, COLOR, function() {
-    select('inventory', inventory);
+    select('inventory');
   });
+  buttons['inventory'] = inventory;
 
   var factory = new Button('Factory', inventory.x + inventory.width + 10, 0, COLOR, function() {
-    select('factory', factory);
+    select('factory');
   });
+  buttons['factory'] = factory;
 
   var auction = new Button('Auction', factory.x + factory.width + 10, 0, COLOR, function() {
-    select('auction', auction);
+    select('auction');
   });
+  buttons['auction'] = auction;
 
   var stats = new Button('Stats', auction.x + auction.width + 10, 0, COLOR, function() {
-    select('stats', stats);
+    select('stats');
   });
+  buttons['stats'] = stats;
+
+  select(initialState, true);
+  
 
   group.addChild(shop);
   group.addChild(workbench);

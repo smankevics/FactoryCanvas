@@ -34,6 +34,7 @@ module.exports = function(_x, _y, _width, _height) {
 
   storeManager.listen('money', function(value) {
     money.text = utils.stringCurrency(value);
+    money.x = width - money.width - 10;
   }, container);
 
   return container;
