@@ -13,6 +13,7 @@ module.exports = function(_text, cb) {
   container.buttonMode = true;
   container.interactive = true;
   container.on('mouseup', cb);
+  container.on('tap', cb);
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0x993232);

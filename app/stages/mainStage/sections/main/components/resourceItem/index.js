@@ -87,6 +87,7 @@ module.exports = function(_info, _behavior) {
     behavior.updateTicker(false);
   });
   btGr1.on('touchend', behavior.releaseTicker);
+  btGr1.on('touchendoutside', releaseTicker);
   btGr1.on('mouseup', behavior.releaseTicker);
   btGr1.on('mouseout', behavior.releaseTicker);
   var btGr1bg = new PIXI.Graphics();
@@ -119,6 +120,7 @@ module.exports = function(_info, _behavior) {
     behavior.updateTicker(true);
   });
   btGr2.on('touchend', behavior.releaseTicker);
+  btGr2.on('touchendoutside', releaseTicker);
   btGr2.on('mouseup', behavior.releaseTicker);
   btGr2.on('mouseout', behavior.releaseTicker);
   var btGr2bg = new PIXI.Graphics();
