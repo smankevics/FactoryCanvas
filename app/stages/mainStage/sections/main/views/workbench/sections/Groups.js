@@ -36,6 +36,27 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
   title.y = 5;
   container.addChild(title);
 
+  function onClick(e) {
+    var sameClick = selected == e.currentTarget;
+
+    if(selected) {
+      selected.graphicsData[0].fillColor = BG;
+      selected.children[0].style.fill = FONT;
+      selected.dirty = true;
+      selected = null;
+    }
+
+    if(!sameClick) {
+      selected = e.currentTarget;
+      selected.graphicsData[0].fillColor = SELECTED_BG;
+      selected.children[0].style.fill = SELECTED_FONT;
+      selected.dirty = true;
+    }
+    var s = selected ? selected.groupId : null;
+    state.set('workbench.selectedGroup', s)
+    onGroupChangeCb(s);
+  }
+
   var g, gBg, gy = 30, isSelected, font;
   groups.forEach(function(group) {
     var gBg = new PIXI.Graphics();
@@ -45,26 +66,8 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
     gBg.groupId = group.id;
     gBg.buttonMode = true;
     gBg.interactive = true;
-    gBg.on('mousedown', function(e) {
-      var sameClick = selected == e.currentTarget;
-
-      if(selected) {
-        selected.graphicsData[0].fillColor = BG;
-        selected.children[0].style.fill = FONT;
-        selected.dirty = true;
-        selected = null;
-      }
-
-      if(!sameClick) {
-        selected = e.currentTarget;
-        selected.graphicsData[0].fillColor = SELECTED_BG;
-        selected.children[0].style.fill = SELECTED_FONT;
-        selected.dirty = true;
-      }
-      var s = selected ? selected.groupId : null;
-      state.set('workbench.selectedGroup', s)
-      onGroupChangeCb(s);
-    })
+    gBg.on('mousedown', onClick);
+    gBg.on('tap', onClick);    
 
     font = isSelected ? SELECTED_FONT : FONT;
     g = utils.Text('• ' + group.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : font});
@@ -74,7 +77,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
     gy += g.height + 6;
       
     gBg.addChild(g);
-    
+
     if(isSelected)
       selected = gBg;
 

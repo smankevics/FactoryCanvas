@@ -58,6 +58,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr1.on('mousedown', function() {
     updateTicker(false);
   });
+  btGr1.on('touchstart', function() {
+    updateTicker(false);
+  });
+  btGr1.on('touchend', releaseTicker);
   btGr1.on('mouseup', releaseTicker);
   btGr1.on('mouseout', releaseTicker);
   var btGr1bg = new PIXI.Graphics();
@@ -85,6 +89,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2.on('mousedown', function() {
     updateTicker(true);
   });
+  btGr2.on('touchstart', function() {
+    updateTicker(true);
+  });
+  btGr2.on('touchend', releaseTicker);
   btGr2.on('mouseup', releaseTicker);
   btGr2.on('mouseout', releaseTicker);
   var btGr2bg = new PIXI.Graphics();

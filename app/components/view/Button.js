@@ -13,5 +13,7 @@ module.exports = function (_text, _x, _y, _color, _mouseDownCb, _mouseUpCb) {
   bt.y = _y;
   bt.on('mousedown', _mouseDownCb);
   bt.on('mouseup', _mouseUpCb);
+  bt.on('touchstart', _mouseDownCb);
+  bt.on('touchend', _mouseUpCb);
   return bt;
 }

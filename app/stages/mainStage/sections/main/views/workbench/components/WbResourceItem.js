@@ -15,6 +15,9 @@ module.exports = function(_info, selectCb, initiallySelected) {
   container.on('mousedown', function() {
     selectCb(_info.id);
   })
+  container.on('tap', function() {
+    selectCb(_info.id);
+  })
 
   var bg = new PIXI.Graphics();
   bg.beginFill(initiallySelected ? SELECTED_COLOR : COLOR);
