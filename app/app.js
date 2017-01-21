@@ -9,29 +9,31 @@ var MainStage = require('./stages').MainStage;
 var StageManager = require('./managers').StageManager;
 var state = require('managers/StateManager');
 
-const MAX_WIDTH = 1024;
+const MAX_WIDTH = 1366;
 const MAX_HEIGHT = 768;
 
 var width = window.innerWidth;
 var height = window.innerHeight;
 var scale = 1;
 
-state.set('windowSize', [width, height]);
+defineMargins();
 
-window.addEventListener('resize', function() {
+function defineMargins() {
     var w = window.innerWidth;
     var h = window.innerHeight;
+    width = Number((w / scale).toFixed(0));
+    height = Number((h / scale).toFixed(0));
     var scaleX = w / MAX_WIDTH;
     var scaleY = h / MAX_HEIGHT;
     scale = scaleX > scaleY ? scaleX : scaleY;
     scale = scale > 1 ? scale : 1;
-    width = Number((w / scale).toFixed(0));
-    height = Number((h / scale).toFixed(0));
-    application.scale.set(scale, scale);
-    renderer.resize(w, h);
-    window.cWidth = width;
-    window.cHeight = height;
     state.set('windowSize', [width, height]);
+}
+
+window.addEventListener('resize', function() {
+    defineMargins();
+    application.scale.set(scale, scale);
+    renderer.resize(window.innerWidth, window.innerHeight);
 }, true);
 
 var renderer = new PIXI.CanvasRenderer(width, height, {backgroundColor: 0xffffff, antialias: true, autoResize: true, resolution: 2});
