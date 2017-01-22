@@ -20,8 +20,30 @@ module.exports = function() {
   container.height = HEIGHT;
   
   var earnValue = 0;
-  setPrice(storeManager.get('toSell'));
   var cartList = [];
+  
+  //components
+  var bg = new PIXI.Graphics();
+  bg.beginFill(0xbababa);
+  bg.drawRect(0, 0, WIDTH, HEIGHT);
+  container.addChild(bg);
+
+  var declineButton = new DeclineButton('Отмена', decline);
+  declineButton.x = WIDTH - declineButton.width - 5;
+  declineButton.y = (HEIGHT - declineButton.height) / 2;
+  container.addChild(declineButton);
+
+  var acceptButton = new AcceptButton('Продать', sell);
+  acceptButton.x = declineButton.x - acceptButton.width - 10;
+  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
+  container.addChild(acceptButton);
+
+  var toEarn = new PIXI.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  toEarn.x = acceptButton.x - toEarn.width - 10;
+  toEarn.y = (HEIGHT - toEarn.height) / 2;
+  container.addChild(toEarn);
+
+  setPrice(storeManager.get('toSell'));
   storeManager.listen('toSell', setPrice, container);
 
   function setPrice(list) {
@@ -65,27 +87,6 @@ module.exports = function() {
       storeManager.substractFrom('toSell', cartList);
     }
   }
-
-  //components
-  var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
-  bg.drawRect(0, 0, WIDTH, HEIGHT);
-  container.addChild(bg);
-
-  var declineButton = new DeclineButton('Decline', decline);
-  declineButton.x = WIDTH - declineButton.width - 5;
-  declineButton.y = (HEIGHT - declineButton.height) / 2;
-  container.addChild(declineButton);
-
-  var acceptButton = new AcceptButton('Sell', sell);
-  acceptButton.x = declineButton.x - acceptButton.width - 10;
-  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
-  container.addChild(acceptButton);
-
-  var toEarn = new PIXI.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
-  toEarn.x = acceptButton.x - toEarn.width - 10;
-  toEarn.y = (HEIGHT - toEarn.height) / 2;
-  container.addChild(toEarn);
 
   return container;
 };
