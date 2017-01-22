@@ -36,12 +36,13 @@ window.addEventListener('resize', function() {
     renderer.resize(window.innerWidth, window.innerHeight);
 }, true);
 
-var renderer = new PIXI.CanvasRenderer(width, height, {backgroundColor: 0xffffff, antialias: true, autoResize: true, resolution: 2});
+var renderer = new PIXI.CanvasRenderer(width, height, {backgroundColor: 0xffffff, antialias: true, autoResize: true});
 renderer.view.style.position = 'absolute';
 renderer.view.style.top = '0';
 renderer.view.style.left = '0';
 renderer.view.style.bottom = '0';
 renderer.view.style.right = '0';
+renderer.roundPixels = true;
 document.body.appendChild(renderer.view);
 
 var application = new PIXI.Container();

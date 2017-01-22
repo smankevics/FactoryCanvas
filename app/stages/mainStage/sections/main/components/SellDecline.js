@@ -82,7 +82,7 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toEarn = utils.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  var toEarn = new PIXI.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
   toEarn.x = acceptButton.x - toEarn.width - 10;
   toEarn.y = (HEIGHT - toEarn.height) / 2;
   container.addChild(toEarn);

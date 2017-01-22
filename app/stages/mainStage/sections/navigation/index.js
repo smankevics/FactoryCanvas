@@ -48,32 +48,32 @@ module.exports = function(_x, _y, _width, _height) {
     state.set('selectedView', name);
   }
 
-  var shop = new Button('Shop', 0, 0, COLOR, function() {
+  var shop = new Button('Магазин', 0, 0, COLOR, function() {
     select('shop');
   });
   buttons['shop'] = shop;
 
-  var workbench = new Button('Workbench', shop.x + shop.width + 10, 0, COLOR, function() {
+  var workbench = new Button('Мастерская', shop.x + shop.width + 10, 0, COLOR, function() {
     select('workbench');
   });
   buttons['workbench'] = workbench;
 
-  var inventory = new Button('Inventory', workbench.x + workbench.width + 10, 0, COLOR, function() {
+  var inventory = new Button('Склад', workbench.x + workbench.width + 10, 0, COLOR, function() {
     select('inventory');
   });
   buttons['inventory'] = inventory;
 
-  var factory = new Button('Factory', inventory.x + inventory.width + 10, 0, COLOR, function() {
+  var factory = new Button('Производство', inventory.x + inventory.width + 10, 0, COLOR, function() {
     select('factory');
   });
   buttons['factory'] = factory;
 
-  var auction = new Button('Auction', factory.x + factory.width + 10, 0, COLOR, function() {
+  var auction = new Button('Аукцион', factory.x + factory.width + 10, 0, COLOR, function() {
     select('auction');
   });
   buttons['auction'] = auction;
 
-  var stats = new Button('Stats', auction.x + auction.width + 10, 0, COLOR, function() {
+  var stats = new Button('Статистика', auction.x + auction.width + 10, 0, COLOR, function() {
     select('stats');
   });
   buttons['stats'] = stats;

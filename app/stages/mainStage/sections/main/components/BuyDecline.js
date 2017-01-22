@@ -39,7 +39,7 @@ module.exports = function() {
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);
 
-  var toPay = utils.Text(utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  var toPay = new PIXI.Text(utils.stringCurrency(toPayValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
   toPay.x = acceptButton.x - toPay.width - 10;
   toPay.y = (HEIGHT - toPay.height) / 2;
   container.addChild(toPay);

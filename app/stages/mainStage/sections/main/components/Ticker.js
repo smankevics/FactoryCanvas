@@ -64,18 +64,18 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr1.on('touchend', releaseTicker);
   btGr1.on('touchendoutside', releaseTicker);
   btGr1.on('mouseup', releaseTicker);
-  btGr1.on('mouseout', releaseTicker);
+  btGr1.on('mouseupoutside', releaseTicker);
   var btGr1bg = new PIXI.Graphics();
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
-  var dec = utils.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
+  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr1.width - dec.width) / 2;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var valueText = utils.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
+  var valueText = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
   updateTickerValue();
   container.addChild(valueText);
 
@@ -96,12 +96,12 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2.on('touchend', releaseTicker);
   btGr2.on('touchendoutside', releaseTicker);
   btGr2.on('mouseup', releaseTicker);
-  btGr2.on('mouseout', releaseTicker);
+  btGr2.on('mouseupoutside', releaseTicker);
   var btGr2bg = new PIXI.Graphics();
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
   btGr2.addChild(btGr2bg);
-  var dec = utils.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
   dec.x = (btGr2.width - dec.width) / 2;
   dec.y = (btGr2.height - dec.height) / 2 - 1;
   btGr2.addChild(dec);

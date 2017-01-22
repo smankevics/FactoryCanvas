@@ -49,8 +49,10 @@ module.exports = function(_info, container, quantityChangedCb, tickerChangedCb) 
 
   //listen on shopping list clearance
   storeManager.listen('toBuy', function(shopList) {
-    buyCount = shopList[info.id] ? shopList[info.id] : 0;
-    updateTickerValue();
+    if(!pressTimeout) {
+      buyCount = shopList[info.id] ? shopList[info.id] : 0;
+      updateTickerValue();
+    }
   }, container);
 
   storeManager.listen('inventory[' + info.id + ']', function(value) {

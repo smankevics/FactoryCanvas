@@ -16,7 +16,7 @@ module.exports = function(_width, _height) {
   var lastLoop = new Date;
   var lastSnapshot = 0;
 
-  var fps = utils.Text('', {fontFamily : 'Calibri', fontSize: 18, fontWeight: 'bold', fill : 0xff0000});
+  var fps = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 18, fontWeight: 'bold', fill : 0xff0000});
   container.addChild(fps);
 
   state.listen('windowSize', function(size) {

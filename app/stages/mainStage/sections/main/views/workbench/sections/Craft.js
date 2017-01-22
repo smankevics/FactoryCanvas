@@ -30,7 +30,7 @@ module.exports = function(_x, _y, _width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var name = utils.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x222222});
+  var name = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x222222});
   name.x = (width - name.width) / 2;
   name.y = 10;
   container.addChild(name);
@@ -46,12 +46,12 @@ module.exports = function(_x, _y, _width, _height) {
   var icon;
 
   //Current Items
-  var currentItemsText = utils.Text('0', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0xcdcdcd});
+  var currentItemsText = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0xcdcdcd});
   updateCurrentItemsText('0');
   container.addChild(currentItemsText);
 
   //Recipe text
-  var recipeText = utils.Text('Recipe', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var recipeText = new PIXI.Text('Recipe', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   recipeText.x = 10;
   recipeText.y = iconBg.y + iconBg.height + 20;
   container.addChild(recipeText);
@@ -60,7 +60,7 @@ module.exports = function(_x, _y, _width, _height) {
   var recipeList, recipeArray = [];
 
   //Craft Items
-  var craftItemsText = utils.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var craftItemsText = new PIXI.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   craftItemsText.x = 0;
   craftItemsText.y = 0;
   container.addChild(craftItemsText);

@@ -31,7 +31,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = utils.Text('Groups', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var title = new PIXI.Text('Groups', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
@@ -70,7 +70,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
     gBg.on('tap', onClick);    
 
     font = isSelected ? SELECTED_FONT : FONT;
-    g = utils.Text('• ' + group.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : font});
+    g = new PIXI.Text('• ' + group.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : font});
     g.x = 8;
     g.y = gy + ((20 - g.height) / 2);
 

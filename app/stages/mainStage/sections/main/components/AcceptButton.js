@@ -20,7 +20,7 @@ module.exports = function(_text, cb) {
   bg.drawRect(0, 0, WIDTH, HEIGHT);
   container.addChild(bg);
 
-  var name = utils.Text(text, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
+  var name = new PIXI.Text(text, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
   name.x = (WIDTH - name.width) / 2;
   name.y = (HEIGHT - name.height) / 2 - 1;
   container.addChild(name);

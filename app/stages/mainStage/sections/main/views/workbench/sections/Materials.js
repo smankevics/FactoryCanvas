@@ -87,6 +87,9 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
     populateList();
 
     //select item
+    if(!items.length)
+      return;
+      
     var it = initialMaterial && initial ? initialMaterial : items[0].info.id;
     updateSelection(it, initial);
   }

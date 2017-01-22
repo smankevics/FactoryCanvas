@@ -23,7 +23,7 @@ module.exports = function(_width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = utils.Text('Shop', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
+  var title = new PIXI.Text('Shop', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
   title.x = 10;
   title.y = 5;
   container.addChild(title);

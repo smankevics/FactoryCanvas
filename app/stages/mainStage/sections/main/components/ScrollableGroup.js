@@ -26,7 +26,7 @@ module.exports = function(view, _width, _height) {
     mouseOver = true;
   });
 
-  container.on('mouseout', function() {
+  container.on('mouseupoutside', function() {
     mouseOver = false;
   });
   container.on('touchend', function() {

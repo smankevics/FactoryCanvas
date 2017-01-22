@@ -17,7 +17,7 @@ module.exports = function(_name, _width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var loading = utils.Text('Loading...', {fontFamily : 'Calibri', fontSize: 36, fontWeight: 'bold', fill : 0xededed});
+  var loading = new PIXI.Text('Loading...', {fontFamily : 'Calibri', fontSize: 36, fontWeight: 'bold', fill : 0xededed});
   loading.x = (width - loading.width) / 2;
   loading.y = (height - loading.height) / 2;
   container.addChild(loading);
