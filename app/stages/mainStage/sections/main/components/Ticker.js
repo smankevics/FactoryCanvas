@@ -12,9 +12,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   var pressTimeout;
   var pressCycle = 1;
   var minValue = 0;
+  var maxValue;
 
   function updateTicker(inc) {
-    if(!inc && tickerValue == minValue)
+    if((!inc && tickerValue === minValue) || (inc && _.isNumber(maxValue) && tickerValue === maxValue))
       return;
 
     if(inc) 
@@ -70,7 +71,7 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
   var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
-  dec.x = (btGr1.width - dec.width) / 2;
+  dec.x = (btGr1.width - dec.width) / 2 + 1;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
@@ -102,8 +103,8 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2bg.drawRect(0, 0, 16, 16);
   btGr2.addChild(btGr2bg);
   var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
-  dec.x = (btGr2.width - dec.width) / 2;
-  dec.y = (btGr2.height - dec.height) / 2 - 1;
+  dec.x = (btGr2.width - dec.width) / 2 + 1;
+  dec.y = (btGr2.height - dec.height) / 2;
   btGr2.addChild(dec);
   container.addChild(btGr2);
 
@@ -118,6 +119,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
     minValue = _value;
   }
 
+  function setMax(_value) {
+    maxValue = _value;
+  }
+
   function value() {
     return tickerValue;
   }
@@ -126,6 +131,7 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
     container: container,
     setValue: setValue,
     value: value,
-    setMin: setMin
+    setMin: setMin,
+    setMax: setMax
   };
 };

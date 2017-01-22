@@ -20,9 +20,9 @@ function log(action, val1, val2) {
   }
 }
 
-function set(key, value) {
+function set(key, value, preventGlobal) {
     _.set(store, key, value);
-    emit(key, value);
+    emit(key, value, preventGlobal);
   }
 
 function get(key) {
@@ -44,19 +44,19 @@ function emit(key, value, preventGlobal) {
   }
 }
 
-function updateFrom(key, value, add) {
+function updateFrom(key, value, add, preventGlobal) {
   if(value instanceof Array) {
       var initial = get(key);
-      var ii, vv;
+      var ii, vv, newVal;
       for(var i = 0; i < value.length; i++) {
-        ii = initial[i] ? initial[i] : 0;
-        vv = value[i] ? value[i] : 0;
-        if(add)
-          initial[i] = ii + vv;
-        else
-          initial[i] = ii - vv;
+        ii = initial[i] || 0;
+        vv = value[i] || 0;
+        newVal = add ? ii + vv : ii - vv;
+        initial[i] = newVal;
+        set(key + '[' + i + ']', newVal, true);
       }
-      set(key, initial);
+      if(!preventGlobal)
+        set(key, initial);
     } else {
       throw 'Error: can\'t update from given type!';
     }
@@ -89,11 +89,11 @@ module.exports = {
       throw 'Error: can substract only numbers!';
     }
   },
-  addFrom: function(key, value) {
-    updateFrom(key, value, true);
+  addFrom: function(key, value, preventGlobal) {
+    updateFrom(key, value, true, preventGlobal);
   },
-  substractFrom: function(key, value) {
-    updateFrom(key, value);
+  substractFrom: function(key, value, preventGlobal) {
+    updateFrom(key, value, preventGlobal);
   },
   listen: function(key, cb, container) {
     var fn = cb;

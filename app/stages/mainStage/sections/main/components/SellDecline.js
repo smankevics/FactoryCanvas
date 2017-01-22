@@ -21,12 +21,13 @@ module.exports = function() {
   
   var earnValue = 0;
   setPrice(storeManager.get('toSell'));
-
+  var cartList = [];
   storeManager.listen('toSell', setPrice, container);
 
   function setPrice(list) {
+    cartList = list;
     var value = 0;
-    list.forEach(function(n, i) {
+    cartList.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
@@ -53,16 +54,15 @@ module.exports = function() {
     update();
 
     //update inventory
-    var list = storeManager.get('toSell');
-    storeManager.substractFrom('inventory', list);
+    storeManager.substractFrom('inventory', cartList);
     
     //clear toSell
-    storeManager.set('toSell', []);
+    storeManager.substractFrom('toSell', cartList);
   }
 
   function decline() {
     if(earnValue > 0) {
-      storeManager.set('toSell', []);
+      storeManager.substractFrom('toSell', cartList);
     }
   }
 

@@ -22,6 +22,7 @@ module.exports = function() {
   var toPayValue = 0;
   var enoughMoneyToBuy = true;
   var storeMoney = storeManager.get('money');
+  var cartList = [];
   
   //components
   var bg = new PIXI.Graphics();
@@ -53,8 +54,9 @@ module.exports = function() {
   setPrice(storeManager.get('toBuy'));
 
   function setPrice(list) {
+    cartList = list;
     var value = 0;
-    list.forEach(function(n, i) {
+    cartList.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
@@ -83,16 +85,15 @@ module.exports = function() {
     update();
 
     //update inventory
-    var list = storeManager.get('toBuy');
-    storeManager.addFrom('inventory', list);
+    storeManager.addFrom('inventory', cartList);
     
     //clear toBuy
-    storeManager.set('toBuy', []);
+    storeManager.substractFrom('toBuy', cartList);
   }
 
   function decline() {
-    if(toPayValue > 0) {
-      storeManager.set('toBuy', []);
+    if(!_.isEmpty(cartList)) {
+      storeManager.substractFrom('toBuy', cartList);
     }
   }
 
