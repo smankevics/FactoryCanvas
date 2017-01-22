@@ -29,12 +29,12 @@ module.exports = function() {
   bg.drawRect(0, 0, WIDTH, HEIGHT);
   container.addChild(bg);
 
-  var declineButton = new DeclineButton('Decline', decline);
+  var declineButton = new DeclineButton('Отмена', decline);
   declineButton.x = WIDTH - declineButton.width - 5;
   declineButton.y = (HEIGHT - declineButton.height) / 2;
   container.addChild(declineButton);
 
-  var acceptButton = new AcceptButton('Buy', buy);
+  var acceptButton = new AcceptButton('Купить', buy);
   acceptButton.x = declineButton.x - acceptButton.width - 10;
   acceptButton.y = (HEIGHT - acceptButton.height) / 2;
   container.addChild(acceptButton);

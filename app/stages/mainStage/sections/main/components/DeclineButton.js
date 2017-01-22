@@ -22,7 +22,7 @@ module.exports = function(_text, cb) {
 
   var name = new PIXI.Text(text, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
   name.x = (WIDTH - name.width) / 2;
-  name.y = (HEIGHT - name.height) / 2 - 1;
+  name.y = (HEIGHT - name.height) / 2;
   container.addChild(name);
 
   return container
