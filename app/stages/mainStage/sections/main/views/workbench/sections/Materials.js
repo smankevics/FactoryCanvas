@@ -4,6 +4,7 @@ var PIXI = require('pixi.js');
 
 var groupItems = require('../../../../../../../defines').groupItems;
 var ResourceItem = require('../components/WbResourceItem');
+var state = require('managers/StateManager');
 
 module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   var x = _x;
@@ -18,6 +19,8 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   container.height = height;
 
   var group;
+  var initialGroup = state.get('workbench.selectedGroup');
+  var initialMaterial = state.get('workbench.selectedMaterial');
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0xbababa);
@@ -26,9 +29,14 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
 
   var list, items = [];
 
-  function updateSelection(selectedId) {
+  function updateSelection(selectedId, initial) {
     if (!items)
       return;
+
+    if(!initial) {
+      state.set('workbench.selectedMaterial', selectedId);
+      state.set('workbench.itemsToCraft', 1);
+    }
 
     items.forEach(function (item) {
       if (item.info && item.info.id == selectedId) {
@@ -69,16 +77,21 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
       i++;
     });
 
-    //select first item
-    updateSelection(resources[0].id);
     container.addChild(list);
   }
 
-  populateList();
+  setGroup(initialGroup, true);
 
-  function setGroup(_group) {
+  function setGroup(_group, initial) {
     group = _group;
     populateList();
+
+    //select item
+    if(!items.length)
+      return;
+      
+    var it = initialMaterial && initial ? initialMaterial : items[0].info.id;
+    updateSelection(it, initial);
   }
 
   return {

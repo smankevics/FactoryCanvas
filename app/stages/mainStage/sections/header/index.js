@@ -22,12 +22,12 @@ module.exports = function(_x, _y, _width, _height) {
   head.drawRect(0, 0, width, height);
   container.addChild(head);
 
-  var player = utils.Text(storeManager.get('player'), {fontFamily : 'Calibri', fontSize: 18, fontWeight: 'bold', fill : 0xdedede});
+  var player = new PIXI.Text(storeManager.get('player'), {fontFamily : 'Calibri', fontSize: 18, fontWeight: 'bold', fill : 0xdedede});
   player.x = 10;
   player.y = (height - player.height) / 2;
   container.addChild(player);
 
-  var money = utils.Text(utils.stringCurrency(storeManager.get('money')), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
+  var money = new PIXI.Text(utils.stringCurrency(storeManager.get('money')), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0xdedede});
   money.x = width - money.width - 10;
   money.y = (height - money.height) / 2;
   container.addChild(money);

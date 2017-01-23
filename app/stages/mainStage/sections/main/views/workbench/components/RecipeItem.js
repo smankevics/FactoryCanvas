@@ -27,17 +27,17 @@ module.exports = function(_y, _width, _id, _neededForCraft, initialItemsToCraft)
     updateAvailableItems(list[_id]);
   }
 
-  var name = utils.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   name.x = 20;
   name.y = 0;
   container.addChild(name);
 
-  var available = utils.Text(' / ' + availableItems, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var available = new PIXI.Text(' / ' + availableItems, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   available.x = width - 60;
   available.y = 0;
   container.addChild(available);
 
-  var needed = utils.Text(itemsToCraft, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var needed = new PIXI.Text(itemsToCraft, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   needed.x = available.x - needed.width;
   needed.y = 0;
   container.addChild(needed);

@@ -12,9 +12,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   var pressTimeout;
   var pressCycle = 1;
   var minValue = 0;
+  var maxValue;
 
   function updateTicker(inc) {
-    if(!inc && tickerValue == minValue)
+    if((!inc && tickerValue === minValue) || (inc && _.isNumber(maxValue) && tickerValue === maxValue))
       return;
 
     if(inc) 
@@ -58,19 +59,24 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr1.on('mousedown', function() {
     updateTicker(false);
   });
+  btGr1.on('touchstart', function() {
+    updateTicker(false);
+  });
+  btGr1.on('touchend', releaseTicker);
+  btGr1.on('touchendoutside', releaseTicker);
   btGr1.on('mouseup', releaseTicker);
-  btGr1.on('mouseout', releaseTicker);
+  btGr1.on('mouseupoutside', releaseTicker);
   var btGr1bg = new PIXI.Graphics();
   btGr1bg.beginFill(0xdedede);
   btGr1bg.drawRect(0, 0, 16, 16);
   btGr1.addChild(btGr1bg);
-  var dec = utils.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
-  dec.x = (btGr1.width - dec.width) / 2;
+  var dec = new PIXI.Text('-', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x232323});
+  dec.x = (btGr1.width - dec.width) / 2 + 1;
   dec.y = (btGr1.height - dec.height) / 2 - 1;
   btGr1.addChild(dec);
   container.addChild(btGr1);
 
-  var valueText = utils.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
+  var valueText = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 14, fill : 0x000000});
   updateTickerValue();
   container.addChild(valueText);
 
@@ -85,15 +91,20 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
   btGr2.on('mousedown', function() {
     updateTicker(true);
   });
+  btGr2.on('touchstart', function() {
+    updateTicker(true);
+  });
+  btGr2.on('touchend', releaseTicker);
+  btGr2.on('touchendoutside', releaseTicker);
   btGr2.on('mouseup', releaseTicker);
-  btGr2.on('mouseout', releaseTicker);
+  btGr2.on('mouseupoutside', releaseTicker);
   var btGr2bg = new PIXI.Graphics();
   btGr2bg.beginFill(0xdedede);
   btGr2bg.drawRect(0, 0, 16, 16);
   btGr2.addChild(btGr2bg);
-  var dec = utils.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
-  dec.x = (btGr2.width - dec.width) / 2;
-  dec.y = (btGr2.height - dec.height) / 2 - 1;
+  var dec = new PIXI.Text('+', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x232323});
+  dec.x = (btGr2.width - dec.width) / 2 + 1;
+  dec.y = (btGr2.height - dec.height) / 2;
   btGr2.addChild(dec);
   container.addChild(btGr2);
 
@@ -108,6 +119,10 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
     minValue = _value;
   }
 
+  function setMax(_value) {
+    maxValue = _value;
+  }
+
   function value() {
     return tickerValue;
   }
@@ -116,6 +131,7 @@ module.exports = function(_x, _y, _width, onChange, initialValue) {
     container: container,
     setValue: setValue,
     value: value,
-    setMin: setMin
+    setMin: setMin,
+    setMax: setMax
   };
 };

@@ -20,16 +20,42 @@ module.exports = function() {
   container.height = HEIGHT;
   
   var earnValue = 0;
+  var cartList = [];
+  
+  //components
+  var bg = new PIXI.Graphics();
+  bg.beginFill(0xbababa);
+  bg.drawRect(0, 0, WIDTH, HEIGHT);
+  container.addChild(bg);
 
-  storeManager.listen('toSell', function (shopList) {
+  var declineButton = new DeclineButton('Отмена', decline);
+  declineButton.x = WIDTH - declineButton.width - 5;
+  declineButton.y = (HEIGHT - declineButton.height) / 2;
+  container.addChild(declineButton);
+
+  var acceptButton = new AcceptButton('Продать', sell);
+  acceptButton.x = declineButton.x - acceptButton.width - 10;
+  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
+  container.addChild(acceptButton);
+
+  var toEarn = new PIXI.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
+  toEarn.x = acceptButton.x - toEarn.width - 10;
+  toEarn.y = (HEIGHT - toEarn.height) / 2;
+  container.addChild(toEarn);
+
+  setPrice(storeManager.get('toSell'));
+  storeManager.listen('toSell', setPrice, container);
+
+  function setPrice(list) {
+    cartList = list;
     var value = 0;
-    shopList.forEach(function(n, i) {
+    cartList.forEach(function(n, i) {
       value += resources[i].price * n;
     }); 
 
     earnValue = utils.numberCurrency(value);
     update();
-  }, container);
+  }
 
   function update() {
     if(toEarn) {
@@ -50,39 +76,17 @@ module.exports = function() {
     update();
 
     //update inventory
-    var list = storeManager.get('toSell');
-    storeManager.substractFrom('inventory', list);
+    storeManager.substractFrom('inventory', cartList);
     
     //clear toSell
-    storeManager.set('toSell', []);
+    storeManager.substractFrom('toSell', cartList);
   }
 
   function decline() {
     if(earnValue > 0) {
-      storeManager.set('toSell', []);
+      storeManager.substractFrom('toSell', cartList);
     }
   }
-
-  //components
-  var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
-  bg.drawRect(0, 0, WIDTH, HEIGHT);
-  container.addChild(bg);
-
-  var declineButton = new DeclineButton('Decline', decline);
-  declineButton.x = WIDTH - declineButton.width - 5;
-  declineButton.y = (HEIGHT - declineButton.height) / 2;
-  container.addChild(declineButton);
-
-  var acceptButton = new AcceptButton('Sell', sell);
-  acceptButton.x = declineButton.x - acceptButton.width - 10;
-  acceptButton.y = (HEIGHT - acceptButton.height) / 2;
-  container.addChild(acceptButton);
-
-  var toEarn = utils.Text(utils.stringCurrency(earnValue), {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : GREEN});
-  toEarn.x = acceptButton.x - toEarn.width - 10;
-  toEarn.y = (HEIGHT - toEarn.height) / 2;
-  container.addChild(toEarn);
 
   return container;
 };

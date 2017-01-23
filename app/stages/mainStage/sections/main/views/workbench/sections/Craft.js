@@ -6,10 +6,9 @@ var utils = require('utils');
 var defines = require('defines');
 var RecipeItem = require('../components/RecipeItem');
 var storeManager = require('managers/StoreManager');
+var state = require('managers/StateManager');
 var Ticker = require('../../../components/Ticker');
 var AcceptButton = require('../../../components/AcceptButton');
-
-const INITIAL_ITEMS_TO_CRAFT = 1;
 
 module.exports = function(_x, _y, _width, _height) {
   var x = _x;
@@ -24,13 +23,14 @@ module.exports = function(_x, _y, _width, _height) {
   container.height = height;
 
   var item;
+  var initialItemaToCraft;
 
   var bg = new PIXI.Graphics();
   bg.beginFill(0xbababa);
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var name = utils.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x222222});
+  var name = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x222222});
   name.x = (width - name.width) / 2;
   name.y = 10;
   container.addChild(name);
@@ -46,12 +46,12 @@ module.exports = function(_x, _y, _width, _height) {
   var icon;
 
   //Current Items
-  var currentItemsText = utils.Text('0', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0xcdcdcd});
+  var currentItemsText = new PIXI.Text('0', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0xcdcdcd});
   updateCurrentItemsText('0');
   container.addChild(currentItemsText);
 
   //Recipe text
-  var recipeText = utils.Text('Recipe', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var recipeText = new PIXI.Text('Recipe', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   recipeText.x = 10;
   recipeText.y = iconBg.y + iconBg.height + 20;
   container.addChild(recipeText);
@@ -60,7 +60,7 @@ module.exports = function(_x, _y, _width, _height) {
   var recipeList, recipeArray = [];
 
   //Craft Items
-  var craftItemsText = utils.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var craftItemsText = new PIXI.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   craftItemsText.x = 0;
   craftItemsText.y = 0;
   container.addChild(craftItemsText);
@@ -69,7 +69,8 @@ module.exports = function(_x, _y, _width, _height) {
     recipeArray.forEach(function(r) {
       r.updateIemsToCraft(n);
     });
-  }, INITIAL_ITEMS_TO_CRAFT);
+    state.set('workbench.itemsToCraft', n);
+  }, initialItemaToCraft);
   ticker.setMin(1);
   container.addChild(ticker.container);
 
@@ -89,7 +90,7 @@ module.exports = function(_x, _y, _width, _height) {
       storeManager.add('inventory[' + item.id + ']', ticker.value());
 
       //reset ticker
-      ticker.setValue(INITIAL_ITEMS_TO_CRAFT, true);
+      ticker.setValue(initialItemaToCraft, true);
     }
   });
   updateCraftButtonPosition();
@@ -137,7 +138,7 @@ module.exports = function(_x, _y, _width, _height) {
     recipe.forEach(function(ni) {
       var res = new RecipeItem(rh, width, ni[0], ni[1]);
       rh += res.container.height;
-      res.updateIemsToCraft(INITIAL_ITEMS_TO_CRAFT);
+      res.updateIemsToCraft(initialItemaToCraft);
       recipeArray.push(res);
       recipeList.addChild(res.container);
     });
@@ -149,7 +150,7 @@ module.exports = function(_x, _y, _width, _height) {
     craftItemsText.y = recipeList.y + recipeList.height + 20;
     ticker.container.x = width - ticker.container.width - 10;
     ticker.container.y = recipeList.y + recipeList.height + 20;
-    ticker.setValue(INITIAL_ITEMS_TO_CRAFT);
+    ticker.setValue(initialItemaToCraft);
   }
 
   function updateCraftButtonPosition() {
@@ -159,6 +160,7 @@ module.exports = function(_x, _y, _width, _height) {
 
   function setMaterial(itemId) {
     item = defines.getItemById(itemId);
+    initialItemaToCraft = state.get('workbench.itemsToCraft') || 1;
 
     updateImage(item.name);
     updateCurrentItems(item.id);

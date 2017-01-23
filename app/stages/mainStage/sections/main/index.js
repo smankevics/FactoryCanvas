@@ -3,6 +3,7 @@
 var PIXI = require('pixi.js');
 
 var viewManager = require('../../managers/ViewManager');
+var state = require('managers/StateManager');
 
 var Shop = require('./views/Shop');
 var Workbench = require('./views/workbench');
@@ -17,6 +18,7 @@ module.exports = function(_x, _y, _width, _height) {
   var width = _width;
   var height = _height;
   var container = new PIXI.Container();
+  var initialView = state.get('selectedView') || 'shop';
 
   container.x = x;
   container.y = y;
@@ -44,7 +46,7 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(auction);
   container.addChild(stats);
 
-  viewManager.setView('shop');
+  viewManager.setView(initialView);
 
   return container;
 }

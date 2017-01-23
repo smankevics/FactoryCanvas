@@ -11,7 +11,7 @@ var craftableItems = _.filter(resources, function(o) { return o.level > 1 });
 
 var allItems = JSON.parse(JSON.stringify(resources));
 allItems.forEach(function (r) {
-  if (!r.price) {
+  if (!r.price && r.recipe) {
     r.price = 0;
     r.recipe.forEach(function (o) {
       r.price += resources[o[0]].price * o[1];

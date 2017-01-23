@@ -4,68 +4,36 @@ var PIXI = require('pixi.js');
 var storeManager = require('managers/StoreManager');
 var utils = require('utils');
 
-module.exports = function(_info, container, quantityChangedCb, tickerChangedCb) {
+module.exports = function(_info, container, quantityChangedCb, sellResetCb) {
   var info = _info;
 
-  var sellCount = 0;
-  var quantity = storeManager.get('inventory[' + info.id + ']');
-  var pressTimeout;
-  var pressCycle = 1;
-
-  function updateTicker(inc) {
-    var newValue = inc ? sellCount + 1 : sellCount - 1;
-
-    if((!inc && sellCount <= 0) || (inc && sellCount >= quantity)) {
-      clearTimeout(pressTimeout);
-      return;
-    }
-
-    sellCount = newValue;
-    storeManager.set('toSell[' + info.id + ']', sellCount);
-      
-    if(pressTimeout)
-      clearTimeout(pressTimeout);
-    pressTimeout = setTimeout(function(){updateTicker(inc)}, 200 / pressCycle);
-
-    if(pressCycle < 10)
-      pressCycle++;
-
-    updateTickerValue();
-  }
-
-  function updateTickerValue() {
-    var value = sellCount > 0 ? sellCount : '';
-    tickerChangedCb(value);
-  }
-
-  function releaseTicker() {
-    clearTimeout(pressTimeout);
-    pressCycle = 1;
-  }
-
   function getQuantity() {
-    var quantity = storeManager.get('inventory[' + info.id + ']');
-    return quantity;
+    return storeManager.get('inventory[' + info.id + ']');
+  }
+
+  function getTickerValue() {
+    return storeManager.get('toSell[' + info.id + ']');
+  }
+
+  function setTickerValue(value) {
+    storeManager.set('toSell[' + info.id + ']', value);
   }
 
   //listen on shopping list clearance
-  storeManager.listen('toSell', function(shopList) {
-    sellCount = shopList[info.id] ? shopList[info.id] : 0;
-    updateTickerValue();
+  storeManager.listen('toSell[' + info.id + ']', function(value) {
+    if(!value) {
+      sellResetCb();
+      console.log('clear ', info.name);
+    }
   }, container);
 
   storeManager.listen('inventory[' + info.id + ']', function(value) {
-    quantity = value;
-    quantityChangedCb(value + '');
-  }, container);
-  storeManager.listen('inventory', function(list) {
-    quantity = list[info.id];
-    quantityChangedCb(quantity + '');
+    quantityChangedCb(value);
   }, container);
 
   return {
-    updateTicker: updateTicker,
-    releaseTicker: releaseTicker,
-    getQuantity: getQuantity
+    getQuantity: getQuantity,
+    getTickerValue: getTickerValue,
+    setTickerValue: setTickerValue
   }
 };

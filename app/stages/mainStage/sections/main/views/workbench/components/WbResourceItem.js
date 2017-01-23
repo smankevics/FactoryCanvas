@@ -7,7 +7,7 @@ const HEIGHT = 70;
 const COLOR = 0xbababa;
 const SELECTED_COLOR = 0xcdcdcd;
 
-module.exports = function(_info, selectCb) {
+module.exports = function(_info, selectCb, initiallySelected) {
   var info = _info;
   var container = new PIXI.Container();
   container.buttonMode = true;
@@ -15,13 +15,16 @@ module.exports = function(_info, selectCb) {
   container.on('mousedown', function() {
     selectCb(_info.id);
   })
+  container.on('tap', function() {
+    selectCb(_info.id);
+  })
 
   var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
+  bg.beginFill(initiallySelected ? SELECTED_COLOR : COLOR);
   bg.drawRoundedRect(0, 0, WIDTH, HEIGHT, 5);
   container.addChild(bg);
 
-  var name = utils.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
   name.x = (WIDTH - name.width) / 2;
   name.y = 2;
   container.addChild(name);
