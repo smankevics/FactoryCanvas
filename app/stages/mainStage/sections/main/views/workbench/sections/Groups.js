@@ -31,7 +31,7 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var title = new PIXI.Text('Groups', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var title = new PIXI.Text('Группы', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   title.x = (width - title.width) / 2;
   title.y = 5;
   container.addChild(title);
@@ -52,8 +52,8 @@ module.exports = function(_x, _y, _width, _height, onGroupChangeCb) {
       selected.children[0].style.fill = SELECTED_FONT;
       selected.dirty = true;
     }
-    var s = selected ? selected.groupId : null;
-    state.set('workbench.selectedGroup', s)
+    var s = selected && selected.groupId >= 0 ? selected.groupId : null;
+    state.set('workbench.selectedGroup', s);
     onGroupChangeCb(s);
   }
 

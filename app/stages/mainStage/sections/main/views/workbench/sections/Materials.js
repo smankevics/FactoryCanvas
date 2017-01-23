@@ -3,7 +3,7 @@
 var PIXI = require('pixi.js');
 
 var groupItems = require('../../../../../../../defines').groupItems;
-var ResourceItem = require('../components/WbResourceItem');
+var ResourceItem = require('../../../components/resourceItem');
 var state = require('managers/StateManager');
 
 module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
@@ -63,7 +63,9 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
 
     var i = 0, rw = 0, rh = 10;
     resources.forEach(function (resource) {
-      var res = new ResourceItem(resource, updateSelection);
+      //var res = new ResourceItem(resource, updateSelection);
+      var res = new ResourceItem(resource, null);
+      res.setSelectCb(updateSelection);
       res.container.x = rw;
       res.container.y = rh;
       rw += res.container.width + 8;

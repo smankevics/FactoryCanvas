@@ -26,7 +26,7 @@ module.exports = function(_width, _height) {
   title.y = 5;
   container.addChild(title);
 
-  var groups = new Groups(5, 40, 120, height - 45, onGroupChange);
+  var groups = new Groups(5, 40, 240, height - 45, onGroupChange);
   var craft = new Craft(width - 205, 40, 200, height - 45);
   var materials = new Materials(groups.width + 10, 40, width - groups.width - craft.width - 20, height - 45, onMaterialSelect);
 

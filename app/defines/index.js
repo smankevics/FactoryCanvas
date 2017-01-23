@@ -47,17 +47,10 @@ module.exports = {
   allItems: allItems,
   craftableItems: craftableItems,
   groupItems: function(group) {
-    var ids = (_.isNumber(group) && group >= 0) ? groups[group].items : null;
-    
-    if(ids) {
-      var result = [];
-      ids.forEach(function(n) {
-        result.push(resources[n]);
-      });
-      return result;
-    } else {
-      return craftableItems;
-    }
+    if(_.isNumber(group) && group >= 0)
+      return _.filter(resources, {group: group});
+    else
+      return resources;
   },
   getItemById: function(id) {
     return _.find(resources, {id: id});
