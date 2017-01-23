@@ -7,7 +7,7 @@ var groups = require('./groups');
 var resources = require('./resources');
 
 var commonResources = _.filter(resources, {level: 1});
-var craftableItems = _.filter(resources, function(o) { return o.level > 1 });
+var craftableItems = _.filter(resources, function(o) { return o.level !== 1 });
 
 var allItems = JSON.parse(JSON.stringify(resources));
 allItems.forEach(function (r) {
@@ -48,9 +48,9 @@ module.exports = {
   craftableItems: craftableItems,
   groupItems: function(group) {
     if(_.isNumber(group) && group >= 0)
-      return _.filter(resources, {group: group});
+      return _.filter(craftableItems, {group: group});
     else
-      return resources;
+      return craftableItems;
   },
   getItemById: function(id) {
     return _.find(resources, {id: id});
