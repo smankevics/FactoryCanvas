@@ -126,11 +126,10 @@ module.exports = function(_info, _behavior) {
     });
   }
 
-  return {
-    container: container,
-    info: info,
-    setSelectCb, setSelectCb,
-    select: select,
-    deselect: deselect
-  }
+  container.container = container;
+  container.info = info;
+  container.setSelectCb = setSelectCb;
+  container.select = select;
+  container.deselect = deselect;
+  return container;
 };

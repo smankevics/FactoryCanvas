@@ -49,32 +49,40 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   }
 
   function populateList() {
-    if (list)
-      list.destroy({ children: true });
+    if (list && list.container)
+      list.container.destroy({ children: true });
     items = [];
 
     var resources = defines.groupItems(group);
 
-    list = new PIXI.UI.ScrollingContainer(0, 0, 0, 0, width - 10, height);
+    list = new PIXI.UI.ScrollingContainer(true, false, 1, 0, width - 10, height);
+    
+    var res = new PIXI.UI.Container(width, height);
 
-    var i = 0, rw = 0, rh = 10;
+    var rw = 0, rh = 10;
     resources.forEach(function (resource) {
-      var res = new ResourceItem(resource, null);
-      res.setSelectCb(updateSelection);
-      res.container.x = rw;
-      res.container.y = rh;
-      rw += res.container.width + 8;
-      if (rw + res.container.width > width) {
+      var r = new ResourceItem(resource, null);
+      r.setSelectCb(updateSelection);
+
+      r.container.x = rw;
+      r.container.y = rh;
+      rw += r.container.width + 8;
+      if (rw + r.container.width > width) {
         rw = 0;
-        rh += res.container.height + 8;
+        rh += r.container.height + 8;
       }
 
-      list.addChild(res.container);
-      items.push(res);
-      i++;
-    });
+      
+      items.push(r);
 
-    container.addChild(list);
+      res.addChild(r);
+
+      
+
+    });
+    list.addChild(res);
+
+    container.addChild(list.container);
   }
 
   setGroup(initialGroup, true);

@@ -155,7 +155,7 @@ module.exports = [
         "price": 10,
 		"recipe": [],
 		"id": 19
-    },
+    }/*,
     {
         "icon": "/img/products/aluminium.gif",
         "name": "Алюминий",
@@ -2078,5 +2078,5 @@ module.exports = [
         "group": 7,
 		"recipe": [],
 		"id": 293
-    }
+    }*/
 ];
