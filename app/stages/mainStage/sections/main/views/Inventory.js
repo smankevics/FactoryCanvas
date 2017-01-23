@@ -34,7 +34,7 @@ module.exports = function(_width, _height) {
   sellDecline.y = 5;
   container.addChild(sellDecline);
 
-  var group = new ScrollableGroup(container, width, height);
+  var group = new ScrollableGroup(0, 0, width, height);
 
   var i = 0, rw = 0, rh = 40;
   resources.forEach(function(resource) {

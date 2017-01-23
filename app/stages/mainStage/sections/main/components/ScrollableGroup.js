@@ -1,7 +1,9 @@
 'use strict';
 var PIXI = require('pixi.js');
 
-module.exports = function(view, _width, _height) {
+module.exports = function(_x, _y, _width, _height) {
+  var x = _x;
+  var y = _y;
   var width = _width;
   var height = _height;
   var container = new PIXI.Container();
@@ -36,7 +38,7 @@ module.exports = function(view, _width, _height) {
   var scrollable = new PIXI.Container();
 
   function scroll(e) {
-    if(view.visible && mouseOver) {
+    if(mouseOver) {
       if(e.deltaY < 0) {
         scrollable.y = scrollable.y - e.deltaY <= 0 ? scrollable.y - e.deltaY : 0;
       } else {
@@ -63,7 +65,7 @@ module.exports = function(view, _width, _height) {
   var mask = new PIXI.Graphics();
   mask.beginFill(0xffffff);
   mask.drawRect(0, 110, width, height);
-  mask.alpha = 0;
+  //mask.alpha = 0;
   mask.y = 0;
 
   container.mask = mask;

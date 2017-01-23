@@ -2,7 +2,7 @@
 
 var PIXI = require('pixi.js');
 
-var groupItems = require('../../../../../../../defines').groupItems;
+var defines = require('../../../../../../../defines');
 var ResourceItem = require('../../../components/resourceItem');
 var state = require('managers/StateManager');
 
@@ -53,17 +53,12 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
       list.destroy({ children: true });
     items = [];
 
-    var resources = groupItems(group);
+    var resources = defines.groupItems(group);
 
-    list = new PIXI.Container();
-    list.x = 5;
-    list.width = width - 10;
-    list.y = 0;
-    list.height = height;
+    list = new PIXI.UI.ScrollingContainer(0, 0, 0, 0, width - 10, height);
 
     var i = 0, rw = 0, rh = 10;
     resources.forEach(function (resource) {
-      //var res = new ResourceItem(resource, updateSelection);
       var res = new ResourceItem(resource, null);
       res.setSelectCb(updateSelection);
       res.container.x = rw;

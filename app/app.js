@@ -1,6 +1,9 @@
 'use strict';
 
 var PIXI = require('pixi.js');
+require('components/pixi-ui');
+
+console.log(PIXI.UI);
 
 var defines = require('./defines');
 var FpsMeter = require('./components/view/FpsMeter');
