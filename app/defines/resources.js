@@ -125,6 +125,7 @@ module.exports = [
         "icon": "/img/products/led.gif",
         "name": "LED",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 15
     },
@@ -132,6 +133,7 @@ module.exports = [
         "icon": "/img/products/aircraftengine.gif",
         "name": "Авиадвигатель",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 16
     },
@@ -139,6 +141,7 @@ module.exports = [
         "icon": "/img/products/chassis.gif",
         "name": "Авиашасси",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 17
     },
@@ -146,6 +149,7 @@ module.exports = [
         "icon": "/img/products/avionics.gif",
         "name": "Авионика",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 18
     },
@@ -153,13 +157,15 @@ module.exports = [
         "icon": "/img/products/autoparts.gif",
         "name": "Автозапчасти",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 19
-    }/*,
+    },
     {
         "icon": "/img/products/aluminium.gif",
         "name": "Алюминий",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 20
     },
@@ -167,6 +173,7 @@ module.exports = [
         "icon": "/img/products/paper.gif",
         "name": "Бумага",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 21
     },
@@ -174,6 +181,7 @@ module.exports = [
         "icon": "/img/products/engine.gif",
         "name": "Двигатель",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 22
     },
@@ -181,6 +189,7 @@ module.exports = [
         "icon": "/img/products/mirror0.gif",
         "name": "Зеркальный лист",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 23
     },
@@ -188,6 +197,7 @@ module.exports = [
         "icon": "/img/products/aircraftinterior.gif",
         "name": "Интерьер самолета",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 24
     },
@@ -195,6 +205,7 @@ module.exports = [
         "icon": "/img/products/leather.gif",
         "name": "Кожа",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 25
     },
@@ -202,6 +213,7 @@ module.exports = [
         "icon": "/img/products/components.gif",
         "name": "Комплектующие",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 26
     },
@@ -209,6 +221,7 @@ module.exports = [
         "icon": "/img/products/ship_body.gif",
         "name": "Корпус яхты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 27
     },
@@ -216,12 +229,14 @@ module.exports = [
         "icon": "/img/products/essence2.gif",
         "name": "Косметическое масло",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 28
     },
     {
         "icon": "/img/products/paint.gif",
         "name": "Краска",
+        "group": 0,
         "price": 10,
 		"recipe": [],
 		"id": 29
@@ -229,6 +244,7 @@ module.exports = [
     {
         "icon": "/img/products/lithium.gif",
         "name": "Литий",
+        "group": 0,
         "price": 10,
 		"recipe": [],
 		"id": 30
@@ -237,12 +253,14 @@ module.exports = [
         "icon": "/img/products/li_battery.gif",
         "name": "Литий-ионный аккумулятор",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 31
     },
     {
         "icon": "/img/products/cu.gif",
         "name": "Медь",
+        "group": 0,
         "price": 10,
 		"recipe": [],
 		"id": 32
@@ -251,6 +269,7 @@ module.exports = [
         "icon": "/img/products/microprocessor.gif",
         "name": "Микропроцессор",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 33
     },
@@ -258,6 +277,7 @@ module.exports = [
         "icon": "/img/products/natur_ingredients.gif",
         "name": "Натуральные лекарственные компоненты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 34
     },
@@ -265,6 +285,7 @@ module.exports = [
         "icon": "/img/products/yacht_equipment.gif",
         "name": "Оснащение яхты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 35
     },
@@ -272,6 +293,7 @@ module.exports = [
         "icon": "/img/products/cott_waste.gif",
         "name": "Отходы хлопчатника",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 36
     },
@@ -279,6 +301,7 @@ module.exports = [
         "icon": "/img/products/essence1.gif",
         "name": "Парфюмерная эссенция",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 37
     },
@@ -286,6 +309,7 @@ module.exports = [
         "icon": "/img/products/plastics.gif",
         "name": "Пластмасса",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 38
     },
@@ -293,6 +317,7 @@ module.exports = [
         "icon": "/img/products/rubber.gif",
         "name": "Резина",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 39
     },
@@ -300,6 +325,7 @@ module.exports = [
         "icon": "/img/products/seine.gif",
         "name": "Рыболовная сеть",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 40
     },
@@ -307,6 +333,7 @@ module.exports = [
         "icon": "/img/products/alcu.gif",
         "name": "Сверхлёгкий алюминиевый сплав",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 41
     },
@@ -314,6 +341,7 @@ module.exports = [
         "icon": "/img/products/matrix.gif",
         "name": "Светочувствительная матрица",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 42
     },
@@ -321,6 +349,7 @@ module.exports = [
         "icon": "/img/products/fuselage.gif",
         "name": "Секция фюзеляжа",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 43
     },
@@ -328,6 +357,7 @@ module.exports = [
         "icon": "/img/products/syntheticfabric.gif",
         "name": "Синтетическая ткань",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 44
     },
@@ -335,6 +365,7 @@ module.exports = [
         "icon": "/img/products/synth_ingredients.gif",
         "name": "Синтетические лекарственные компоненты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 45
     },
@@ -342,6 +373,7 @@ module.exports = [
         "icon": "/img/products/steel.gif",
         "name": "Сталь",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 46
     },
@@ -349,6 +381,7 @@ module.exports = [
         "icon": "/img/products/glass.gif",
         "name": "Стекло",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 47
     },
@@ -356,6 +389,7 @@ module.exports = [
         "icon": "/img/products/termo.gif",
         "name": "Термоэлемент",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 48
     },
@@ -363,6 +397,7 @@ module.exports = [
         "icon": "/img/products/ti.gif",
         "name": "Титан",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 49
     },
@@ -370,6 +405,7 @@ module.exports = [
         "icon": "/img/products/fabric.gif",
         "name": "Ткань",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 50
     },
@@ -377,6 +413,7 @@ module.exports = [
         "icon": "/img/products/carbon.gif",
         "name": "Углепластик",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 51
     },
@@ -384,6 +421,7 @@ module.exports = [
         "icon": "/img/products/chemicals.gif",
         "name": "Химикаты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 52
     },
@@ -391,6 +429,7 @@ module.exports = [
         "icon": "/img/products/fabric2.gif",
         "name": "Хлопковая ткань",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 53
     },
@@ -398,6 +437,7 @@ module.exports = [
         "icon": "/img/products/fiber.gif",
         "name": "Хлопковое волокно",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 54
     },
@@ -405,6 +445,7 @@ module.exports = [
         "icon": "/img/products/zinc.gif",
         "name": "Цинк",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 55
     },
@@ -412,6 +453,7 @@ module.exports = [
         "icon": "/img/products/wool.gif",
         "name": "Шерсть",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 56
     },
@@ -419,6 +461,7 @@ module.exports = [
         "icon": "/img/products/silk.gif",
         "name": "Шёлк",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 57
     },
@@ -426,6 +469,7 @@ module.exports = [
         "icon": "/img/products/electroniccomponents.gif",
         "name": "Электронные компоненты",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 58
     },
@@ -433,6 +477,7 @@ module.exports = [
         "icon": "/img/products/elmotor.gif",
         "name": "Электропривод",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 59
     },
@@ -440,6 +485,7 @@ module.exports = [
         "icon": "/img/products/wing.gif",
         "name": "Элементы авиакрыла",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 60
     },
@@ -447,6 +493,7 @@ module.exports = [
         "icon": "/img/products/empennage.gif",
         "name": "Элементы авиаоперения",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 61
     },
@@ -454,6 +501,7 @@ module.exports = [
         "icon": "/img/products/ethanol.gif",
         "name": "Этанол",
         "price": 10,
+        "group": 0,
 		"recipe": [],
 		"id": 62
     },
@@ -461,6 +509,7 @@ module.exports = [
         "icon": "/img/products/arachis.gif",
         "name": "Арахис",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 63
     },
@@ -468,6 +517,7 @@ module.exports = [
         "icon": "/img/products/wax.gif",
         "name": "Воск",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 64
     },
@@ -475,6 +525,7 @@ module.exports = [
         "icon": "/img/products/honeycomb.gif",
         "name": "Вощина",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 65
     },
@@ -482,6 +533,7 @@ module.exports = [
         "icon": "/img/products/grain.gif",
         "name": "Зерно",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 66
     },
@@ -489,6 +541,7 @@ module.exports = [
         "icon": "/img/products/cacao.gif",
         "name": "Какао",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 67
     },
@@ -496,6 +549,7 @@ module.exports = [
         "icon": "/img/products/potato.gif",
         "name": "Картофель",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 68
     },
@@ -503,6 +557,7 @@ module.exports = [
         "icon": "/img/products/feedstuff.gif",
         "name": "Комбикорм",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 69
     },
@@ -510,6 +565,7 @@ module.exports = [
         "icon": "/img/products/coffee.gif",
         "name": "Кофе",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 70
     },
@@ -517,6 +573,7 @@ module.exports = [
         "icon": "/img/products/corn2.gif",
         "name": "Кукуруза",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 71
     },
@@ -524,6 +581,7 @@ module.exports = [
         "icon": "/img/products/rjelly.gif",
         "name": "Маточное молочко",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 72
     },
@@ -531,6 +589,7 @@ module.exports = [
         "icon": "/img/products/milk.gif",
         "name": "Молоко",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 73
     },
@@ -538,6 +597,7 @@ module.exports = [
         "icon": "/img/products/meat.gif",
         "name": "Мясо",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 74
     },
@@ -545,6 +605,7 @@ module.exports = [
         "icon": "/img/products/honey.gif",
         "name": "Мёд",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 75
     },
@@ -552,6 +613,7 @@ module.exports = [
         "icon": "/img/products/olive.gif",
         "name": "Оливки",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 76
     },
@@ -559,6 +621,7 @@ module.exports = [
         "icon": "/img/products/rice.gif",
         "name": "Рис",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 77
     },
@@ -566,6 +629,7 @@ module.exports = [
         "icon": "/img/products/sugar.gif",
         "name": "Сахар",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 78
     },
@@ -573,6 +637,7 @@ module.exports = [
         "icon": "/img/products/soybean.gif",
         "name": "Соя",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 79
     },
@@ -580,6 +645,7 @@ module.exports = [
         "icon": "/img/products/tobacco.gif",
         "name": "Табак",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 80
     },
@@ -587,6 +653,7 @@ module.exports = [
         "icon": "/img/products/fruits.gif",
         "name": "Фрукты",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 81
     },
@@ -594,6 +661,7 @@ module.exports = [
         "icon": "/img/products/cotton.gif",
         "name": "Хлопок",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 82
     },
@@ -601,6 +669,7 @@ module.exports = [
         "icon": "/img/products/flower.gif",
         "name": "Цветы и эфиромасличные культуры",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 83
     },
@@ -608,6 +677,7 @@ module.exports = [
         "icon": "/img/products/tea.gif",
         "name": "Чайный лист",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 84
     },
@@ -615,6 +685,7 @@ module.exports = [
         "icon": "/img/products/eggs.gif",
         "name": "Яйца",
         "price": 10,
+        "group": 1,
 		"recipe": [],
 		"id": 85
     },
@@ -622,6 +693,7 @@ module.exports = [
         "icon": "/img/products/bourbon.gif",
         "name": "Бурбон",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 86
     },
@@ -629,6 +701,7 @@ module.exports = [
         "icon": "/img/products/jam.gif",
         "name": "Джем",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 87
     },
@@ -636,6 +709,7 @@ module.exports = [
         "icon": "/img/products/g_tea.gif",
         "name": "Зеленый чай",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 88
     },
@@ -643,6 +717,7 @@ module.exports = [
         "icon": "/img/products/sausages.gif",
         "name": "Колбасные изделия",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 89
     },
@@ -650,6 +725,7 @@ module.exports = [
         "icon": "/img/products/cookies.gif",
         "name": "Кондитерские изделия",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 90
     },
@@ -657,6 +733,7 @@ module.exports = [
         "icon": "/img/products/cannedcorn.gif",
         "name": "Консервированная кукуруза",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 91
     },
@@ -664,6 +741,7 @@ module.exports = [
         "icon": "/img/products/cannedolives.gif",
         "name": "Консервированные оливки",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 92
     },
@@ -671,6 +749,7 @@ module.exports = [
         "icon": "/img/products/can.gif",
         "name": "Консервы",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 93
     },
@@ -678,6 +757,7 @@ module.exports = [
         "icon": "/img/products/sweet.gif",
         "name": "Конфеты",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 94
     },
@@ -685,6 +765,7 @@ module.exports = [
         "icon": "/img/products/redcaviar.gif",
         "name": "Красная икра",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 95
     },
@@ -692,6 +773,7 @@ module.exports = [
         "icon": "/img/products/cornmeal.gif",
         "name": "Кукурузная мука",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 96
     },
@@ -699,6 +781,7 @@ module.exports = [
         "icon": "/img/products/cornflakes.gif",
         "name": "Кукурузные хлопья",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 97
     },
@@ -706,6 +789,7 @@ module.exports = [
         "icon": "/img/products/liqueur.gif",
         "name": "Ликер",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 98
     },
@@ -713,6 +797,7 @@ module.exports = [
         "icon": "/img/products/noodles.gif",
         "name": "Макаронные изделия",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 99
     },
@@ -720,6 +805,7 @@ module.exports = [
         "icon": "/img/products/butter.gif",
         "name": "Масло",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 100
     },
@@ -727,6 +813,7 @@ module.exports = [
         "icon": "/img/products/dairyproducts.gif",
         "name": "Молочные продукты",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 101
     },
@@ -734,6 +821,7 @@ module.exports = [
         "icon": "/img/products/icecream.gif",
         "name": "Мороженое",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 102
     },
@@ -741,6 +829,7 @@ module.exports = [
         "icon": "/img/products/flour.gif",
         "name": "Мука",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 103
     },
@@ -748,6 +837,7 @@ module.exports = [
         "icon": "/img/products/roastedcoffee.gif",
         "name": "Натуральный кофе",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 104
     },
@@ -755,6 +845,7 @@ module.exports = [
         "icon": "/img/products/oliveoil.gif",
         "name": "Оливковое масло",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 105
     },
@@ -762,6 +853,7 @@ module.exports = [
         "icon": "/img/products/codliver.gif",
         "name": "Печень трески",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 106
     },
@@ -769,6 +861,7 @@ module.exports = [
         "icon": "/img/products/beer.gif",
         "name": "Пиво",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 107
     },
@@ -776,6 +869,7 @@ module.exports = [
         "icon": "/img/products/instant.gif",
         "name": "Продукты быстрого приготовления",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 108
     },
@@ -783,6 +877,7 @@ module.exports = [
         "icon": "/img/products/gaswater.gif",
         "name": "Прохладительные напитки",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 109
     },
@@ -790,6 +885,7 @@ module.exports = [
         "icon": "/img/products/puer_tea.gif",
         "name": "Пуэр",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 110
     },
@@ -797,6 +893,7 @@ module.exports = [
         "icon": "/img/products/instantcoffee.gif",
         "name": "Растворимый кофе",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 111
     },
@@ -804,6 +901,7 @@ module.exports = [
         "icon": "/img/products/fishdeli.gif",
         "name": "Рыбные деликатесы",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 112
     },
@@ -811,6 +909,7 @@ module.exports = [
         "icon": "/img/products/fishcan.gif",
         "name": "Рыбные консервы",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 113
     },
@@ -818,6 +917,7 @@ module.exports = [
         "icon": "/img/products/juice.gif",
         "name": "Сок",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 114
     },
@@ -825,6 +925,7 @@ module.exports = [
         "icon": "/img/products/sauce.gif",
         "name": "Соусы",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 115
     },
@@ -832,6 +933,7 @@ module.exports = [
         "icon": "/img/products/spice.gif",
         "name": "Специи",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 116
     },
@@ -839,6 +941,7 @@ module.exports = [
         "icon": "/img/products/alcohol.gif",
         "name": "Спиртные напитки",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 117
     },
@@ -846,6 +949,7 @@ module.exports = [
         "icon": "/img/products/cheese.gif",
         "name": "Сыр",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 118
     },
@@ -853,6 +957,7 @@ module.exports = [
         "icon": "/img/products/feta.gif",
         "name": "Сыр фета",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 119
     },
@@ -860,6 +965,7 @@ module.exports = [
         "icon": "/img/products/fries.gif",
         "name": "Фри",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 120
     },
@@ -867,6 +973,7 @@ module.exports = [
         "icon": "/img/products/f_tea.gif",
         "name": "Фруктовый чай",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 121
     },
@@ -874,6 +981,7 @@ module.exports = [
         "icon": "/img/products/bread.gif",
         "name": "Хлеб",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 122
     },
@@ -881,6 +989,7 @@ module.exports = [
         "icon": "/img/products/caviar.gif",
         "name": "Черная икра",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 123
     },
@@ -888,6 +997,7 @@ module.exports = [
         "icon": "/img/products/b_tea.gif",
         "name": "Черный чай",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 124
     },
@@ -895,6 +1005,7 @@ module.exports = [
         "icon": "/img/products/chocolate.gif",
         "name": "Шоколад",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 125
     },
@@ -902,6 +1013,7 @@ module.exports = [
         "icon": "/img/products/energydrinks.gif",
         "name": "Энергетические напитки",
         "price": 10,
+        "group": 2,
 		"recipe": [],
 		"id": 126
     },
@@ -909,6 +1021,7 @@ module.exports = [
         "icon": "/img/products/gps.gif",
         "name": "GPS-навигаторы",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 127
     },
@@ -916,6 +1029,7 @@ module.exports = [
         "icon": "/img/products/ledtv.gif",
         "name": "LED-телевизоры",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 128
     },
@@ -923,6 +1037,7 @@ module.exports = [
         "icon": "/img/products/usb.gif",
         "name": "USB-флэш-накопитель",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 129
     },
@@ -930,6 +1045,7 @@ module.exports = [
         "icon": "/img/products/car.gif",
         "name": "Автомобиль",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 130
     },
@@ -937,6 +1053,7 @@ module.exports = [
         "icon": "/img/products/babycarseat.gif",
         "name": "Автомобильное сиденье",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 131
     },
@@ -944,6 +1061,7 @@ module.exports = [
         "icon": "/img/products/roof_rack.gif",
         "name": "Автомобильные багажники",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 132
     },
@@ -951,6 +1069,7 @@ module.exports = [
         "icon": "/img/products/rims.gif",
         "name": "Автомобильные диски",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 133
     },
@@ -958,6 +1077,7 @@ module.exports = [
         "icon": "/img/products/alarm.gif",
         "name": "Автосигнализация",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 134
     },
@@ -965,6 +1085,7 @@ module.exports = [
         "icon": "/img/products/antifreeze.gif",
         "name": "Антифриз",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 135
     },
@@ -972,6 +1093,7 @@ module.exports = [
         "icon": "/img/products/consumerelectronics.gif",
         "name": "Аудиотехника",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 136
     },
@@ -979,6 +1101,7 @@ module.exports = [
         "icon": "/img/products/cap.gif",
         "name": "Бейсболка",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 137
     },
@@ -986,6 +1109,7 @@ module.exports = [
         "icon": "/img/products/bijouterie.gif",
         "name": "Бижутерия",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 138
     },
@@ -993,6 +1117,7 @@ module.exports = [
         "icon": "/img/products/brilliant.gif",
         "name": "Бриллианты",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 139
     },
@@ -1000,6 +1125,7 @@ module.exports = [
         "icon": "/img/products/bronzedec.gif",
         "name": "Бронзовый декор",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 140
     },
@@ -1007,6 +1133,7 @@ module.exports = [
         "icon": "/img/products/householdchemistry.gif",
         "name": "Бытовая химия",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 141
     },
@@ -1014,6 +1141,7 @@ module.exports = [
         "icon": "/img/products/bicycle.gif",
         "name": "Велосипед",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 142
     },
@@ -1021,6 +1149,7 @@ module.exports = [
         "icon": "/img/products/video.gif",
         "name": "Видеокамера",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 143
     },
@@ -1028,6 +1157,7 @@ module.exports = [
         "icon": "/img/products/car_suv.gif",
         "name": "Внедорожник",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 144
     },
@@ -1035,6 +1165,7 @@ module.exports = [
         "icon": "/img/products/scooter.gif",
         "name": "Водный скутер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 145
     },
@@ -1042,6 +1173,7 @@ module.exports = [
         "icon": "/img/products/grill.gif",
         "name": "Гриль для дачи",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 146
     },
@@ -1049,6 +1181,7 @@ module.exports = [
         "icon": "/img/products/suit.gif",
         "name": "Деловая одежда",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 147
     },
@@ -1056,6 +1189,7 @@ module.exports = [
         "icon": "/img/products/babycarr.gif",
         "name": "Детская коляска",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 148
     },
@@ -1063,6 +1197,7 @@ module.exports = [
         "icon": "/img/products/crib.gif",
         "name": "Детская кроватка",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 149
     },
@@ -1070,6 +1205,7 @@ module.exports = [
         "icon": "/img/products/babyfood.gif",
         "name": "Детское питание",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 150
     },
@@ -1077,6 +1213,7 @@ module.exports = [
         "icon": "/img/products/jeans.gif",
         "name": "Джинсы",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 151
     },
@@ -1084,6 +1221,7 @@ module.exports = [
         "icon": "/img/products/showercubicle.gif",
         "name": "Душевые кабинки",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 152
     },
@@ -1091,6 +1229,7 @@ module.exports = [
         "icon": "/img/products/pearljewelry.gif",
         "name": "Жемчужные украшения",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 153
     },
@@ -1098,6 +1237,7 @@ module.exports = [
         "icon": "/img/products/teapot_sou.gif",
         "name": "Заварочный чайник",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 154
     },
@@ -1105,6 +1245,7 @@ module.exports = [
         "icon": "/img/products/mirror.gif",
         "name": "Зеркало",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 155
     },
@@ -1112,6 +1253,7 @@ module.exports = [
         "icon": "/img/products/umbrella.gif",
         "name": "Зонт",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 156
     },
@@ -1119,6 +1261,7 @@ module.exports = [
         "icon": "/img/products/console.gif",
         "name": "Игровые консоли",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 157
     },
@@ -1126,6 +1269,7 @@ module.exports = [
         "icon": "/img/products/toys.gif",
         "name": "Игрушки",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 158
     },
@@ -1133,6 +1277,7 @@ module.exports = [
         "icon": "/img/products/stationery.gif",
         "name": "Канцтовары",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 159
     },
@@ -1140,6 +1285,7 @@ module.exports = [
         "icon": "/img/products/ceramic.gif",
         "name": "Керамическая посуда",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 160
     },
@@ -1147,6 +1293,7 @@ module.exports = [
         "icon": "/img/products/book.gif",
         "name": "Книги",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 161
     },
@@ -1154,6 +1301,7 @@ module.exports = [
         "icon": "/img/products/forged.gif",
         "name": "Кованая садовая мебель",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 162
     },
@@ -1161,6 +1309,7 @@ module.exports = [
         "icon": "/img/products/carpet.gif",
         "name": "Ковер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 163
     },
@@ -1168,6 +1317,7 @@ module.exports = [
         "icon": "/img/products/computer.gif",
         "name": "Компьютер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 164
     },
@@ -1175,6 +1325,7 @@ module.exports = [
         "icon": "/img/products/comp_accessories.gif",
         "name": "Компьютерные аксессуары",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 165
     },
@@ -1182,6 +1333,7 @@ module.exports = [
         "icon": "/img/products/condition.gif",
         "name": "Кондиционер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 166
     },
@@ -1189,6 +1341,7 @@ module.exports = [
         "icon": "/img/products/animalfeed2.gif",
         "name": "Консервированный корм для животных",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 167
     },
@@ -1196,6 +1349,7 @@ module.exports = [
         "icon": "/img/products/cosmetics.gif",
         "name": "Косметика",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 168
     },
@@ -1203,6 +1357,7 @@ module.exports = [
         "icon": "/img/products/coffeemachine.gif",
         "name": "Кофе-машина",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 169
     },
@@ -1210,6 +1365,7 @@ module.exports = [
         "icon": "/img/products/car_doors.gif",
         "name": "Кузовные запчасти",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 170
     },
@@ -1217,6 +1373,7 @@ module.exports = [
         "icon": "/img/products/kitchen.gif",
         "name": "Кухонная мебель",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 171
     },
@@ -1224,6 +1381,7 @@ module.exports = [
         "icon": "/img/products/cookers.gif",
         "name": "Кухонные плиты",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 172
     },
@@ -1231,6 +1389,7 @@ module.exports = [
         "icon": "/img/products/furniture2.gif",
         "name": "Мебель",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 173
     },
@@ -1238,6 +1397,7 @@ module.exports = [
         "icon": "/img/products/cellularphone.gif",
         "name": "Мобильный телефон",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 174
     },
@@ -1245,6 +1405,7 @@ module.exports = [
         "icon": "/img/products/engineoil.gif",
         "name": "Моторное масло",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 175
     },
@@ -1252,6 +1413,7 @@ module.exports = [
         "icon": "/img/products/motorcycle.gif",
         "name": "Мотоцикл",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 176
     },
@@ -1259,6 +1421,7 @@ module.exports = [
         "icon": "/img/products/underwear.gif",
         "name": "Нижнее белье",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 177
     },
@@ -1266,6 +1429,7 @@ module.exports = [
         "icon": "/img/products/socks.gif",
         "name": "Носки",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 178
     },
@@ -1273,6 +1437,7 @@ module.exports = [
         "icon": "/img/products/laptop.gif",
         "name": "Ноутбук",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 179
     },
@@ -1280,6 +1445,7 @@ module.exports = [
         "icon": "/img/products/shoes.gif",
         "name": "Обувь",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 180
     },
@@ -1287,6 +1453,7 @@ module.exports = [
         "icon": "/img/products/clothes.gif",
         "name": "Одежда",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 181
     },
@@ -1294,6 +1461,7 @@ module.exports = [
         "icon": "/img/products/crawlers.gif",
         "name": "Одежда для малышей",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 182
     },
@@ -1301,6 +1469,7 @@ module.exports = [
         "icon": "/img/products/screenwash.gif",
         "name": "Омыватель стекол",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 183
     },
@@ -1308,6 +1477,7 @@ module.exports = [
         "icon": "/img/products/perfumery.gif",
         "name": "Парфюмерия",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 184
     },
@@ -1315,6 +1485,7 @@ module.exports = [
         "icon": "/img/products/ipad.gif",
         "name": "Планшет",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 185
     },
@@ -1322,6 +1493,7 @@ module.exports = [
         "icon": "/img/products/dress.gif",
         "name": "Платье",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 186
     },
@@ -1329,6 +1501,7 @@ module.exports = [
         "icon": "/img/products/gift.gif",
         "name": "Подарки и Сувениры",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 187
     },
@@ -1336,6 +1509,7 @@ module.exports = [
         "icon": "/img/products/diapers.gif",
         "name": "Подгузники",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 188
     },
@@ -1343,6 +1517,7 @@ module.exports = [
         "icon": "/img/products/towel.gif",
         "name": "Полотенце",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 189
     },
@@ -1350,6 +1525,7 @@ module.exports = [
         "icon": "/img/products/poncho.gif",
         "name": "Пончо",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 190
     },
@@ -1357,6 +1533,7 @@ module.exports = [
         "icon": "/img/products/dishes.gif",
         "name": "Посуда",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 191
     },
@@ -1364,6 +1541,7 @@ module.exports = [
         "icon": "/img/products/dishwashers.gif",
         "name": "Посудомоечные машины",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 192
     },
@@ -1371,6 +1549,7 @@ module.exports = [
         "icon": "/img/products/press.gif",
         "name": "Пресса",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 193
     },
@@ -1378,6 +1557,7 @@ module.exports = [
         "icon": "/img/products/printer.gif",
         "name": "Принтер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 194
     },
@@ -1385,6 +1565,7 @@ module.exports = [
         "icon": "/img/products/babymonitor.gif",
         "name": "Радионяня",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 195
     },
@@ -1392,6 +1573,7 @@ module.exports = [
         "icon": "/img/products/educationaltoys.gif",
         "name": "Развивающие игрушки",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 196
     },
@@ -1399,6 +1581,7 @@ module.exports = [
         "icon": "/img/products/gardentools.gif",
         "name": "Садовый инвентарь",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 197
     },
@@ -1406,6 +1589,7 @@ module.exports = [
         "icon": "/img/products/sanitaryware.gif",
         "name": "Сантехника",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 198
     },
@@ -1413,6 +1597,7 @@ module.exports = [
         "icon": "/img/products/boots.gif",
         "name": "Сапоги",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 199
     },
@@ -1420,6 +1605,7 @@ module.exports = [
         "icon": "/img/products/readinglamp.gif",
         "name": "Светильник",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 200
     },
@@ -1427,6 +1613,7 @@ module.exports = [
         "icon": "/img/products/ledlamp.gif",
         "name": "Светодиодная лампа",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 201
     },
@@ -1434,6 +1621,7 @@ module.exports = [
         "icon": "/img/products/car_sedan.gif",
         "name": "Седан",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 202
     },
@@ -1441,6 +1629,7 @@ module.exports = [
         "icon": "/img/products/cigarette.gif",
         "name": "Сигареты",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 203
     },
@@ -1448,6 +1637,7 @@ module.exports = [
         "icon": "/img/products/cigar.gif",
         "name": "Сигары",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 204
     },
@@ -1455,6 +1645,7 @@ module.exports = [
         "icon": "/img/products/pan.gif",
         "name": "Сковородки",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 205
     },
@@ -1462,6 +1653,7 @@ module.exports = [
         "icon": "/img/products/smartphone.gif",
         "name": "Смартфон",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 206
     },
@@ -1469,6 +1661,7 @@ module.exports = [
         "icon": "/img/products/sombrero.gif",
         "name": "Сомбреро",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 207
     },
@@ -1476,6 +1669,7 @@ module.exports = [
         "icon": "/img/products/furniture.gif",
         "name": "Спальная мебель",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 208
     },
@@ -1483,6 +1677,7 @@ module.exports = [
         "icon": "/img/products/car_sport.gif",
         "name": "Спорт-кар",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 209
     },
@@ -1490,6 +1685,7 @@ module.exports = [
         "icon": "/img/products/football.gif",
         "name": "Спортинвентарь",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 210
     },
@@ -1497,6 +1693,7 @@ module.exports = [
         "icon": "/img/products/washer.gif",
         "name": "Стиральные машины",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 211
     },
@@ -1504,6 +1701,7 @@ module.exports = [
         "icon": "/img/products/napery.gif",
         "name": "Столовое и постельное бельё",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 212
     },
@@ -1511,6 +1709,7 @@ module.exports = [
         "icon": "/img/products/animalfeed.gif",
         "name": "Сухой корм для животных",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 213
     },
@@ -1518,6 +1717,7 @@ module.exports = [
         "icon": "/img/products/tv.gif",
         "name": "Телевизоры",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 214
     },
@@ -1525,6 +1725,7 @@ module.exports = [
         "icon": "/img/products/hobby.gif",
         "name": "Товары для творчества",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 215
     },
@@ -1532,6 +1733,7 @@ module.exports = [
         "icon": "/img/products/trainer.gif",
         "name": "Тренажер",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 216
     },
@@ -1539,6 +1741,7 @@ module.exports = [
         "icon": "/img/products/knit.gif",
         "name": "Трикотаж",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 217
     },
@@ -1546,6 +1749,7 @@ module.exports = [
         "icon": "/img/products/iron.gif",
         "name": "Утюг",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 218
     },
@@ -1553,6 +1757,7 @@ module.exports = [
         "icon": "/img/products/hairdrier.gif",
         "name": "Фен",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 219
     },
@@ -1560,6 +1765,7 @@ module.exports = [
         "icon": "/img/products/camera.gif",
         "name": "Фототехника",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 220
     },
@@ -1567,6 +1773,7 @@ module.exports = [
         "icon": "/img/products/householdappliances.gif",
         "name": "Холодильники",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 221
     },
@@ -1574,6 +1781,7 @@ module.exports = [
         "icon": "/img/products/digital_video.gif",
         "name": "Цифровая видеокамера",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 222
     },
@@ -1581,6 +1789,7 @@ module.exports = [
         "icon": "/img/products/digital_camera.gif",
         "name": "Цифровой фотоаппарат",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 223
     },
@@ -1588,6 +1797,7 @@ module.exports = [
         "icon": "/img/products/teapot.gif",
         "name": "Чайник",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 224
     },
@@ -1595,6 +1805,7 @@ module.exports = [
         "icon": "/img/products/watches.gif",
         "name": "Часы",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 225
     },
@@ -1602,6 +1813,7 @@ module.exports = [
         "icon": "/img/products/detergents.gif",
         "name": "Чистящие средства",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 226
     },
@@ -1609,6 +1821,7 @@ module.exports = [
         "icon": "/img/products/tyre.gif",
         "name": "Шины",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 227
     },
@@ -1616,6 +1829,7 @@ module.exports = [
         "icon": "/img/products/pwtools.gif",
         "name": "Электроинструмент",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 228
     },
@@ -1623,6 +1837,7 @@ module.exports = [
         "icon": "/img/products/ecar.gif",
         "name": "Электромобиль",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 229
     },
@@ -1630,6 +1845,7 @@ module.exports = [
         "icon": "/img/products/battery.gif",
         "name": "Элемент питания",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 230
     },
@@ -1637,6 +1853,7 @@ module.exports = [
         "icon": "/img/products/jewellery.gif",
         "name": "Ювелирные украшения",
         "price": 10,
+        "group": 3,
 		"recipe": [],
 		"id": 231
     },
@@ -1644,6 +1861,7 @@ module.exports = [
         "icon": "/img/products/hormonal.gif",
         "name": "Гормональные препараты",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 232
     },
@@ -1651,6 +1869,7 @@ module.exports = [
         "icon": "/img/products/cosm_masks.gif",
         "name": "Косметические маски",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 233
     },
@@ -1658,6 +1877,7 @@ module.exports = [
         "icon": "/img/products/herbs.gif",
         "name": "Лекарственные травы",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 234
     },
@@ -1665,6 +1885,7 @@ module.exports = [
         "icon": "/img/products/antiseptic.gif",
         "name": "Медицинский антисептик",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 235
     },
@@ -1672,6 +1893,7 @@ module.exports = [
         "icon": "/img/products/thermometer.gif",
         "name": "Медицинский инструментарий",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 236
     },
@@ -1679,6 +1901,7 @@ module.exports = [
         "icon": "/img/products/antismok.gif",
         "name": "Никотиновый пластырь",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 237
     },
@@ -1686,6 +1909,7 @@ module.exports = [
         "icon": "/img/products/mixture.gif",
         "name": "Природные лекарства",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 238
     },
@@ -1693,6 +1917,7 @@ module.exports = [
         "icon": "/img/products/codliveroil.gif",
         "name": "Рыбий жир",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 239
     },
@@ -1700,6 +1925,7 @@ module.exports = [
         "icon": "/img/products/tablets.gif",
         "name": "Синтетические лекарства",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 240
     },
@@ -1707,6 +1933,7 @@ module.exports = [
         "icon": "/img/products/sportfood.gif",
         "name": "Спортивное питание",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 241
     },
@@ -1714,6 +1941,7 @@ module.exports = [
         "icon": "/img/products/hygiene.gif",
         "name": "Средства гигиены",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 242
     },
@@ -1721,6 +1949,7 @@ module.exports = [
         "icon": "/img/products/pulsimeter.gif",
         "name": "Электронный тонометр",
         "price": 10,
+        "group": 4,
 		"recipe": [],
 		"id": 243
     },
@@ -1728,6 +1957,7 @@ module.exports = [
         "icon": "/img/products/it_equipment.gif",
         "name": "IT-оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 244
     },
@@ -1735,6 +1965,7 @@ module.exports = [
         "icon": "/img/products/refueling.gif",
         "name": "Автозаправочное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 245
     },
@@ -1742,6 +1973,7 @@ module.exports = [
         "icon": "/img/products/repairing.gif",
         "name": "Авторемонтное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 246
     },
@@ -1749,6 +1981,7 @@ module.exports = [
         "icon": "/img/products/heliostat.gif",
         "name": "Гелиостат",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 247
     },
@@ -1756,6 +1989,7 @@ module.exports = [
         "icon": "/img/products/drill.gif",
         "name": "Горно-шахтное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 248
     },
@@ -1763,6 +1997,7 @@ module.exports = [
         "icon": "/img/products/kindergarten.gif",
         "name": "Интерьер дошкольных учреждений",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 249
     },
@@ -1770,6 +2005,7 @@ module.exports = [
         "icon": "/img/products/networking.gif",
         "name": "Коммуникационное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 250
     },
@@ -1777,6 +2013,7 @@ module.exports = [
         "icon": "/img/products/masut_fired.gif",
         "name": "Мазутный энергоблок",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 251
     },
@@ -1784,6 +2021,7 @@ module.exports = [
         "icon": "/img/products/medical_equipment.gif",
         "name": "Медицинское оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 252
     },
@@ -1791,6 +2029,7 @@ module.exports = [
         "icon": "/img/products/trash_equipment.gif",
         "name": "Мусороприёмное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 253
     },
@@ -1798,6 +2037,7 @@ module.exports = [
         "icon": "/img/products/incinerator.gif",
         "name": "Мусоросжигательный энергоблок",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 254
     },
@@ -1805,6 +2045,7 @@ module.exports = [
         "icon": "/img/products/hairdressing.gif",
         "name": "Парикмахерское оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 255
     },
@@ -1812,6 +2053,7 @@ module.exports = [
         "icon": "/img/products/turbine.gif",
         "name": "Паровая турбина",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 256
     },
@@ -1819,6 +2061,7 @@ module.exports = [
         "icon": "/img/products/boiler.gif",
         "name": "Паровой котёл",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 257
     },
@@ -1826,6 +2069,7 @@ module.exports = [
         "icon": "/img/products/saw.gif",
         "name": "Пилорама",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 258
     },
@@ -1833,6 +2077,7 @@ module.exports = [
         "icon": "/img/products/device.gif",
         "name": "Прибор",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 259
     },
@@ -1840,6 +2085,7 @@ module.exports = [
         "icon": "/img/products/restaurant.gif",
         "name": "Ресторанное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 260
     },
@@ -1847,6 +2093,7 @@ module.exports = [
         "icon": "/img/products/fishtrawler.gif",
         "name": "Рыболовецкий траулер",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 261
     },
@@ -1854,6 +2101,7 @@ module.exports = [
         "icon": "/img/products/server.gif",
         "name": "Серверная платформа",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 262
     },
@@ -1861,6 +2109,7 @@ module.exports = [
         "icon": "/img/products/gas_cleaning.gif",
         "name": "Система очистки дымовых газов",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 263
     },
@@ -1868,6 +2117,7 @@ module.exports = [
         "icon": "/img/products/sun_fired.gif",
         "name": "Солнечный энергоблок",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 264
     },
@@ -1875,6 +2125,7 @@ module.exports = [
         "icon": "/img/products/machine.gif",
         "name": "Станок",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 265
     },
@@ -1882,6 +2133,7 @@ module.exports = [
         "icon": "/img/products/heater.gif",
         "name": "Теплообменное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 266
     },
@@ -1889,6 +2141,7 @@ module.exports = [
         "icon": "/img/products/fuel_equipment.gif",
         "name": "Топливное оборудование",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 267
     },
@@ -1896,6 +2149,7 @@ module.exports = [
         "icon": "/img/products/dispenser.gif",
         "name": "Топливораздаточная колонка",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 268
     },
@@ -1903,6 +2157,7 @@ module.exports = [
         "icon": "/img/products/tractor.gif",
         "name": "Трактор",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 269
     },
@@ -1910,6 +2165,7 @@ module.exports = [
         "icon": "/img/products/coal_mill.gif",
         "name": "Угольная мельница",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 270
     },
@@ -1917,6 +2173,7 @@ module.exports = [
         "icon": "/img/products/coal_fired.gif",
         "name": "Угольный энергоблок",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 271
     },
@@ -1924,6 +2181,7 @@ module.exports = [
         "icon": "/img/products/airplan.gif",
         "name": "Узкофюзеляжный самолет",
         "price": 10,
+        "group": 5,
 		"recipe": [],
 		"id": 272
     },
@@ -1931,6 +2189,7 @@ module.exports = [
         "icon": "/img/products/pearls.gif",
         "name": "Жемчуг",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 273
     },
@@ -1938,6 +2197,7 @@ module.exports = [
         "icon": "/img/products/crabs.gif",
         "name": "Крабы",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 274
     },
@@ -1945,6 +2205,7 @@ module.exports = [
         "icon": "/img/products/salmon.gif",
         "name": "Лосось",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 275
     },
@@ -1952,6 +2213,7 @@ module.exports = [
         "icon": "/img/products/sturgeon.gif",
         "name": "Осетр",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 276
     },
@@ -1959,6 +2221,7 @@ module.exports = [
         "icon": "/img/products/fish.gif",
         "name": "Промысловая рыба",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 277
     },
@@ -1966,6 +2229,7 @@ module.exports = [
         "icon": "/img/products/codfish.gif",
         "name": "Треска",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 278
     },
@@ -1973,13 +2237,15 @@ module.exports = [
         "icon": "/img/products/oysters.gif",
         "name": "Устрицы",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 279
-    },
+    }/*,
     {
         "icon": "/img/products/chicken.gif",
         "name": "Домашняя птица",
         "price": 10,
+        "group": 7,
 		"recipe": [],
 		"id": 280
     },
@@ -1987,6 +2253,7 @@ module.exports = [
         "icon": "/img/products/cow.gif",
         "name": "Коровы",
         "price": 10,
+        "group": 7,
 		"recipe": [],
 		"id": 281
     },
@@ -1994,6 +2261,7 @@ module.exports = [
         "icon": "/img/products/sheep.gif",
         "name": "Овцы",
         "price": 10,
+        "group": 7,
 		"recipe": [],
 		"id": 282
     },
@@ -2001,6 +2269,7 @@ module.exports = [
         "icon": "/img/products/bee.gif",
         "name": "Пчёлы",
         "price": 10,
+        "group": 7,
 		"recipe": [],
 		"id": 283
     },
@@ -2008,13 +2277,15 @@ module.exports = [
         "icon": "/img/products/pig.gif",
         "name": "Свиньи",
         "price": 10,
+        "group": 7,
 		"recipe": [],
 		"id": 284
-    },
+    }*/,
     {
         "icon": "/img/products/bigwatches.gif",
         "name": "Арт декор",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 285
     },
@@ -2022,6 +2293,7 @@ module.exports = [
         "icon": "/img/products/yacht_interior.gif",
         "name": "Интерьер яхты",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 286
     },
@@ -2029,6 +2301,7 @@ module.exports = [
         "icon": "/img/products/shagreen.gif",
         "name": "Шагрень",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 287
     },
@@ -2036,6 +2309,7 @@ module.exports = [
         "icon": "/img/products/yacht.gif",
         "name": "Яхта",
         "price": 10,
+        "group": 6,
 		"recipe": [],
 		"id": 288
     },
@@ -2078,5 +2352,5 @@ module.exports = [
         "group": 7,
 		"recipe": [],
 		"id": 293
-    }*/
+    }
 ];

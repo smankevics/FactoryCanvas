@@ -23,6 +23,10 @@ module.exports = function(_width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
+  var scrollable = ScrollableGroup(width, height - 40);
+  scrollable.y = 40;
+  container.addChild(scrollable);
+
   var title = new PIXI.Text('Склад', {fontFamily : 'Calibri', fontSize: 24, fontWeight: 'bold', fill : 0x222222});
   title.x = 10;
   title.y = 5;
@@ -34,23 +38,12 @@ module.exports = function(_width, _height) {
   sellDecline.y = 5;
   container.addChild(sellDecline);
 
-  var group = new ScrollableGroup(0, 0, width, height);
-
-  var i = 0, rw = 0, rh = 40;
+  var res;
   resources.forEach(function(resource) {
-    var res = new ResourceItem(resource, 'sell');
-    res.container.x = rw;
-    res.container.y = rh;
-    rw += res.container.width + 8;
-    if(rw + res.container.width > width) {
-      rw = 0;
-      rh += res.container.height + 8;
-    }
-    group.addChild(res.container);
-    i++;
+    res = scrollable.packItem(new ResourceItem(resource, 'sell'));
+    scrollable.addItem(res);
   });
-
-  container.addChild(group.container);
+  scrollable.reposition();
 
   return container;
 }

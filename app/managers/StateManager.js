@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var events = require('events');
 
-const DEBUG = true;
+const DEBUG = false;
 
 var store = {};
 var emitter = new events.EventEmitter();

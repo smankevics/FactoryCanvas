@@ -46,11 +46,16 @@ module.exports = {
   commonResources: commonResources,
   allItems: allItems,
   craftableItems: craftableItems,
-  groupItems: function(group) {
-    if(_.isNumber(group) && group >= 0)
-      return _.filter(craftableItems, {group: group});
-    else
-      return craftableItems;
+  groupItemIds: function(group) {
+    if(!_.isNumber(group) || group < 0)
+      return null;
+
+    var result = [];
+    craftableItems.forEach(function(o) {
+      if(o.group === group)
+        result.push(o.id);
+    });
+    return result;
   },
   getItemById: function(id) {
     return _.find(resources, {id: id});

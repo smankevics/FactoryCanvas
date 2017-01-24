@@ -1,77 +1,50 @@
 'use strict';
+var _ = require('lodash');
 var PIXI = require('pixi.js');
 
-module.exports = function(_x, _y, _width, _height) {
-  var x = _x;
-  var y = _y;
+module.exports = function(_width, _height) {
   var width = _width;
   var height = _height;
-  var container = new PIXI.Container();
-  container.x = 0;
-  container.y = 0;
-  container.width = width;
-  container.height = height;
-  container.interactive = true;
+  var stage = new PIXI.UI.Stage(width, height);
 
-  //transparent background to catch events
-  var bg = new PIXI.Graphics();
-  bg.beginFill(0xffffff);
-  bg.drawRect(0, 0, width, height);
-  bg.alpha = 0;
-  container.addChild(bg);
-  
-  var mouseOver = false;
-  container.on('mouseover', function() {
-    mouseOver = true;
-  });
-  container.on('touchstart', function() {
-    mouseOver = true;
-  });
+  var list = new PIXI.UI.ScrollingContainer(true, false, 1, 0, width, height);
+  stage.addChild(list);
+  list.initialize();
 
-  container.on('mouseupoutside', function() {
-    mouseOver = false;
-  });
-  container.on('touchend', function() {
-    mouseOver = false;
-  });
+  var items = [];
 
-  var scrollable = new PIXI.Container();
+  stage.packItem = function(item) {
+    item.hitArea = new PIXI.Rectangle(0, 0, 0, 0);
+    var res = new PIXI.UI.Container(item.width, item.height);
+    res.container = item;
+    return res;
+  };
 
-  function scroll(e) {
-    if(mouseOver) {
-      if(e.deltaY < 0) {
-        scrollable.y = scrollable.y - e.deltaY <= 0 ? scrollable.y - e.deltaY : 0;
-      } else {
-        scrollable.y = Math.abs(scrollable.y - height) <= scrollable.height ? scrollable.y - e.deltaY : scrollable.y;
+  stage.addItem = function(item) {
+    items.push(item);
+    list.addChild(item);
+  };
+
+  stage.filter = function(filteredItems) {
+    list.children.forEach(function(o) {
+      o.visible = !filteredItems || filteredItems.indexOf(o.container.info.id) > -1;
+    })
+  }
+
+  stage.reposition = function() {
+    var rw = 0, rh = 0;
+    list.children.forEach(function(o) {
+      if(o.visible) {
+        o.x = rw;
+        o.y = rh;
+        rw += o.width + 8;
+        if (rw + o.width > width) {
+          rw = 0;
+          rh += o.height + 8;
+        }
       }
-    }
+    });
   }
 
-  document.addEventListener("mousewheel", scroll, false);
-  document.addEventListener("touchmove", scroll, false);
-
-  function addChild(child) {
-    scrollable.addChild(child);
-
-    //align center if multiple lines
-    if(scrollable.width + child.width > container.width)
-      scrollable.x = (width - scrollable.width) / 2;
-    else
-      scrollable.x = 5;
-  }
-
-  container.addChild(scrollable);
-
-  var mask = new PIXI.Graphics();
-  mask.beginFill(0xffffff);
-  mask.drawRect(0, 110, width, height);
-  //mask.alpha = 0;
-  mask.y = 0;
-
-  container.mask = mask;
-
-  return {
-    container: container,
-    addChild: addChild
-  }
+  return stage;
 };

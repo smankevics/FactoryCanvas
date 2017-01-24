@@ -5,6 +5,7 @@ var PIXI = require('pixi.js');
 var defines = require('../../../../../../../defines');
 var ResourceItem = require('../../../components/resourceItem');
 var state = require('managers/StateManager');
+var ScrollableGroup = require('../../../components/ScrollableGroup');
 
 module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   var x = _x;
@@ -12,6 +13,15 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   var width = _width;
   var height = _height;
   var container = new PIXI.Container();
+
+  var bg = new PIXI.Graphics();
+  bg.beginFill(0xbababa);
+  bg.drawRect(0, 0, width, height);
+  container.addChild(bg);
+
+  var scrollable = ScrollableGroup(width, height - 10);
+  scrollable.y = 5;
+  container.addChild(scrollable);
 
   container.x = x;
   container.y = y;
@@ -21,11 +31,6 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   var group;
   var initialGroup = state.get('workbench.selectedGroup');
   var initialMaterial = state.get('workbench.selectedMaterial');
-
-  var bg = new PIXI.Graphics();
-  bg.beginFill(0xbababa);
-  bg.drawRect(0, 0, width, height);
-  container.addChild(bg);
 
   var list, items = [];
 
@@ -49,52 +54,36 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
   }
 
   function populateList() {
-    if (list && list.container)
-      list.container.destroy({ children: true });
-    items = [];
-
-    var resources = defines.groupItems(group);
-
-    list = new PIXI.UI.ScrollingContainer(true, false, 1, 0, width - 10, height);
     
-    var res = new PIXI.UI.Container(width, height);
+    items = [];
+    var resources = defines.craftableItems;
 
-    var rw = 0, rh = 10;
+    var r, res;
     resources.forEach(function (resource) {
-      var r = new ResourceItem(resource, null);
+      r = new ResourceItem(resource, null);
       r.setSelectCb(updateSelection);
-
-      r.container.x = rw;
-      r.container.y = rh;
-      rw += r.container.width + 8;
-      if (rw + r.container.width > width) {
-        rw = 0;
-        rh += r.container.height + 8;
-      }
-
+      res = scrollable.packItem(r);
       
       items.push(r);
-
-      res.addChild(r);
-
-      
-
+      scrollable.addItem(res);
     });
-    list.addChild(res);
-
-    container.addChild(list.container);
+    scrollable.reposition();
   }
 
+  populateList();
   setGroup(initialGroup, true);
 
   function setGroup(_group, initial) {
     group = _group;
-    populateList();
+    if(!initial) {
+      scrollable.filter(defines.groupItemIds(group));
+      scrollable.reposition();
+    }
 
     //select item
     if(!items.length)
       return;
-      
+    
     var it = initialMaterial && initial ? initialMaterial : items[0].info.id;
     updateSelection(it, initial);
   }

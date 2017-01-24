@@ -10,7 +10,7 @@ emitter.setMaxListeners(0);
 
 var utils = require('../utils');
 
-const DEBUG = true;
+const DEBUG = false;
 
 function log(action, val1, val2) {
   if(DEBUG) {
