@@ -27,19 +27,20 @@ module.exports = function(_y, _width, _id, _neededForCraft, initialItemsToCraft)
     updateAvailableItems(list[_id]);
   }
 
-  var name = new PIXI.Text(info.name, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
-  name.x = 20;
+  var tName = utils.wrapper(info.name, {width: 20});
+  var name = new PIXI.Text(tName, {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  name.x = 10;
   name.y = 0;
   container.addChild(name);
 
-  var available = new PIXI.Text(' / ' + availableItems, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
-  available.x = width - 60;
-  available.y = 0;
+  var available = new PIXI.Text(' / ' + availableItems, {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
+  available.x = width - 50;
+  available.y = (name.height - available.height) / 2;
   container.addChild(available);
 
-  var needed = new PIXI.Text(itemsToCraft, {fontFamily : 'Calibri', fontSize: 14, fontWeight: 'bold', fill : 0x232323});
+  var needed = new PIXI.Text(itemsToCraft, {fontFamily : 'Calibri', fontSize: 12, fontWeight: 'bold', fill : 0x232323});
   needed.x = available.x - needed.width;
-  needed.y = 0;
+  needed.y = (name.height - needed.height) / 2;
   container.addChild(needed);
 
   function updateIemsToCraftColor() {
@@ -55,7 +56,7 @@ module.exports = function(_y, _width, _id, _neededForCraft, initialItemsToCraft)
     availableItems = _number;
     if(available.transform) {
       available.text = ' / ' + availableItems;
-      available.x = width - 60;
+      available.x = width - 50;
       updateIemsToCraftColor();
     }
   }

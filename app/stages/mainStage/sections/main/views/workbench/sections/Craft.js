@@ -30,17 +30,19 @@ module.exports = function(_x, _y, _width, _height) {
   bg.drawRect(0, 0, width, height);
   container.addChild(bg);
 
-  var name = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', fill : 0x222222});
-  name.x = (width - name.width) / 2;
-  name.y = 10;
-  container.addChild(name);
+  var nameText = new PIXI.Text('', {fontFamily : 'Calibri', fontSize: 20, fontWeight: 'bold', align: 'center', fill : 0x222222});
+  nameText.x = (width - nameText.width) / 2;
+  nameText.y = 10;
+  container.addChild(nameText);
 
   //Icon
   var iconBg = new PIXI.Graphics();
   iconBg.beginFill(0x444444);
   iconBg.drawRect(0, 0, 140, 140);
+  iconBg.width = 140;
+  iconBg.height = 140;
   iconBg.x = (width - iconBg.width) / 2;
-  iconBg.y = name.y + name.height + 10;
+  iconBg.y = nameText.y + nameText.height + 10;
   container.addChild(iconBg);
 
   var icon;
@@ -51,7 +53,7 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(currentItemsText);
 
   //Recipe text
-  var recipeText = new PIXI.Text('Recipe', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var recipeText = new PIXI.Text('Рецепт', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   recipeText.x = 10;
   recipeText.y = iconBg.y + iconBg.height + 20;
   container.addChild(recipeText);
@@ -60,7 +62,7 @@ module.exports = function(_x, _y, _width, _height) {
   var recipeList, recipeArray = [];
 
   //Craft Items
-  var craftItemsText = new PIXI.Text('Craft Items', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
+  var craftItemsText = new PIXI.Text('Количество: ', {fontFamily : 'Calibri', fontSize: 16, fontWeight: 'bold', fill : 0x222222});
   craftItemsText.x = 0;
   craftItemsText.y = 0;
   container.addChild(craftItemsText);
@@ -75,7 +77,10 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(ticker.container);
 
   //Craft Button
-  var craftButton = new AcceptButton('Craft', function() {
+  var craftButton = new AcceptButton('Создать', function() {
+    if(!recipeArray.length)
+      return;
+      
     var resForCraft = [];
     var canCraft = true;
     recipeArray.forEach(function(res) {
@@ -101,6 +106,8 @@ module.exports = function(_x, _y, _width, _height) {
     if(icon)
       icon.destroy();
     
+    iconBg.x = (width - iconBg.width) / 2;
+    iconBg.y = nameText.y + nameText.height + 10;
     icon = new PIXI.Sprite(PIXI.loader.resources[name].texture);
     icon.width = 128;
     icon.height = 128;
@@ -126,18 +133,19 @@ module.exports = function(_x, _y, _width, _height) {
   function updateRecipe(recipe) {
     if(recipeList)
       recipeList.destroy({children: true});
+    
+    recipeText.y = iconBg.y + iconBg.height + 20;
 
     recipeArray = [];
-    
     recipeList = new PIXI.Container();
     recipeList.x = 0;
     recipeList.y = recipeText.y + recipeText.height;
     recipeList.width = width;
     
-    var rh = 0;
+    var rh = 5;
     recipe.forEach(function(ni) {
       var res = new RecipeItem(rh, width, ni[0], ni[1]);
-      rh += res.container.height;
+      rh += res.container.height + 5;
       res.updateIemsToCraft(initialItemaToCraft);
       recipeArray.push(res);
       recipeList.addChild(res.container);
@@ -162,15 +170,16 @@ module.exports = function(_x, _y, _width, _height) {
     item = defines.getItemById(itemId);
     initialItemaToCraft = state.get('workbench.itemsToCraft') || 1;
 
+    //Item name
+    var tName = utils.wrapper(item.name, {width: 20});
+    nameText.text = tName;
+    nameText.x = (width - nameText.width) / 2;
+
     updateImage(item.name);
     updateCurrentItems(item.id);
     updateRecipe(item.recipe);
     updateTickerPosition();
     updateCraftButtonPosition();
-
-    //Item name
-    name.text = item.name;
-    name.x = (width - name.width) / 2;
   }
 
   return {

@@ -84,7 +84,7 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
     if(!items.length)
       return;
     
-    var it = initialMaterial && initial ? initialMaterial : items[0].info.id;
+    var it = initialMaterial && initial ? initialMaterial : scrollable.getFirstVisibleItemId();
     updateSelection(it, initial);
   }
 

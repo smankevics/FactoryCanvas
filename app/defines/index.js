@@ -9,18 +9,38 @@ var resources = require('./resources');
 var commonResources = _.filter(resources, {level: 1});
 var craftableItems = _.filter(resources, function(o) { return o.level !== 1 });
 
+function calculateUnsetPrices(prevUnsetCount, force) {
+  var unsetCount = 0, p, it;
+  allItems.forEach(function (r, i) {
+    if(!r.price && r.recipe) {
+      if(force) {
+        allItems[i].price = 0;
+      } else if (r.recipe && r.recipe.length) {
+        p = 0;
+        r.recipe.forEach(function (o) {
+          it = allItems[o[0]]
+          p = p + it.price * o[1];
+        });
+        if(p) {
+          p = p * (1.05 + (r.recipe.length - 1) * 0.23);
+          allItems[i].price = Math.round(p * 100) / 100;
+        } else {
+          unsetCount++;
+        }
+      } else {
+        unsetCount++;
+      }
+    }
+  });
+  
+  if(!prevUnsetCount || (unsetCount > 0 && unsetCount < prevUnsetCount))
+    calculateUnsetPrices(unsetCount);
+  else if(unsetCount > 0)
+    calculateUnsetPrices(unsetCount, true);
+}
+
 var allItems = JSON.parse(JSON.stringify(resources));
-allItems.forEach(function (r) {
-  if (!r.price && r.recipe) {
-    r.price = 0;
-    r.recipe.forEach(function (o) {
-      r.price += resources[o[0]].price * o[1];
-    });
-    //add income for craft
-    r.price = r.price * 2;
-    r.price = Math.round(r.price * 100) / 100;
-  }
-});
+calculateUnsetPrices();
     
 module.exports = {
   loadResources: function(cb) {

@@ -31,6 +31,13 @@ module.exports = function(_width, _height) {
     })
   }
 
+  stage.getFirstVisibleItemId = function() {
+    for(var o in list.children) {
+      if(list.children[o].visible)
+        return list.children[o].container.info.id;
+    }
+  }
+
   stage.reposition = function() {
     var rw = 0, rh = 0;
     list.children.forEach(function(o) {

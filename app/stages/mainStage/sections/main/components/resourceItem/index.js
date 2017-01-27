@@ -1,7 +1,6 @@
 'use strict';
 var PIXI = require('pixi.js');
 var utils = require('utils');
-var wrapper = utils.wrapper;
 
 var storeManager = require('managers/StoreManager');
 
@@ -38,7 +37,6 @@ module.exports = function(_info, _behavior) {
   function updateQuantityText(value) {
     quantityNumber = value;
     quantity.text = 'Кол-во: ' + value;
-    quantity.x = iconBg.x + iconBg.width + 5;
     if(_behavior === 'sell')
       ticker.setMax(quantityNumber);
   }
@@ -73,7 +71,7 @@ module.exports = function(_info, _behavior) {
   container.addChild(icon);
   
   //item name
-  var tName = wrapper(info.name, {width: 25});
+  var tName = utils.wrapper(info.name, {width: 25});
   var name = new PIXI.Text(tName, {fontFamily : 'Calibri', fontSize: 13, fontWeight: 'bold', align: 'center', fill : 0x232323});
   name.x = (WIDTH - name.width + iconBg.x + iconBg.width) / 2;
   name.y = (iconBg.height - name.height) / 2;
