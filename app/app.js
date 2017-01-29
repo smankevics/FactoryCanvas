@@ -3,12 +3,11 @@
 var PIXI = require('pixi.js');
 require('components/pixi-ui');
 
-console.log(PIXI.UI);
-
 var defines = require('./defines');
 var FpsMeter = require('./components/view/FpsMeter');
 var LoadingStage = require('./stages').LoadingStage;
 var MainStage = require('./stages').MainStage;
+var MenuStage = require('./stages').MenuStage;
 var StageManager = require('./managers').StageManager;
 var state = require('managers/StateManager');
 
@@ -61,8 +60,11 @@ stageManager.setStage('loadingStage');
 //load resources
 defines.loadResources(function() {
     //load other stages
-    stageManager.addStage(new MainStage('mainStage', width, height));
-    stageManager.setStage('mainStage');
+    stageManager.addStage(new MenuStage('menuStage', width, height, function() {
+        stageManager.addStage(new MainStage('mainStage', width, height));
+        stageManager.setStage('mainStage');
+    }));
+    stageManager.setStage('menuStage');
 
     //add components to application
     application.addChild(fpsMeter.container);

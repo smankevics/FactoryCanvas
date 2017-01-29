@@ -2,6 +2,7 @@
 
 var PIXI = require('pixi.js');
 var wrapper = require('./wrapper');
+var getChar = require('./getChar');
 
 module.exports = {
     stringCurrency: function(number) {
@@ -23,5 +24,6 @@ module.exports = {
         }
         return Number(n.toFixed(2));
     },
-    wrapper: wrapper
+    wrapper: wrapper,
+    getChar: getChar
 }   

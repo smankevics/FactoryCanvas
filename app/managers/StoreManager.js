@@ -22,6 +22,7 @@ function log(action, val1, val2) {
 
 function set(key, value, preventGlobal) {
     _.set(store, key, value);
+    saveGame();
     emit(key, value, preventGlobal);
   }
 
@@ -62,6 +63,25 @@ function updateFrom(key, value, add, preventGlobal) {
     }
 }
 
+function loadGame() {
+  var data = localStorage.getItem('userData');
+  var loadedStorage;
+
+  if(data) {
+    try {
+        loadedStorage = JSON.parse(data);
+        store = loadedStorage;
+    } catch(e) {
+        alert('Ошибка при загрузке данных'); // error in the above string (in this case, yes)!
+    }
+  }
+}
+
+function saveGame() {
+  var data = JSON.stringify(store);
+  localStorage.setItem('userData', data);
+}
+
 module.exports = {
   set: set,
   get: get,
@@ -74,6 +94,7 @@ module.exports = {
     if(typeof value === 'number') {
       var newValue = old + value;
       _.set(store, key, newValue);
+      saveGame();
       emit(key, newValue);
     } else {
       throw 'Error: can sum only numbers!';
@@ -84,6 +105,7 @@ module.exports = {
     if(typeof value === 'number' && typeof old === 'number') {
       var newValue = old - value;
       _.set(store, key, utils.numberCurrency(newValue));
+      saveGame();
       emit(key, store[key]);
     } else {
       throw 'Error: can substract only numbers!';
@@ -113,5 +135,7 @@ module.exports = {
   removeListener: function(key, cb) {
     log('remove listener', key);
     emitter.removeListener(key, cb);
-  }
+  },
+  loadGame: loadGame,
+  saveGame: saveGame
 }
