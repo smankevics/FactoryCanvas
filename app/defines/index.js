@@ -4,6 +4,7 @@ var PIXI = require('pixi.js');
 var _ = require('lodash');
 
 var groups = require('./groups');
+var images = require('./images');
 var resources = require('./resources');
 
 var commonResources = _.filter(resources, {level: 1});
@@ -46,11 +47,14 @@ module.exports = {
   loadResources: function(cb) {
     var started = new Date;
     var promise = PIXI.loader;
-    resources.forEach(function(r) {
+    _.forEach(images, function(path, name) {
+      promise.add(name, path)
+    })
+    /*resources.forEach(function(r) {
       if(r.icon) {
         promise = promise.add(r.name, r.icon)
       }
-    });
+    });*/
     promise
       .once('complete', function(loader, resources) {
         //loading screen should be displayed at least 500ms 

@@ -3,6 +3,7 @@ var PIXI = require('pixi.js');
 var utils = require('utils');
 
 var storeManager = require('managers/StoreManager');
+var resourcesAtlas = require('defines/resourcesAtlas');
 
 var Ticker = require('../Ticker');
 var BuyBehavior = require('./BuyBehavior');
@@ -60,10 +61,9 @@ module.exports = function(_info, _behavior) {
   iconBg.y = 3;
   container.addChild(iconBg);
 
-  if(!PIXI.loader.resources[info.name])
-    throw new Error('Unable to find ' + info.name + ' texture');
-
-  var icon = new PIXI.Sprite(PIXI.loader.resources[info.name].texture);
+  var icn = resourcesAtlas.get(info.icon);
+  var texture = new PIXI.Texture(PIXI.loader.resources['resources'].texture, new PIXI.Rectangle(icn.x, icn.y, icn.width, icn.height));
+  var icon = new PIXI.Sprite(texture);
   icon.width = 32;
   icon.height = 32;
   icon.x = iconBg.x;

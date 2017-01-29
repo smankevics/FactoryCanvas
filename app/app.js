@@ -52,6 +52,7 @@ application.interactive = true;
 
 var stageManager = new StageManager(application);
 var fpsMeter = new FpsMeter(width, height);
+fpsMeter.container.zIndex = -1;
 
 //create loading stage
 stageManager.addStage(new LoadingStage('loadingStage', width, height));

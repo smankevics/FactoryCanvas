@@ -4,6 +4,7 @@ var PIXI = require('pixi.js');
 
 var utils = require('utils');
 var defines = require('defines');
+var resourcesAtlas = require('defines/resourcesAtlas');
 var RecipeItem = require('../components/RecipeItem');
 var storeManager = require('managers/StoreManager');
 var state = require('managers/StateManager');
@@ -102,13 +103,15 @@ module.exports = function(_x, _y, _width, _height) {
   container.addChild(craftButton);
 
   //Functions
-  function updateImage(name) {
+  function updateImage(item) {
     if(icon)
       icon.destroy();
     
     iconBg.x = (width - iconBg.width) / 2;
     iconBg.y = nameText.y + nameText.height + 10;
-    icon = new PIXI.Sprite(PIXI.loader.resources[name].texture);
+    
+    var icn = resourcesAtlas.get(item.icon);
+    icon = new PIXI.Sprite(new PIXI.Texture(PIXI.loader.resources['resources'].texture, new PIXI.Rectangle(icn.x, icn.y, icn.width, icn.height)));
     icon.width = 128;
     icon.height = 128;
     icon.x = (iconBg.width - icon.width) / 2;
@@ -175,8 +178,8 @@ module.exports = function(_x, _y, _width, _height) {
     nameText.text = tName;
     nameText.x = (width - nameText.width) / 2;
 
-    updateImage(item.name);
-    updateCurrentItems(item.id);
+    updateImage(item);
+    updateCurrentItems(item.name);
     updateRecipe(item.recipe);
     updateTickerPosition();
     updateCraftButtonPosition();
