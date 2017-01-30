@@ -27,11 +27,17 @@ module.exports = function(_width, _height) {
 
   stage.filter = function(filteredItems) {
     list.children.forEach(function(o) {
-      o.visible = !filteredItems || filteredItems.indexOf(o.container.info.id) > -1;
-    })
+      o.filterVisible = !filteredItems || filteredItems.indexOf(o.container.info.id) > -1;
+      o.visible = o.filterVisible;
+    });
+    list.updatesettings();
   }
 
   stage.getFirstVisibleItemId = function() {
+    var first = _.find(list.children, {filterVisible: true});
+    if(first)
+      return first.container.info.id;
+      
     for(var o in list.children) {
       if(list.children[o].visible)
         return list.children[o].container.info.id;
@@ -41,7 +47,7 @@ module.exports = function(_width, _height) {
   stage.reposition = function() {
     var rw = 0, rh = 0;
     list.children.forEach(function(o) {
-      if(o.visible) {
+      if(o.filterVisible) {
         o.x = rw;
         o.y = rh;
         rw += o.width + 8;

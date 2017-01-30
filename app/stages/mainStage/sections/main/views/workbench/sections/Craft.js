@@ -179,7 +179,7 @@ module.exports = function(_x, _y, _width, _height) {
     nameText.x = (width - nameText.width) / 2;
 
     updateImage(item);
-    updateCurrentItems(item.name);
+    updateCurrentItems(item.id);
     updateRecipe(item.recipe);
     updateTickerPosition();
     updateCraftButtonPosition();

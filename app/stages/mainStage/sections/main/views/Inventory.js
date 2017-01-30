@@ -43,6 +43,7 @@ module.exports = function(_width, _height) {
     res = scrollable.packItem(new ResourceItem(resource, 'sell'));
     scrollable.addItem(res);
   });
+  scrollable.filter();
   scrollable.reposition();
 
   return container;

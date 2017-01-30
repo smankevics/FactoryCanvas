@@ -67,6 +67,7 @@ module.exports = function (_x, _y, _width, _height, onMaterialSelectCb) {
       items.push(r);
       scrollable.addItem(res);
     });
+    scrollable.filter();
     scrollable.reposition();
   }
 

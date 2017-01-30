@@ -737,6 +737,27 @@ ScrollingContainer.prototype.initScrolling = function () {
         Position[direction] = targetPosition[direction] = this.innerContainer.position[direction];
     };
 
+    this.updateChildrenVisible = function() {
+        var changed = false, prev, n = 0;
+        this.children.forEach(function(o, j) {
+            if(j > 0 && j < self.children.length - 1 && o.filterVisible) {
+                prev = o.visible;
+                if((o.y + o.height) + targetPosition.y <= (-2 * o.height) || o.y + targetPosition.y >= self.height + (2 * o.height)) {
+                    o.visible = false;
+                } else {
+                    o.visible = true;
+                    n++;
+                }
+                changed = changed || prev !== o.visible;
+                if(prev !== o.visible)
+                    o.dirty = true;
+            }
+        })
+        if(changed)
+            //self.baseupdate();
+            self.dirty = true;
+    };
+
     this.setScrollPosition = function (speed) {
         if (speed) {
             Speed = speed;
@@ -746,6 +767,9 @@ ScrollingContainer.prototype.initScrolling = function () {
             this.animating = true;
             lastPosition.copy(container.position);
             targetPosition.copy(container.position);
+            
+            this.updateChildrenVisible();
+
             Ticker.on("update", this.updateScrollPosition, this);
         }
     };
@@ -755,6 +779,7 @@ ScrollingContainer.prototype.initScrolling = function () {
         if (this.scrollX) this.updateDirection("x", delta);
         if (this.scrollY) this.updateDirection("y", delta);
         if (stop) {
+            this.updateChildrenVisible();
             Ticker.removeListener("update", this.updateScrollPosition);
             this.animating = false;
         }
@@ -815,7 +840,8 @@ ScrollingContainer.prototype.initScrolling = function () {
 
 
     //Drag scroll
-    var drag = new DragEvent(this);
+    
+    /*var drag = new DragEvent(this);
     drag.onDragStart = function (e) {
         if (!this.scrolling) {
             containerStart.copy(container.position);
@@ -834,7 +860,7 @@ ScrollingContainer.prototype.initScrolling = function () {
 
     drag.onDragEnd = function (e) {
         this.scrolling = false;
-    };
+    };*/
 
 
     //Mouse scroll
