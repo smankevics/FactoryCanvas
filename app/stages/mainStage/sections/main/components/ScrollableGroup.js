@@ -30,7 +30,7 @@ module.exports = function(_width, _height) {
       o.filterVisible = !filteredItems || filteredItems.indexOf(o.container.info.id) > -1;
       o.visible = o.filterVisible;
     });
-    list.updatesettings();
+    list.initialize();
   }
 
   stage.getFirstVisibleItemId = function() {
